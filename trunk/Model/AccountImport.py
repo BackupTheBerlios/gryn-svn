@@ -53,7 +53,9 @@ def importGapl(fileN):
     lines= fi.readlines()
     #First we find the top level accounts, i.e. those with 1-digit number
     for line in lines:
-        elm= string.split(string.strip(line), ':')
+        sline= string.strip(line)
+        if len(sline) < 3 or sline[0]=='#': continue
+        elm= string.split(sline, ':')
         if len(elm) != 3:
             print '*** Line has not three fields:  ', line
         else:

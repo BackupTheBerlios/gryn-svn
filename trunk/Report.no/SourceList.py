@@ -25,13 +25,13 @@ import Model.Global
 import Model.Books
 import Control.Global
 
-#import gettext
-#t = Model.Global.getTrans()
-#if t != None:
-#    _= t.gettext
-#else:
-def _(x):
-    return x
+import gettext
+t = Model.Global.getTrans()
+if t != None:
+    N_= t.gettext
+else:
+    def N_(x):
+        return x
 
 _sourceL= None
 _accountL= None
@@ -91,7 +91,7 @@ class SourceList(object):
         else:
             frm= objL[0].ref
             to= objL[-1].ref
-        title= 'Source list'
+        title= N_('Source list')
         self.pageHeader=PageHeader(title, client, year, frm, to)
             
         for s in objL:
@@ -154,7 +154,7 @@ class Source(object):
         self.date= source.date
         self.deleted= source.deleted
         if self.deleted == 'Y':
-            self.text=_('Deleted')
+            self.text=N_('Deleted')
         else:
             self.text= source.text
         self.splits= []
@@ -232,19 +232,20 @@ class Lots(object):
             return # this source is a lone entry of the lot
         if ref[0].id == thisSource.id: # this source opened the lot
             if sum == 0:
-                T= 'Setteled by '
+                T= N_('Setteled by ')
             else:
-                T= 'Partly settled by '
+                T= N_('Partly settled by ')
             for i in ref[1:]:
                 T= T  + i.ref + ', '
             T= T[:-2] # remove last comma
             if sum != 0:
-               T= T + ' balance: %s'%Model.Global.intToMoney(abs(sum))
+               T= T + ' '+ N_('balance')+ \
+               ': %s'%Model.Global.intToMoney(abs(sum))
         else: # this source settels the lot wholly or in part
             if len(ref) > 2:
-                T= 'Repayment of %s'% ref[0].ref
+                T= N_('Repayment of')+ ' %s'% ref[0].ref
             else:
-                T= 'Setteling of %s'% ref[0].ref
+                T= N_('Setteling of')+' %s'% ref[0].ref
         self.text= T
 
     def makeHtml(self, bgColor):
@@ -344,7 +345,7 @@ class PageHeader(object):
 class Footer(object):
     def __init__(self):
         self.date= dateTimeStrNow()
-        self.caption= 'Time of printout'
+        self.caption= N_('Time of printout')
 
     def makeHtml(self):
         t= '</tbody></table>''%s: %s\n'%(self.caption, self.date)
@@ -391,7 +392,7 @@ class Split(object):
 
 class Postlude(object):
     def __init__(self):
-        self.lastPage= 'Last page '
+        self.lastPage= N_('Last page ')
 
     def makeHtml(self):
         t= '</body></html>\n'

@@ -25,13 +25,13 @@ import Model.Global
 import Model.Books
 import Control.Global
 
-#import gettext
-#t = Model.Global.getTrans()
-#if t != None:
-#    _= t.gettext
-#else:
-def _(x):
-    return x
+import gettext
+t = Model.Global.getTrans()
+if t != None:
+    N_= t.gettext
+else:
+    def N_(x):
+        return x
 
 _sourceL= None
 _accountL= None
@@ -93,9 +93,9 @@ class SubsidiaryLedger(object):
         objL= objectL[1:] # the rest holds the objects to be reported
 
         if objL[0].type == 'C':
-            title= 'Customers'
+            title= N_('Customers')
         else:
-            title= 'Vendors'
+            title= N_('Vendors')
 
         self.pageHeader=PageHeader(title, client, year, None, None)
             
@@ -142,7 +142,7 @@ class SubsidiaryLedger(object):
 
 ###############
 # Cuven
-def N_(s): return s
+
 
 class Cuven(object):
     def __init__(self, cuven, format):
@@ -333,7 +333,7 @@ class PageHeader(object):
 class Footer(object):
     def __init__(self):
         self.date= dateTimeStrNow()
-        self.caption= 'Time of printout'
+        self.caption= N_('Time of printout')
 
     def makeHtml(self):
         t= '</table\n>'
@@ -349,7 +349,7 @@ class Footer(object):
 
 class Postlude(object):
     def __init__(self):
-        self.lastPage= 'Last page '
+        self.lastPage= N_('Last page ')
 
     def makeHtml(self):
         t= '</body></html>\n'

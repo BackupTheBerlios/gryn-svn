@@ -1,0 +1,16 @@
+
+$Id$
+
+These reports are not for the Norwegian locale only, but generates reports
+of a structure that is acceptable in Norway. So the .no suffix do not indicate
+a locale but a style. Feel free to use these reports
+for other locales too. But if the generated reports do not fit your culture or
+your personal taste you may create an other report directory for your
+alternatives and link from Report to your directory.
+
+Translations for these files:
+
+The _strings for gettext are collected from these files by the po-rule
+in Model/Makefile and therefore the translations appears in the 
+var/gryn/../gryn.mo 
+

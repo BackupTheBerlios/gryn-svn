@@ -24,13 +24,14 @@ import time
 import Model.Global
 import Model.Books
 
-#import gettext
-#t = Model.Global.getTrans()
-#if t != None:
-#    _= t.gettext
-#else:
-def _(x):
-    return x
+
+import gettext
+t = Model.Global.getTrans()
+if t != None:
+    N_= t.gettext
+else:
+    def N_(x):
+        return x
 
 #_sourceL= None
 _accountL= None
@@ -87,7 +88,7 @@ class LedgerBalance(object):
         self.parametres= splitL[0] # pick the parametres
         splL= splitL[1:] # the rest is the objects to be reported
 
-        title= 'Ledger balance'
+        title= N_('Ledger balance')
             
         perFrm= self.parametres[2] 
         perTo= self.parametres[3] 
@@ -240,16 +241,17 @@ class TableHeader(object):
         t= '<table width="100%" frame="void" border="0" rules="none" '+\
            'cellspacing="0" cellpadding="2"><tbody>\n' +\
            '<tr><td></td><td></td>' +\
-           '<td align="right">%s</td>'%'Opening' +\
-           '<td align="right">%s</td>'%'Per mov' +\
-           '<td align="right">%s</td>'%'Year mov' +\
-           '<td align="right">%s</td></tr>\n'%'Closing'
+           '<td align="right">%s</td>'%N_('Opening') +\
+           '<td align="right">%s</td>'%N_('Per mov') +\
+           '<td align="right">%s</td>'%N_('Year mov') +\
+           '<td align="right">%s</td></tr>\n'%N_('Closing')
         return t
 
         
     def makeTeX(self):
         t= r'\TableHeader{%s}{%s}{%s}{%s}'%(
-            'Opening', 'Per mov', 'Year mov', 'Closing') + newLine
+            N_('Opening'), N_('Per mov'), N_('Year mov'), N_('Closing')) \
+            + newLine
         return t
 
 ############
@@ -261,7 +263,7 @@ class TableFooter(object):
         self.per= 0
         self.sum= 0
         self.year= 0
-        self.sumT= 'Sum'
+        self.sumT= N_('Sum')
         for par in pars:
             self.opening= self.opening + par.opening
             self.per= self.per + par.perSum
@@ -340,7 +342,7 @@ class PageHeader(object):
 class Footer(object):
     def __init__(self):
         self.date= dateTimeStrNow()
-        self.caption= 'Time of printout'
+        self.caption= N_('Time of printout')
 
     def makeHtml(self):
         t= '</tbody></table>''%s: %s\n'%(self.caption, self.date)
@@ -356,7 +358,7 @@ class Footer(object):
 
 class Postlude(object):
     def __init__(self):
-        self.lastPage= 'Last page '
+        self.lastPage= N_('Last page ')
 
     def makeHtml(self):
         t= '</body></html>\n'

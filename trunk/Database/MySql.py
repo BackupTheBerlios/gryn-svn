@@ -41,9 +41,14 @@ class DbAccess(Database.SqlBase.SqlBase):
         #self.__user, self.__passwd, self.__host= Model.Global.getUsrPwdHost()
 
         try:
-            self._connection= \
-                           MySQLdb.connect(host=self._host, user=self._user,
-                           passwd=self._passwd, db=dbName)
+            if dbName:
+                self._connection= \
+                    MySQLdb.connect(host=self._host, user=self._user,
+                    passwd=self._passwd, db=dbName)
+            else:
+                self._connection= \
+                    MySQLdb.connect(host=self._host, user=self._user,
+                    passwd=self._passwd)
             self._cursor= self._connection.cursor()
         except:
             Model.Exceptions.raiser(sys.exc_info())
@@ -72,7 +77,7 @@ class DbAccess(Database.SqlBase.SqlBase):
         return self._cursor.lastrowid
 
 
-if __name__ == '__main__':
+if __name__ == '___main___':
     dbg= 1
     print 'MySql'
     Model.Global.Global()
@@ -95,4 +100,11 @@ if __name__ == '__main__':
     db2.close()
     db.dropDataBase('createTest')
     db.close()
+if __name__ == '__main__':
+    #create a database
+    db= MySQLdb.connect(host="localhost", user="root", passwd= "")
+    c= db.cursor()
+    c.execute("create database xyz")
+    db.close()
+
     

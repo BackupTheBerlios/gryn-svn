@@ -1,0 +1,39 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>SourceTable</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>SourceTable</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>601</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form2</string>
+    </property>
+    <widget class="QTable">
+        <property name="name">
+            <cstring>table1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>451</width>
+                <height>231</height>
+            </rect>
+        </property>
+        <property name="numRows">
+            <number>3</number>
+        </property>
+        <property name="numCols">
+            <number>3</number>
+        </property>
+    </widget>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

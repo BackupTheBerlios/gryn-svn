@@ -1,0 +1,77 @@
+$Id$
+
+#    This file is a part of the gryn/Qdough accounting program
+#    Copyright (C) 2003-2005  Odd  Arild Olsen
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version. 
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#    The top level file LICENSE holds the verbatim copy of this license.
+
+
+
+# All u*.py names are classes generated from Qt designer files  
+uCuvenTree.py
+uCuvenSelect.py
+uRuleAssign.py
+uSourceSelect.py
+uTreeList.py
+uRule.py
+uAccount.py
+uCuven.py
+uListSelect.py
+uSourceFind.py
+uQueue.py
+uTimeFrameSelect.py
+uAccountImport.py
+uSource.py
+uSourceVat.py
+uClientOpen.py
+uAccountTree.py
+uClientEditNew.py
+
+# These python class files are subclasses of the corresponding files above
+Cuven.py	      Customer Vendor new/edit/del dialog
+Source.py	      Source new/edit/del dialog
+Client.py	      Client new/edit/del dialog
+SourceTable.cw	      SourceTable custom widget Obsolete?
+SourceTable.py	      SourceTable widget for  Source 
+Queue.py	      Queue (invoice) import dialog 
+Global.py	      GUI-global variables etc
+SourceVat.py	      Dialog for VAT source generation	 
+Rule.py		      Source rule new/edit/del dialog 
+Account.py	      Account new/edit/del dialog
+Configtable.py	      Dialog for parameter list view/edit
+RuleAssign.py	      Input dialog for activated rule
+
+AccountTree.py	      Account tree view window
+CuvenTree.py	      Customer and vendor three view window
+
+SourceFind.py	      Dialogue to set up source search criterium
+SourceSelect.py	      Select source from list
+TimeFrameSelect.py    Dialog for time interval select criterium
+ListSelect.py	      Classes to select from lists 
+CuvenSelect.py        Selection dialog for customers and vendors
+
+MDIWindow.py	      Central window to hold report views
+ReportGen.py	      MDI-window to report generation classes link
+
+control.pro	      Project file used for Qt-linguist
+
+Ui/		      Holds all Qt designer XML-files, they are the 
+		      sources of the u*.py files above
+
+locale/qt_no.ts	      Linguist produced translation strings for Norwegian
+locale/qt_no.qm	      Linguist generated binary Norwegian translation
+
+Qd.py		      The executable

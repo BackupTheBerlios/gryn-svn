@@ -1,0 +1,262 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>uSourceSelect</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>uSourceSelect</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>350</width>
+            <height>287</height>
+        </rect>
+    </property>
+    <property name="font">
+        <font>
+            <family>Adobe Helvetica</family>
+            <pointsize>12</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Select source</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QButtonGroup">
+            <property name="name">
+                <cstring>wGroup</cstring>
+            </property>
+            <property name="title">
+                <string>Selection criterium</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer row="4" column="2">
+                    <property name="name">
+                        <cstring>spacer30</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>101</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLineEdit" row="1" column="1">
+                    <property name="name">
+                        <cstring>wSourceFrom</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="2">
+                    <property name="name">
+                        <cstring>wAccountTo</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="1" column="2">
+                    <property name="name">
+                        <cstring>wSourceTo</cstring>
+                    </property>
+                </widget>
+                <widget class="QRadioButton" row="1" column="0">
+                    <property name="name">
+                        <cstring>wbSource</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Source</string>
+                    </property>
+                </widget>
+                <widget class="QDateEdit" row="2" column="1">
+                    <property name="name">
+                        <cstring>wDateFrom</cstring>
+                    </property>
+                </widget>
+                <widget class="QDateEdit" row="2" column="2">
+                    <property name="name">
+                        <cstring>wDateTo</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="1">
+                    <property name="name">
+                        <cstring>wAccountFrom</cstring>
+                    </property>
+                </widget>
+                <widget class="QRadioButton" row="2" column="0">
+                    <property name="name">
+                        <cstring>wbDate</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Date</string>
+                    </property>
+                </widget>
+                <widget class="QRadioButton" row="3" column="0">
+                    <property name="name">
+                        <cstring>wbAccount</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Account</string>
+                    </property>
+                </widget>
+                <widget class="QRadioButton" row="4" column="0">
+                    <property name="name">
+                        <cstring>wbPeriod</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Period</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="4" column="1">
+                    <property name="name">
+                        <cstring>wPeriod</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="1">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>From</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignCenter</set>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="2">
+                    <property name="name">
+                        <cstring>textLabel1_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>To</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignCenter</set>
+                    </property>
+                </widget>
+                <spacer row="0" column="0">
+                    <property name="name">
+                        <cstring>spacer31</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>41</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QRadioButton" row="5" column="0">
+                    <property name="name">
+                        <cstring>wbAll</cstring>
+                    </property>
+                    <property name="text">
+                        <string>All</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>wShowSplits</cstring>
+            </property>
+            <property name="text">
+                <string>Show splits</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer33</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout35</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer32</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>141</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>wOK</cstring>
+                    </property>
+                    <property name="text">
+                        <string>OK</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>wCancel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Cancel</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<tabstops>
+    <tabstop>wSourceFrom</tabstop>
+    <tabstop>wSourceTo</tabstop>
+    <tabstop>wDateFrom</tabstop>
+    <tabstop>wDateTo</tabstop>
+    <tabstop>wAccountFrom</tabstop>
+    <tabstop>wAccountTo</tabstop>
+    <tabstop>wOK</tabstop>
+    <tabstop>wCancel</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

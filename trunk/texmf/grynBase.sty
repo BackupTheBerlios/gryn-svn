@@ -1,0 +1,88 @@
+% $Id$
+% Macros common to all reports
+
+%    This file is a part of the gryn/Qdough accounting program
+%    Copyright (C) 2003-2005  Odd  Arild Olsen
+
+%    This program is free software; you can redistribute it and/or modify
+%    it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation; either version 2 of the License, or
+%    (at your option) any later version. 
+
+%    This program is distributed in the hope that it will be useful,
+%    but WITHOUT ANY WARRANTY; without even the implied warranty of
+%    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+
+%    You should have received a copy of the GNU General Public License
+%    along with this program; if not, write to the Free Software
+%    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+%    The top level file LICENSE holds the verbatim copy of this license.
+
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions
+\LoadClass[\Basesize]{article}
+\AtEndOfClass{
+  \usepackage[latin1]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{a4wide}
+  \usepackage{palatino}
+  \usepackage{graphicx}
+  \usepackage{keyval}
+  \addtolength{\textheight}{-25mm}
+
+}
+%
+\AtBeginDocument{%
+  \pagestyle{Plain}%
+  \thispagestyle{Logo}%
+  \setlength{\headheight}{25mm}
+  \setlength{\evensidemargin}{0mm}
+  \setlength{\oddsidemargin}{0mm}
+  \setlength{\parindent}{0pt}
+  \setlength{\marginparsep}{0pt}
+  \setlength{\marginparwidth}{0pt}
+  \setlength{\footskip}{2\baselineskip}
+}
+\newlength{\LogoW}
+\newlength{\RestW}
+
+\def\Logo{}
+\newcommand{\ps@Logo}{%
+  \renewcommand{\@oddhead}{\parbox{\textwidth}{%
+      \setlength{\LogoW}{15mm}
+      \setlength{\RestW}{\textwidth}
+      \addtolength{\RestW}{-20mm}
+      \includegraphics[width=\LogoW,clip]{\Logo}\hfill%
+      \parbox[b]{\RestW}%
+             {\huge\Firm\hfill\Year\\\large\HeadText
+               \ifx\To\empty\else\From\To\fi}%
+             \vspace{1mm}\hrule}}%
+  \renewcommand{\@evenhead}{\@oddhead}
+  \renewcommand{\@evenfoot}{\parbox{\textwidth}{\hrule\vspace{1mm}%
+      \TimeStamp\hfill\rightmark\ \thepage}}
+  \renewcommand{\@oddfoot}{\@evenfoot}%
+}
+\newcommand{\ps@Plain}{%
+  \renewcommand{\@oddhead}{\parbox{\textwidth}{%
+             \normalsize\Firm\hfill\Year\hfill\HeadText
+               \ifx\To\empty\else\From\To\fi%
+             \vspace{1mm}\hrule}}%
+  \renewcommand{\@evenhead}{\@oddhead}
+  \renewcommand{\@evenfoot}{\parbox{\textwidth}{\hrule\vspace{1mm}%
+      \TimeStamp\hfill\rightmark\ \thepage}}
+  \renewcommand{\@oddfoot}{\@evenfoot}%
+}
+
+\def\Firm{}\def\Year{}\def\HeadText{}
+\newcommand{\SetLogo}[1]{\def\Logo{#1}}%
+
+\newcommand{\Head}[3]{\def\Firm{#1}\def\Year{#2}\def\HeadText{#3}%
+  \def\From{}\def\To{}}%
+
+\newcommand{\FromTo}[2]{\def\From{, #1--}\def\To{#2}}%
+
+\newcommand{\Time}[1]{\def\TimeStamp{#1}}%
+\newcommand{\Mark}[1]{\markboth{#1}{#1}}
+

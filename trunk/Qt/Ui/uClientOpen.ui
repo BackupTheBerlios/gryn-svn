@@ -1,0 +1,162 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>uClientOpen</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>uClientOpen</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>418</width>
+            <height>149</height>
+        </rect>
+    </property>
+    <property name="font">
+        <font>
+            <family>Adobe Helvetica</family>
+            <pointsize>12</pointsize>
+        </font>
+    </property>
+    <property name="caption">
+        <string>Open client</string>
+    </property>
+    <property name="focusPolicy">
+        <enum>TabFocus</enum>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <spacer row="3" column="1">
+            <property name="name">
+                <cstring>spacer28</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLabel" row="4" column="0">
+            <property name="name">
+                <cstring>textLabel5</cstring>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>TextLabel1</cstring>
+            </property>
+            <property name="text">
+                <string>Client name</string>
+            </property>
+            <property name="textFormat">
+                <enum>AutoText</enum>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter|AlignRight</set>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>clients</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="0" column="1">
+            <property name="name">
+                <cstring>clients</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="4" column="1">
+            <property name="name">
+                <cstring>layout28</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer17</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>110</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pbOpen</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Open</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pbCancel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>pbOpen</sender>
+        <signal>clicked()</signal>
+        <receiver>uClientOpen</receiver>
+        <slot>slotOpen()</slot>
+    </connection>
+    <connection>
+        <sender>pbCancel</sender>
+        <signal>clicked()</signal>
+        <receiver>uClientOpen</receiver>
+        <slot>slotCancel()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>clients</tabstop>
+    <tabstop>pbOpen</tabstop>
+    <tabstop>pbCancel</tabstop>
+</tabstops>
+<slots>
+    <slot>slotCancel()</slot>
+    <slot>slotOpen()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

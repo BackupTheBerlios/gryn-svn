@@ -1,0 +1,12 @@
+This directory holds the files of the Qt user interface. All Python
+files with a name beginning with a 'u' are generated
+from their corresponding ui-files in the Ui-directory. To regenerate
+the u* files: run make. Subclasses keep the name of their parents
+except for the leading 'u'.
+
+In other words: The Qt designer generates a uFoo.ui XML-file
+describing the dialogue. The makefile translates this into the Python
+file uFoo.py. We then subclass this file in Foo.py.
+
+The images needed by the application sit in the ../img-directory.
+

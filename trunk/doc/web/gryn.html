@@ -1,0 +1,200 @@
+<!-- $Id$ -->
+<!-- Copyright 2005 Odd Arild Olsen -->
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN"
+		"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>OAO:gryn</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="Manual">
+<META NAME="robots" CONTENT="NOINDEX,FOLLOW">
+<META NAME="keywords" CONTENT="gryn qdough odd arild olsen">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href=="img/favicon.ico" type="image/x-icon">
+</head>
+<body  text="#5D5D5D" background="img/bg.jpg">
+
+
+
+<table width="100%" cellpadding=5 bgcolor="#fffb50"><tr>
+<td valign="top"><img src="img/gryn_logo.png" alt="gryn logo"></td>
+<td>
+<h2>Gryn, et regnskapsprogram for GNU/Linux</h2>
+</td></tr></table>
+
+Gryn er et regnskapsprogram som kjøres
+under GNU/Linux. Programmet er beregnet for undervisning i
+regnskapsføring, for små bedrifter og foreninger. Lisensen for
+programmet er GNU-GPL, i korte trekk går den ut på at du fritt kan kopiere og
+distribuere kildekoden til hvem du vil.<p>
+
+Den versjonen av programmet som er
+tilgjengelig nå er en alfa versjon, det vil si at den inneholder det meste av
+funksjonalitet, men sannsynligvis også alvorlige feil og mangler som ikke gjør
+det egnet til seriøst bruk ennå. For å prøve programmet kan du 
+<a href="filer/gryn.tar.gz"> laste ned hele pakka her.</a><p>
+
+Gryn er, og skal være, en selvstendig enhet
+som skal brukes til en selvstendig oppgave: å føre regnskap. Andre
+bedriftsaktiviteter utføres gjerne av andre personer og til andre tider. Slike
+aktiviteter er derfor best tjent med egne programmer, for eksempel for lønn og
+fakturering. <p>
+
+På den annen side er det nyttig å overføre data mellom arbeidsoppgaver. Denne
+versjonen av Gryn kan importere data fra et fiktivt 
+faktureringsprogram. Fakturaopplysninger legges i kø i databasen og hentes inn
+i Gryn under bokføringen. Fakturaene føres så automatisk inn i
+regnskapet. Faktureringsprogrammet er tenkt å bruke samme database som Gryn
+slik at for eksempel opplysninger om kunder deles. 
+
+<h4>Funksjonsoversikt</h4>
+Programmet er ganske komplett, det vil si at de nødvendigste funksjonene er på
+plass:
+<ul>
+<li>Et ubegrenset antall klienter, dvs selvstendige regnskap. En klient kan
+være et firma eller annen enhet eller en av flere øvingsoppgaver.</li>
+<li>Import av kontoplan fra en av flere tekstfiler når klient
+opprettes. Kontoplanen kan deretter redigeres i egne dialoger.</li>
+<li>Oppretting, redigering og sletting av kunder og leverandører</li>
+<li>Føring, visning og redigering av bilag. Når bilaget tilknyttes en kunde
+eller leverandør blir bilaget også koblet mot reskontro. Betaling av fakturaer
+kan føres 
+som en enkel overføring eller som nedbetaling i avdrag. Uoppgjorte fakturaer
+overføres til nytt 
+år.</li>
+<li>Det kan opprettes posteringsregler for faste  rutiner. Regler opprettes
+interaktivt og i tillegg til posteringsregler kan de suppleres med
+Pythonkode. Når regelen brukes kommer det opp en dialog hvor beløp fylles inn.
+</li>
+<li>Overføring av merverdiavgift for hver periode er forhåndsprogrammert. Det
+kan 
+brukes et valgfritt antall mva satser i regnskapet. 
+</li>
+<li>Automatisk føring av importerte fakturadata.
+<li>Funksjoner for bilagsliste,
+hovedboksaldo og reskontrobok er ferdige. Rapportene kan filtreres med ulike
+kriterier, for eksempel tidsrom.</li>
+<li>De vesentligste funksjonene som mangler er automatisk overføring til nytt
+år og en rekke rapporttyper.</li>
+</ul>
+
+<h4>Dialogeksempel: Bilagsføring</h4>
+<img src="img/vindu_bilag.png" alt="bilagsdialog"><p>
+Når dialogen for nytt bilag åpner er øverste felt merket
+Kunde/leverandør. Dette feltet er koblet til et regulært uttrykk, det vil si
+at man bare trenger å skrive del av kunden eller leverandørens navn for å
+finne det riktige. Bilagsteksten er vanlig fritekst. I dette tilfellet er det
+ingen regler, men de kan evt velges med nedtrekksboks. <p>
+Tabellen med uoppgjorte fakturaer aktiveres dersom en kunde eller leverandør
+velges. Her kan en av fakturaene klikkes på, restbeløpet overføres da til
+første 
+linje i posteringslista
+under, enten som reduksjon av kundefordring eller
+leverandørgjeld. Beløpet i posteringslista kan redigeres dersom ikke hele
+restbeløpet betales.<p>
+
+Manuell føring av postering skjer ved å fylle inn enten kontonummer eller
+kontonavn. Kontonavnfeltet er også tilknyttet et regulært uttrykk, det er bare
+nødvendig å skrive litt av kontonavnet for å få fram det rette. Rett over
+posteringslista vises kontoens vanlige mva-kode. Den kan evt endres for den
+enkelte postering. Her kan det også velges om oppgitt beløp er nettobeløpet
+eller inkluderer mva. Mva-beløpet beregnes og posteres automatisk.<p>
+Ubalansen mellom debet og kredit oppdateres kontinuerlig under innskrivning av
+posteringer. Dersom avrund-knotten klikkes opprettes en postering for
+overføring til øreavrundingskonto. Dersom det allerede er valgt en konto på
+siste posteringslinje blir derimot bare ubalansebeløpet overført til denne
+linjens 
+debet eller kreditfelt.<p>
+
+Hvis reskontro-knappen trykkes lages en postering til kundefordring eller
+leverandørgjeld med et beløp lik ubalansen.<p>
+
+Brukeren kan åpne et vindu som viser kontoplanen. Klikkes på en av kontoene i
+planen blir kontonavn og nummer automatisk overført til aktiv
+posteringslinje. Tilsvarende vinduer er det også for kunder og
+leverandører. Klikk på en av dem fører også til automatisk innskriving i
+kunde/leverandørfeltet.
+
+<h4>Dialogeksempel: bokføringsregel </h4>
+<img src="img/vindu_ruledef.png" alt="regeldialog">&nbsp;
+<img src="img/vindu_rulerun.png" alt="regeldialog"><p>
+Det er mange posteringstyper som går igjen under bokføringen, for eksempel
+varesalg, lønn og arbeidsgiveravgift. Slike faste føringer kan automatiseres
+med regler. Dialogen til venstre viser et eksempel på hvordan en regel
+defineres. Regelnavn er det navnet vi finer regelen ved i komboboksen i
+bilagsdialogen. Standardtekst er den teksten som settes inn i bilaget.<p>
+
+Videre kan vi definere et antall parametre. Venstre kolonne er parameternavnet
+som det brukes internt, høyre kolonne er det navnet som kommer fram i dialogen
+når regelen brukes. Den midtre kolonnen angir om parameteren er et vanlig tall
+eller er et beløp.<p>
+
+Preludium er Pythonkode som kan brukes til beregninger som gjøres før
+posteringene lages. Nederst kommer en tabell for posteringer. Her skrives
+kontonummer, hvilken side posteringen skal til (Debet eller kredit) og en
+beregningsfunksjon. Funksjonen er igjen vanlig Pythonkode. I eksempelet er det
+bare aritmetiske kombinasjoner av variable definert ovenfor.<p>
+
+Når denne regelen brukes blir dialogen som vist til høyre, brukeren blir bedt
+om å skrive inn verdien på parametrene som ble definert. Deretter klikkes OK
+og posteringene skrives inn i bilagsdialogens posteringsliste.<p>
+
+Mange bokføringsprogrammer kan automatisk generere regler ved å analysere
+allerede førte eksempelbilag. Den måten Gryn tilbyr for å definere regler er
+mer 
+arbeidskrevende, men gir presis informasjon om hva systemet
+gjør. Automatisk genererte regler er alltid forbundet med noe mer diffust.
+  
+<h4>Rapporteksempel: Bilagsliste</h4>
+<img src="img/vindu_rapbil.png" alt="Bilagsliste"><p>
+Bildet viser oversikt over de første bilagene for regnskapet til Godt
+parti. Bilag nummer 0 og 1 brukes til overføring mellom år, vanligvis er den
+automatiske overføring korrekt og bilag 1 et tomt. Overføring mellom år skal
+kunne skje flere ganger og til vilkårlig tidspunkt etter nyttår. Bilag 3 viser
+et eksempel på en transaksjon som går over flere bilag. Bilag 3 er føringen av
+fakturaen, bilag 6 og 7 gjelder betaling av den i to porsjoner. Som vi ser er
+ikke rapport tekster oversatt til norsk ennå.
+
+<h4>Rapporteksempel: Reskontro</h4>
+<img src="img/vindu_rapresk.png" alt="reskontro"><p>
+Dette eksempelet viser reskontro for noen få leverandører til firmaet Godt
+parti. I dette eksempelet er alle bilag med, man kan også filtrere
+opplysningen som inngår i rapporten, for eksempel bare de med åpne poster og
+evt bare med sammendrag.<p>
+Trykk på skriverikonet gir utskrift på papir. Utskriften blir litt annerledes,
+se figuren under. Logoen kan velges til det aktuelle firma sitt, eller
+standard Gryn-logo som vist. Sidene merkes med utskriftsdato, side
+nr og evt 'siste side'. 
+<p><img src="img/vindu_rapreskps.png" alt="reskontro utskrift">
+
+<h4>Kontoplanvindu</h4>
+<p><img src="img/vindu_ktre2.png" alt="kontoplan2">&nbsp;
+<img src="img/vindu_ktre1.png" alt="kontoplan1"><p>
+Her er et eksempel på kontoplanvindu. Kontoplanen vises med trestruktur. De
+konti som er i bruk i regnskapet er markert med grønn hake. Til høyre vises
+samme kontoplan, men her vises bare de kontiene som er i bruk. Innholdet i
+vinduet oppdateres dersom et kontonavn/nummer redigeres eller legges
+til/slettes i kontoplanredigeringsdialogen. Hvert klikk sender et signal med
+en instans for kontoen som klikkes på. Dette signalet kan evt fanges opp i
+andre deler av programmet og brukes til noe nyttig der.
+
+<h4>Implementering</h4>
+Programmet er skrevet i Python, det består av to deler: brukergrensesnitt og
+modell. Modellen er helt uavhengig av brukergrensesnittdelen. En standard
+Sql-database brukes til persistent lagring av regnskapets objektinstanser. Nå
+er MySql grensesnitt brukt. Det er ønskelig med SqLite også.<p>
+
+Brukergrensesnittet er implementert med Qt-biblioteket som finnes i de fleste
+moderne Gnu/Linux distribusjoner. Python og biblioteket er limt sammen med
+PyQt/sip.<p>
+For utskrift av rapporter brukes LaTeX. Basismakroer er ferdige slik at det er
+enkelt å skrive nye makroer for nye rapporttyper.
+
+
+<table width="100%" bgcolor="#fffb50" cellpadding=5><tr><td valign="middle">
+<img src="img/epost.gif" alt="epost"></td>
+<td>Copyright 2005 Odd Arild Olsen</td>
+</tr></table>
+
+</body>
+</html>

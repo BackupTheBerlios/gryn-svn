@@ -52,17 +52,36 @@ import os
 import sys
 import gettext
 
-#t = getTrans()
-t= gettext.translation('gryn', './var/gryn/locale', ['no'])
-if t != None:
-    _= t.gettext
+
+# We must get the translation before we init the user data dictionary where the
+# locale gets defined. Later the getLocale function also gets defined.
+# This kludge will hopefully go away the day we get the locale from the system
+# So, until then the locale is defined in this function. To run without locale,
+# either set t= None or specify a nonexistent locale. However, the GUI code may
+# use the locale defined in the configuration file by calling getLocale because
+# the dictionaries are defined and config files read when Model.Global is
+# first referenced in the GUI main file. 
+
+_transLookedUp= None
+
+def getTrans():
+    global _transl
+    #if getLocale() != None:
+    if _transLookedUp: return _transl
+    try:
+        return gettext.translation('gryn', './var/gryn/locale', ['no'])
+    except IOError:
+        return None
+
+_transl= getTrans()
+_transLookedUp= 1
+
+if _transl:    
+    def N_(message): return _transl.gettext(message)
 else:
-    def _(x):
-        return x
+    def N_(message): return message
 
 
-#def N_(message): return message
-def N_(message): return t.gettext(message)
 # FIXME: make a Money class one day ...
 
 def moneyToInt(mm):
@@ -193,12 +212,12 @@ _usrpwd= {   # dictionary of role/password pair sets
     }
 
 _system= {  # Global options, possibly set from etc/gryn
-    'decSep':(',' ,  'Decimal separator in money'), # FIXME:use locale
-    'dateSep': ('-' , 'Separator in dates'),
-    'appName': ('Qdough' , 'Name of this application'),
-    'dbPrefix': ('gryn', 'Database name prefix'),
-    'host': ('localhost', 'Name of host running the database'),
-    'role': ('root', 'Present role of present user')
+    'decSep':(',' ,  N_('Decimal separator in money')), # FIXME:use locale
+    'dateSep': ('-' , N_('Separator in dates')),
+    'appName': ('Qdough' , N_('Name of this application')),
+    'dbPrefix': ('gryn', N_('Database name prefix')),
+    'host': ('localhost', N_('Name of host running the database')),
+    'role': ('root', N_('Present role of present user'))
     }
 
 _user= {  #User editable options, possibly set from ~/.gryn
@@ -314,9 +333,6 @@ def getUsrPwdHost():
     return (_usrpwd[getRole()][0],
             _usrpwd[getRole()][1], getHost())
 
-def getTrans():
-    if getLocale() != None:
-        return gettext.translation('gryn', './var/gryn/locale', ['no'])
 
 
 def makeDbName(id):

@@ -62,24 +62,43 @@ import gettext
 # the dictionaries are defined and config files read when Model.Global is
 # first referenced in the GUI main file. 
 
-_transLookedUp= None
+transl= None
+
+try:
+    transl= gettext.translation('gryn', './var/gryn/locale', ['no'])
+except IOError:
+    transl= None
 
 def getTrans():
-    global _transl
-    #if getLocale() != None:
-    if _transLookedUp: return _transl
-    try:
-        return gettext.translation('gryn', './var/gryn/locale', ['no'])
-    except IOError:
-        return None
+    return transl
 
-_transl= getTrans()
-_transLookedUp= 1
-
-if _transl:    
-    def N_(message): return _transl.gettext(message)
+if transl:    
+    def N_(message): return transl.gettext(message)
 else:
     def N_(message): return message
+print "translated: ", N_('Separator in dates')
+
+
+##_transLookedUp= None
+
+## def getTrans():
+##     global _transl
+##     #if getLocale() != None:
+##     if _transLookedUp: return _transl
+##     try:
+##         return gettext.translation('gryn', './var/gryn/locale', ['no'])
+##     except IOError:
+##         return None
+
+## _transl= getTrans()
+## _transLookedUp= 1
+
+## if _transl:    
+##     def N_(message): return _transl.gettext(message)
+## else:
+##     def N_(message): return message
+
+
 
 
 # FIXME: make a Money class one day ...

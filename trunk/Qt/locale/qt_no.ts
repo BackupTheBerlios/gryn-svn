@@ -397,13 +397,6 @@ This client was not saved.</source>
     </message>
 </context>
 <context>
-    <name>MDIWindow</name>
-    <message>
-        <source>Print this report</source>
-        <translation>Skriv denne rapporten</translation>
-    </message>
-</context>
-<context>
     <name>Qd</name>
     <message>
         <source>New</source>
@@ -645,7 +638,7 @@ This client was not saved.</source>
     </message>
     <message>
         <source>Project home: www.oao.no/linux/gryn</source>
-        <translation type="obsolete">Prosjektside: www.oao.no/linux/gryn</translation>
+        <translation>Prosjektside: www.oao.no/linux/gryn</translation>
     </message>
     <message>
         <source>This program depends on</source>
@@ -685,14 +678,6 @@ This client was not saved.</source>
         <comment>client</comment>
         <translation>Åpne</translation>
     </message>
-    <message>
-        <source>Project home: gryn.berlios.de</source>
-        <translation type="obsolete">Prosjektets hjemmeside: gryn.berlios.de</translation>
-    </message>
-    <message>
-        <source>Project home:</source>
-        <translation>Prosjektets hjemmeside:</translation>
-    </message>
 </context>
 <context>
     <name>Rule</name>
@@ -722,7 +707,7 @@ This client was not saved.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="obsolete">Navn</translation>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Save</source>
@@ -763,10 +748,6 @@ This client was not saved.</source>
     <message>
         <source>Rule text is empty</source>
         <translation>Regeltekst er tom</translation>
-    </message>
-    <message>
-        <source>Dialog tekst</source>
-        <translation>Dialogteksts</translation>
     </message>
 </context>
 <context>
@@ -885,20 +866,6 @@ This client was not saved.</source>
     <message>
         <source>Please create the sales/bought account first</source>
         <translation>Du må lage salg/kjøp konto først</translation>
-    </message>
-    <message>
-        <source>You must either select an item from the
-</source>
-        <translation>Du må enten velge en fra </translation>
-    </message>
-    <message>
-        <source>lot table (for invoice payment or
-</source>
-        <translation>transaksjonstabellen eller</translation>
-    </message>
-    <message>
-        <source>click the resc button for a new invoice</source>
-        <translation>klikke på Reskontroknappen hvis det er en ny faktura</translation>
     </message>
 </context>
 <context>

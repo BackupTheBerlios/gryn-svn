@@ -69,7 +69,7 @@ class DbAccess(Database.SqlBase.SqlBase):
             self._cursor.execute(s)
         except:
             Model.Exceptions.raiser(sys.exc_info())
-        return self._cursor.insert_id()
+        return self._cursor.lastrowid
 
 
 if __name__ == '__main__':

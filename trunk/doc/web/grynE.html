@@ -4,13 +4,13 @@
 		"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>OAO:gryn</title>
+  <title>Gryn</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="GENERATOR" content="Manual">
 <META NAME="robots" CONTENT="NOINDEX,FOLLOW">
 <META NAME="keywords" CONTENT="gryn qdough odd arild olsen">
-<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href=="img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href=="favicon.ico" type="image/x-icon">
 </head>
 <body  text="#5D5D5D" background="img/bg.jpg">
 
@@ -19,180 +19,163 @@
 <table width="100%" cellpadding=5 bgcolor="#fffb50"><tr>
 <td valign="top"><img src="img/gryn_logo.png" alt="gryn logo"></td>
 <td>
-<h2>Gryn, et regnskapsprogram for GNU/Linux</h2>
+<h2>Gryn, an accounting program for GNU/Linux</h2>
 </td></tr></table>
 
-Gryn er et regnskapsprogram som kjøres
-under GNU/Linux. Programmet er beregnet for undervisning i
-regnskapsføring, for små bedrifter og foreninger. Lisensen for
-programmet er GNU-GPL, i korte trekk går den ut på at du fritt kan kopiere og
-distribuere kildekoden til hvem du vil.<p>
+Gryn is an accounting program which can be run under GNU/Linux. The aim is to
+provide an accounting program for education, small business and
+organizations. The program is licensed under the GNU GPL license, the main
+point of this license is that you may freely copy and distribute the program.<p> 
+The program is presently in an alpha state, i.e. most of the functionality is
+present, but so are probably more or less serious bugs. Gryn is therefore not
+suitable for serious book keeping yet. To try the program you can <a href="http://gryn.berlios.de">download the
+full source package here.</a><p> 
 
-Den versjonen av programmet som er
-tilgjengelig nå er en alfa versjon, det vil si at den inneholder det meste av
-funksjonalitet, men sannsynligvis også alvorlige feil og mangler som ikke gjør
-det egnet til seriøst bruk ennå. For å prøve programmet kan du 
-<a href="filer/gryn.tar.gz"> laste ned hele pakka her.</a><p>
+Gryn is, and shall remain, an independent unit to be used for an independent
+task: to keep accounting books. Other business activities will usually be
+performed by other persons at other times and are best served by other
+programs. Examples of such tasks not fit to be mixed with an accounting unit
+are invoicing and payroll.<p> 
 
-Gryn er, og skal være, en selvstendig enhet
-som skal brukes til en selvstendig oppgave: å føre regnskap. Andre
-bedriftsaktiviteter utføres gjerne av andre personer og til andre tider. Slike
-aktiviteter er derfor best tjent med egne programmer, for eksempel for lønn og
-fakturering. <p>
+However, transfer of data between programs is useful. The present version of
+Gryn can import data from an fictive invoice program. Invoice data are queued
+in the database and fetched by Gryn at the book keeper's demand. All invoices
+are then automatically entered into the books. Gryn will share the database
+with other programs, so e.g. information about a customer will be available to
+both 
+the invoice and Gryn programs.
 
-På den annen side er det nyttig å overføre data mellom arbeidsoppgaver. Denne
-versjonen av Gryn kan importere data fra et fiktivt 
-faktureringsprogram. Fakturaopplysninger legges i kø i databasen og hentes inn
-i Gryn under bokføringen. Fakturaene føres så automatisk inn i
-regnskapet. Faktureringsprogrammet er tenkt å bruke samme database som Gryn
-slik at for eksempel opplysninger om kunder deles. 
 
-<h4>Funksjonsoversikt</h4>
-Programmet er ganske komplett, det vil si at de nødvendigste funksjonene er på
-plass:
+
+<h4>Overview of functionality</h4>
+The program is rather complete, i.e. the most important functionality is
+present: 
 <ul>
-<li>Et ubegrenset antall klienter, dvs selvstendige regnskap. En klient kan
-være et firma eller annen enhet eller en av flere øvingsoppgaver.</li>
-<li>Import av kontoplan fra en av flere tekstfiler når klient
-opprettes. Kontoplanen kan deretter redigeres i egne dialoger.</li>
-<li>Oppretting, redigering og sletting av kunder og leverandører</li>
-<li>Føring, visning og redigering av bilag. Når bilaget tilknyttes en kunde
-eller leverandør blir bilaget også koblet mot reskontro. Betaling av fakturaer
-kan føres 
-som en enkel overføring eller som nedbetaling i avdrag. Uoppgjorte fakturaer
-overføres til nytt 
-år.</li>
-<li>Det kan opprettes posteringsregler for faste  rutiner. Regler opprettes
-interaktivt og i tillegg til posteringsregler kan de suppleres med
-Pythonkode. Når regelen brukes kommer det opp en dialog hvor beløp fylles inn.
+<li>An unlimited number of clients. A client is an independent set of books,
+perhaps a company or one of many
+student assignments. </li>
+<li>Import of account plan from one of many text files when a client is
+created. The client's account plan can then be edited.</li> 
+<li>Creation, editing and deletion of customers and vendors.</li>
+<li>Creation, editing and deletion of what I call sources. A source is a
+complete description of a transaction, amounts, affected accounts, and link to
+subsidiary ledger for an involved customer or vendor. Not fully paid invoices
+are passed over to new year.</li>
+<li>One may define rules for frequently used or complex types of
+transactions. Rules are created interactively and cause dialogs to appear when
+a rule is called for.</li>
+<li>VAT calculations and postings for a period are programmed, any number of
+VAT rates may be involved.</li>
+<li>Automatic entry of imported invoices.</li>
+<li>Reports can be filtered by several criteria, like date interval. The
+present program version can produce main ledger report, source list and
+subsidiary ledger reports. Reports are displayed and may be printed.</li>
+<li>The most important functions still missing are automatic transfer to new
+year and a number of kinds of reports.
 </li>
-<li>Overføring av merverdiavgift for hver periode er forhåndsprogrammert. Det
-kan 
-brukes et valgfritt antall mva satser i regnskapet. 
-</li>
-<li>Automatisk føring av importerte fakturadata.
-<li>Funksjoner for bilagsliste,
-hovedboksaldo og reskontrobok er ferdige. Rapportene kan filtreres med ulike
-kriterier, for eksempel tidsrom.</li>
-<li>De vesentligste funksjonene som mangler er automatisk overføring til nytt
-år og en rekke rapporttyper.</li>
 </ul>
+Some examples of dialogs are described below. I do not have English
+screen shots now, so the examples are for the Norwegian locale. 
 
-<h4>Dialogeksempel: Bilagsføring</h4>
-<img src="img/vindu_bilag.png" alt="bilagsdialog"><p>
-Når dialogen for nytt bilag åpner er øverste felt merket
-Kunde/leverandør. Dette feltet er koblet til et regulært uttrykk, det vil si
-at man bare trenger å skrive del av kunden eller leverandørens navn for å
-finne det riktige. Bilagsteksten er vanlig fritekst. I dette tilfellet er det
-ingen regler, men de kan evt velges med nedtrekksboks. <p>
-Tabellen med uoppgjorte fakturaer aktiveres dersom en kunde eller leverandør
-velges. Her kan en av fakturaene klikkes på, restbeløpet overføres da til
-første 
-linje i posteringslista
-under, enten som reduksjon av kundefordring eller
-leverandørgjeld. Beløpet i posteringslista kan redigeres dersom ikke hele
-restbeløpet betales.<p>
+<h4>Dialog example: Source entry</h4>
+<img src="img/vindu_bilag.png" alt="source entry dialog"><p>
+The upper fields are for date and source reference number. Next comes a text
+entry field for customer or vendor. This field uses regular expressions, so
+only part of a name have to be entered. The third line is a text for
+describing the transactions. If a rule is used and the Auto-box is checked the
+default text of the rule is used. A rule may be chosen from the combo box.<p>
 
-Manuell føring av postering skjer ved å fylle inn enten kontonummer eller
-kontonavn. Kontonavnfeltet er også tilknyttet et regulært uttrykk, det er bare
-nødvendig å skrive litt av kontonavnet for å få fram det rette. Rett over
-posteringslista vises kontoens vanlige mva-kode. Den kan evt endres for den
-enkelte postering. Her kan det også velges om oppgitt beløp er nettobeløpet
-eller inkluderer mva. Mva-beløpet beregnes og posteres automatisk.<p>
-Ubalansen mellom debet og kredit oppdateres kontinuerlig under innskrivning av
-posteringer. Dersom avrund-knotten klikkes opprettes en postering for
-overføring til øreavrundingskonto. Dersom det allerede er valgt en konto på
-siste posteringslinje blir derimot bare ubalansebeløpet overført til denne
-linjens 
-debet eller kreditfelt.<p>
+When a customer or vendor is specified all related invoices not fully payed
+are listed. If one of them is clicked the amount and account will
+automatically be entered in the posting list. Below this subsidiary ledger
+reference list one may choose the VAT rate and if the amounts given below is
+net or including VAT.<p>
 
-Hvis reskontro-knappen trykkes lages en postering til kundefordring eller
-leverandørgjeld med et beløp lik ubalansen.<p>
+Postings are entered by stating the account and amount. Accounts are given by
+number or by part of the account name (regular expression). When entering an
+amount any VAT rate given by the VAT combo box will be calculated and
+posted.<p> 
 
-Brukeren kan åpne et vindu som viser kontoplanen. Klikkes på en av kontoene i
-planen blir kontonavn og nummer automatisk overført til aktiv
-posteringslinje. Tilsvarende vinduer er det også for kunder og
-leverandører. Klikk på en av dem fører også til automatisk innskriving i
-kunde/leverandørfeltet.
+Any imbalance
+between debit and credit is displayed below the list box. By pressing a
+'rounding'-button any imbalance will be automatically posted to a rounding
+account.
 
-<h4>Dialogeksempel: bokføringsregel </h4>
+<h4>Dialog example: Posting rule </h4>
 <img src="img/vindu_ruledef.png" alt="regeldialog">&nbsp;
 <img src="img/vindu_rulerun.png" alt="regeldialog"><p>
-Det er mange posteringstyper som går igjen under bokføringen, for eksempel
-varesalg, lønn og arbeidsgiveravgift. Slike faste føringer kan automatiseres
-med regler. Dialogen til venstre viser et eksempel på hvordan en regel
-defineres. Regelnavn er det navnet vi finer regelen ved i komboboksen i
-bilagsdialogen. Standardtekst er den teksten som settes inn i bilaget.<p>
+A set of postings may be automated by rules. The dialog at the left shows an
+example of a rule definition. Here we define the name of the rule to appear in
+the rule combo box, the default descriptive text and a number of
+parameters. Parameters are usually amounts (the M-box is checked) or real
+numbers e.g. a percentage. We define a parameter name (used when executing the
+rule) and a text used for the dialog.<p>
+The prelude is regular Python code to be run before the postings are
+calculated. Below are the definitions of the postings, i.e. the account, side
+(debit or credit) and a python expression to be evaluated.<p>
 
-Videre kan vi definere et antall parametre. Venstre kolonne er parameternavnet
-som det brukes internt, høyre kolonne er det navnet som kommer fram i dialogen
-når regelen brukes. Den midtre kolonnen angir om parameteren er et vanlig tall
-eller er et beløp.<p>
+The dialog to the right pops up when this example rule is used. All defined
+parameters are listed and the user fills in the amounts or percentages.
 
-Preludium er Pythonkode som kan brukes til beregninger som gjøres før
-posteringene lages. Nederst kommer en tabell for posteringer. Her skrives
-kontonummer, hvilken side posteringen skal til (Debet eller kredit) og en
-beregningsfunksjon. Funksjonen er igjen vanlig Pythonkode. I eksempelet er det
-bare aritmetiske kombinasjoner av variable definert ovenfor.<p>
+<h4>Account plan window</h4>
+<p><img src="img/vindu_ktre2.png" alt="account plan 2">&nbsp;
+<img src="img/vindu_ktre1.png" alt="account plan 1"><p>
+The account plan window displays a tree of accounts and may be open at all
+times. The accounts which are used are marked with a green tick. The window to
+the right shows the same plan, but in this case only the used accounts are
+included.<p>
+If the user clicks an account a signal will be generated. This signal
+includes the account instance and may be catch-ed by other parts of the
+program. As an example: if one is about to fill in the account name in a
+posting list the clicked account number and name will automatically be filled
+into the appropriate fields.
 
-Når denne regelen brukes blir dialogen som vist til høyre, brukeren blir bedt
-om å skrive inn verdien på parametrene som ble definert. Deretter klikkes OK
-og posteringene skrives inn i bilagsdialogens posteringsliste.<p>
-
-Mange bokføringsprogrammer kan automatisk generere regler ved å analysere
-allerede førte eksempelbilag. Den måten Gryn tilbyr for å definere regler er
-mer 
-arbeidskrevende, men gir presis informasjon om hva systemet
-gjør. Automatisk genererte regler er alltid forbundet med noe mer diffust.
   
-<h4>Rapporteksempel: Bilagsliste</h4>
-<img src="img/vindu_rapbil.png" alt="Bilagsliste"><p>
-Bildet viser oversikt over de første bilagene for regnskapet til Godt
-parti. Bilag nummer 0 og 1 brukes til overføring mellom år, vanligvis er den
-automatiske overføring korrekt og bilag 1 et tomt. Overføring mellom år skal
-kunne skje flere ganger og til vilkårlig tidspunkt etter nyttår. Bilag 3 viser
-et eksempel på en transaksjon som går over flere bilag. Bilag 3 er føringen av
-fakturaen, bilag 6 og 7 gjelder betaling av den i to porsjoner. Som vi ser er
-ikke rapport tekster oversatt til norsk ennå.
+<h4>Report example: Source list</h4>
+<img src="img/vindu_rapbil.png" alt="Source list"><p>
+The screen shot shows the first sources year 2005 for the company 'Godt
+parti'.
+Source number 0 and 1 are used for any transfers from the previous
+year. Number 0 is automatically generated and number 1 is reserved for any
+manual corrections. In this example there is not transfers.<p>
+For every source the source reference number, date, possibly a customer or
+vendor name and the descriptive text appear at the first line. Then follows
+the postings: account number and name and amount. Any reference through the
+subsidiary ledger is also shown, like in the last line of source number 3.
+This invoice was payed by two transfers as per source number 6 and 7.
 
-<h4>Rapporteksempel: Reskontro</h4>
-<img src="img/vindu_rapresk.png" alt="reskontro"><p>
-Dette eksempelet viser reskontro for noen få leverandører til firmaet Godt
-parti. I dette eksempelet er alle bilag med, man kan også filtrere
-opplysningen som inngår i rapporten, for eksempel bare de med åpne poster og
-evt bare med sammendrag.<p>
-Trykk på skriverikonet gir utskrift på papir. Utskriften blir litt annerledes,
-se figuren under. Logoen kan velges til det aktuelle firma sitt, eller
-standard Gryn-logo som vist. Sidene merkes med utskriftsdato, side
-nr og evt 'siste side'. 
-<p><img src="img/vindu_rapreskps.png" alt="reskontro utskrift">
 
-<h4>Kontoplanvindu</h4>
-<p><img src="img/vindu_ktre2.png" alt="kontoplan2">&nbsp;
-<img src="img/vindu_ktre1.png" alt="kontoplan1"><p>
-Her er et eksempel på kontoplanvindu. Kontoplanen vises med trestruktur. De
-konti som er i bruk i regnskapet er markert med grønn hake. Til høyre vises
-samme kontoplan, men her vises bare de kontiene som er i bruk. Innholdet i
-vinduet oppdateres dersom et kontonavn/nummer redigeres eller legges
-til/slettes i kontoplanredigeringsdialogen. Hvert klikk sender et signal med
-en instans for kontoen som klikkes på. Dette signalet kan evt fanges opp i
-andre deler av programmet og brukes til noe nyttig der.
+<h4>Report example: Subsidiary ledger</h4>
+<img src="img/vindu_rapresk.png" alt="subsidiary ledger"><p>
+This example shows the transactions for some of the vendors of 'Godt parti'.
+In this case all transactions relating to each vendor is present. One may also
+use a filter, e.g. to include only the vendors with unsettled invoices.<p>
 
-<h4>Implementering</h4>
-Programmet er skrevet i Python, det består av to deler: brukergrensesnitt og
-modell. Modellen er helt uavhengig av brukergrensesnittdelen. En standard
-Sql-database brukes til persistent lagring av regnskapets objektinstanser. Nå
-er MySql grensesnitt brukt. Det er ønskelig med SqLite også.<p>
+Clicking the printer icon will print the report, part of the first page
+printed is displayed below.<p>
+<img src="img/vindu_rapreskps.png" alt="subsidiary ledger print out">
 
-Brukergrensesnittet er implementert med Qt-biblioteket som finnes i de fleste
-moderne Gnu/Linux distribusjoner. Python og biblioteket er limt sammen med
-PyQt/sip.<p>
-For utskrift av rapporter brukes LaTeX. Basismakroer er ferdige slik at det er
-enkelt å skrive nye makroer for nye rapporttyper.
+<h4>Implementation</h4>
+The program is written in Python and consists of three layers: GUI, a model
+and a storage interface. The model is totally independent of the GUI.<p> 
+
+The GUI is implemented by the Qt-library through the PyQt/sip library. Qt is
+present in most Linux distributions.<p>
+
+ MySql is used
+for data storage, but other databases or XML-file storage may be implemented
+by adding code in the storage backend.<p>
+
+LaTeX is used for report printing. The basic macros are defined, so producing
+new kinds of reports are fairly simple.<p>
+
+Although the primary locale now is Norwegian, the program is written and
+commented in English. So a fairly English version can be achieved by disabling
+the locale. 
 
 
 <table width="100%" bgcolor="#fffb50" cellpadding=5><tr><td valign="middle">
-<img src="img/epost.gif" alt="epost"></td>
+<img src="img/email.png" alt="oao-at-users-berlios-de"></td>
 <td>Copyright 2005 Odd Arild Olsen</td>
 </tr></table>
 

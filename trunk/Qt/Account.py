@@ -387,6 +387,7 @@ class AccountNew(Account):
         self.wSave.setEnabled(1)
         #Enable inject in case we want to base the new account on an old
         QObject.connect(parent,PYSIGNAL('accountSelected'), self.inject)
+        self.wLineMode.setPixmap(self.imgEdit) #We are not grepping
 
         
     def slotSave(self):

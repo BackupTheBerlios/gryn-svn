@@ -113,8 +113,12 @@ class RuleAssign(Control.uRuleAssign.uRuleAssign):
             s= string.replace(s, Model.Global.getDecSep(), '.')
         # Run the rule and get back the generated splits
         retSplits= self.ruleObject.runRule(s, self.splitList)
-        self.emit(PYSIGNAL('splits'), retSplits) # Tell the world about the
+        if retSplits[0] == 'S':
+            self.emit(PYSIGNAL('splits'), retSplits) # Tell the world about the
         # new splits
+        else:
+            QMessageBox.information(self, Model.Global.getAppName(),
+                   retSplits[1]) #retSplits is now a translated error message str
         self.done(1)
 
     def slotValueChanged(self, row, col):

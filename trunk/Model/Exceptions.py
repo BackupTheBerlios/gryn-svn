@@ -45,6 +45,11 @@ class VarLimit(Gryn):
     """Used when property functions detect errors"""
     def __init__(self, s):
         Gryn.__init__(self, s)
+
+class FileError(Gryn):
+    """Used for file open, read, syntax etc"""
+    def __init__(self, s):
+        Gryn.__init__(self, s)
         
 class ThisCannotHappen(Gryn):
     """Hm..."""

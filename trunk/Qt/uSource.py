@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'uSource.ui'
 #
-# Created: Fri Feb 11 23:46:16 2005
+# Created: Sun Mar 13 20:40:01 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -11,7 +11,7 @@
 import sys
 from qt import *
 from qttable import QTable
-from SourceTable import SourceTable
+from SplitTable import SplitTable
 
 
 class uSource(QDialog):
@@ -133,18 +133,18 @@ class uSource(QDialog):
         self.wNetGrossGr.setMinimumSize(QSize(0,50))
         self.wNetGrossGr.setFrameShape(QButtonGroup.NoFrame)
 
-        self.wGross = QRadioButton(self.wNetGrossGr,"wGross")
-        self.wGross.setGeometry(QRect(100,10,58,30))
-        self.wGross.setSizePolicy(QSizePolicy(3,0,0,0,self.wGross.sizePolicy().hasHeightForWidth()))
-
         self.wNet = QRadioButton(self.wNetGrossGr,"wNet")
-        self.wNet.setGeometry(QRect(10,10,45,30))
+        self.wNet.setGeometry(QRect(10,10,80,30))
         self.wNet.setSizePolicy(QSizePolicy(3,0,0,0,self.wNet.sizePolicy().hasHeightForWidth()))
         self.wNet.setChecked(1)
+
+        self.wGross = QRadioButton(self.wNetGrossGr,"wGross")
+        self.wGross.setGeometry(QRect(100,10,60,30))
+        self.wGross.setSizePolicy(QSizePolicy(3,0,0,0,self.wGross.sizePolicy().hasHeightForWidth()))
         layout31.addWidget(self.wNetGrossGr)
         uSourceLayout.addLayout(layout31)
 
-        self.wTable = SourceTable(self,"wTable")
+        self.wTable = SplitTable(self,"wTable")
         self.wTable.setMinimumSize(QSize(100,150))
         uSourceLayout.addWidget(self.wTable)
 
@@ -204,7 +204,7 @@ class uSource(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(596,494).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(596,506).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.setTabOrder(self.wDate,self.wCuven)
@@ -236,8 +236,8 @@ class uSource(QDialog):
         self.textLabel4.setText(self.__tr("Caption"))
         self.wAutoCapt.setText(self.__tr("Auto"))
         self.wNetGrossGr.setTitle(QString.null)
-        self.wGross.setText(self.__tr("Gross"))
         self.wNet.setText(self.__tr("Net"))
+        self.wGross.setText(self.__tr("Gross"))
         self.wClear.setText(self.__tr("Clear"))
         self.wResc.setText(self.__tr("Rescontro"))
         self.wRound.setText(self.__tr("Round"))

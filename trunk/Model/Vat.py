@@ -143,13 +143,16 @@ class VatList(Model.Gobject.GList):
 
     def fixup(self, lists):
         #We lack a VAT spec dialog, so do the db-init here for now
+        # VAT codes are sequentially numbered from '0' up to max '9'
+        # These properties should not be changed during a year, else
+        # the reporting system will go babanas
         if len(self) == 0:
             self.append(Vat((None, '0', 'None', None, None, '3200')))
-            self.append(Vat((None, '1', 'LowIn', '6', '2712', None)))
-            self.append(Vat((None, '2', 'MediumIn', '11', '2711', None)))
+            self.append(Vat((None, '1', 'LowIn', '6', '2710', None)))
+            self.append(Vat((None, '2', 'MediumIn', '11', '2710', None)))
             self.append(Vat((None, '3', 'HighIn', '25', '2710', None)))
-            self.append(Vat((None, '4', 'LowOut', '6', '2702', '3002')))
-            self.append(Vat((None, '5', 'MediumOut', '11', '2701', '3001')))
+            self.append(Vat((None, '4', 'LowOut', '6', '2700', '3000')))
+            self.append(Vat((None, '5', 'MediumOut', '11', '2700', '3000')))
             self.append(Vat((None, '6', 'HighOut', '25', '2700', '3000')))
             for e in self: self.saveEntry(e)
         for v in self:

@@ -21,19 +21,21 @@
 
 
 
-VERS=20050218
+VERS=20050309
+BRANCH=trunk
 
 all: # do nothing not explicitely ordered
 
 
 #Get all the files given in MANIFEST into a tar-archive 
-release: gryn-$(VERS).tar.gz
+trunktar: gryn-$(VERS).tar.gz
 
 gryn-$(VERS).tar.gz:
 	./collect.py > MANIFEST
 	cat MANIFEST | sed s:^:gryn-$(VERS)/: >releasefiles 
-	(cd ..; ln -s gryn gryn-$(VERS))
-	(cd ..; tar czvf gryn/gryn-$(VERS).tar.gz -T gryn/releasefiles)
+	(cd ..; ln -s $(BRANCH) gryn-$(VERS))
+	(cd ..; tar czvf gryn-$(VERS)/gryn-$(VERS).tar.gz -T \
+		$(BRANCH)/releasefiles)
 	(cd ..; rm gryn-$(VERS))
 	rm releasefiles
 

@@ -79,12 +79,17 @@ else:
 # FIXME: make a Money class one day ...
 
 def moneyToInt(mm):
-    """Convert a money string into an int. Moeny strings are only used for
-    GUI purposes, int in objects, database and during calculations. This
-    function presently works for currencies with two decimal places.<br>
-    <b>mm</b>: Money string, i.e. digits, possibly  with an embedded
-    decimal sepparator <br>
-    <b>Returns</b>: int value
+    """Convert a money string into an int. Moeny strings are only used for GUI
+    purposes, int in objects, database and during calculations. This function
+    presently works for currencies with two decimal places.<br>
+    'mm': Money string, i.e. digits, possibly with an embedded decimal
+    separator<br>
+    'Returns': int value<br>
+
+    Some currencies do not use two decimals, e.g. dinars may use three. To
+    adjust for this: make a new global variable: decimalPlaces, adjust the
+    functions below and the regexp for amount fields in Control/SplitTable. I
+    think that's all.
     """
     decSep= getDecSep()
     m= str(mm)
@@ -104,8 +109,8 @@ def moneyToInt(mm):
 def intToMoney(i):
     """Makes a money string with two decimal places from an integer.
     Returns an empty string if the value is 0.<br>
-    <b>i</b>: The integer representation of money<br>
-    <b>Returns</b>: The string representation of money, two decimal places.
+    'i': The integer representation of money<br>
+    'Returns': The string representation of money, two decimal places.
     """
 
     if int(i)==0: return ''
@@ -120,8 +125,8 @@ def intToMoney(i):
 def intToMoneyZ(i):
     """Makes a money string with two decimal places from an integer.
     Returns '0.00' if the value is 0.<br>
-    <b>i</b>: The integer representation of money<br>
-    <b>Returns</b>: The string representation of money, two decimal digits.
+    'i': The integer representation of money<br>
+    'Returns': The string representation of money, two decimal digits.
     """
     if int(i)==0: return '0%s00'%getDecSep()
     s= '%s'%i
@@ -135,24 +140,24 @@ def intToMoneyZ(i):
 def moneyReformat(m):
     """Returns a properly formatted money string. Returns an empty string
     if the value is zero.<br>
-    <b>m</b>: Money string, possibly with an embedded decimal separator.<br>
-    <b>returns</b>: Money string, formatted with two decimal digits<br>
+    'm': Money string, possibly with an embedded decimal separator.<br>
+    'returns': Money string, formatted with two decimal digits<br>
     """
     i= moneyToInt(m)
     return intToMoney(i)
 
 def moneyReformatZ(m):
     """Returns a properly formatted money string.<br>
-    <b>m</b>: Money string, possibly with an embedded decimal separator.<br>
-    <b>returns</b>: Money string, formatted with two decimal digits<br>
+    'm': Money string, possibly with an embedded decimal separator.<br>
+    'returns': Money string, formatted with two decimal digits<br>
     """
     i= moneyToInt(m)
     return intToMoneyZ(i)
 
 def intToTexMoney(i):
     """Formats the value to properly for a LaTeX printout<br>
-    <b>i</b>: integer of money value<br>
-    <b>returns</b>: string with paranthesis around the decimal separator
+    'i': integer of money value<br>
+    'returns': string with paranthesis around the decimal separator
     """
     money= intToMoneyZ(i)
     return string.replace(money, getDecSep(), '{%s}'%getDecSep()) 
@@ -162,9 +167,9 @@ def intToTexMoney(i):
 
 def periodeNumToDates(periode, pers):
     """Calculates the first and last date in a periode<br>
-    <b>periode</b>: the periode number, string<br>
-    <b>pers</b>: How many periodes there is in each year, int<br>
-    <b>returns</b>: set of (first date, last date), both strings
+    'periode': the periode number, string<br>
+    'pers': How many periodes there is in each year, int<br>
+    'returns': set of (first date, last date), both strings
     """
     sep= getDateSep()
     per= int(periode)

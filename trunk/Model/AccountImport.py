@@ -1,5 +1,5 @@
 """ $Id$<br>
-This module imports account plans into the account-database table.
+This module imports chart of accounts into the account-database table.
 """
 
 #    This file is a part of the gryn/Qdough accounting program
@@ -26,7 +26,8 @@ import Model.Global
 import string
 
 def importGapl(fileN):
-    """Import Gryn-account-plan. This plan is a textfile ('fileN'), the usual
+    """Import Gryn-chart-of-accounts. This chart is a textfile ('fileN'),
+    the usual  
     extension is 'gapl', and the file is probably located in 
     the  'var/gryn' directory (specified by 'Model.Global._varPath').
     Each account is

@@ -32,7 +32,6 @@ import Model.Global
 import Model.Grep
 import Model.Lot
 import Model.LotEntry
-from   Control.SourceTable import C
 import Control.Global
 import Control.RuleAssign
 import Control.ListSelect
@@ -57,27 +56,11 @@ class Source(Control.uSource.uSource):
             self.setName("Source")
 
         # wTable is a table of splits
-        self.wTable.setParent(self)    
-        self.wTable.setNumRows(1)
-        self.wTable.setNumCols(4)
-        h= self.wTable.horizontalHeader()
-        nt= self.tr('Number')
-        h.setLabel(C.NumCol, nt)
-        h.setLabel(C.NameCol, self.tr('Name'))
-        h.setLabel(C.DebitCol, self.tr('Debit'))
-        h.setLabel(C.CreditCol, self.tr('Credit'))
-        v= self.wTable.verticalHeader()
-        v.hide()
         fm= self.fontMetrics() # Get from a global setting instead?
         w1= fm.width('900.000.000.000')
-        w2= fm.width(str(nt)+'0')
-        self.wTable.setLeftMargin(0)
-        self.wTable.setColumnWidth(C.NumCol, w2)
-        self.wTable.setColumnWidth(C.DebitCol, w1)
-        self.wTable.setColumnWidth(C.CreditCol, w1)
-        self.wTable.setColumnStretchable(C.NameCol, 1)
-        self.wBalance.setMinimumWidth(w1+w1)
-        self.wBalance.setMaximumWidth(w1+w1)
+
+        self.wBalance.setMinimumWidth(2*w1)
+        self.wBalance.setMaximumWidth(2*w1)
 
         # wLotTable is a list of lots used when cuven given
         self.wLotTable.setNumRows(5)
@@ -92,12 +75,12 @@ class Source(Control.uSource.uSource):
         h.setLabel(2, self.tr('Caption'))
         h.setLabel(3, self.tr('Amount'))
         h.setLabel(4, self.tr('Remaining'))
+ 
         self.wLotTable.setColumnStretchable(2, 1)
         self.wLotTable.setColumnWidth(0, fm.width('12345'))
         self.wLotTable.setColumnWidth(3, w1)
         self.wLotTable.setColumnWidth(4, w1)
         self.wLotTable.setSelectionMode(QTable.NoSelection)
-
         #Get all the lists we need
         self._accountL= Model.Books.getList('account')
         self._splitL= Model.Books.getList('split')
@@ -117,10 +100,13 @@ class Source(Control.uSource.uSource):
         for v in self._vatL:
             self.wVatCombo.insertItem(v.vatName) #assume list sorted by vatCode
 
+        self.wTable.setParent(self)
+
         # init the rule combo items
         self.wRule.setEditable(1)
         self.wRule.setAutoCompletion(1) # grep from beginning of rule name
         self.wRule.clear()
+        self.wRule.insertItem('')
         for r in self._ruleL:
             self.wRule.insertItem(r.name)
         self.wRule.setInsertionPolicy(self.wRule.NoInsertion)
@@ -177,7 +163,7 @@ class Source(Control.uSource.uSource):
         """
         self._source= so.copyOfSource() # Consistently operate on copies
         splits=[] # The list of splits of this source
-        # Get all splits of this source
+        # Get all splits of this source, TODO: sort by line 
         ssplits= self._splitL.getBySource(self._source.id)
         for i in ssplits:
             splits.append(i.copyOfSplit())
@@ -200,10 +186,9 @@ class Source(Control.uSource.uSource):
         # Get the text describing this transaction
         self.wCaption.setText(self._source.text)
 
-        # And fill in the split table
-        t= self.wTable
+        # And fill in the split table TODO: sort on line number first
         for i in splits:
-            t.insertSplit(i)
+            self.wTable.appendSplitRow(i)
         self.wBalance.setText('')# assumes the splits are balanced
         
     def save(self, so):
@@ -226,66 +211,37 @@ class Source(Control.uSource.uSource):
         self._sourceL.saveEntry(so)
 
         # Now, save the splits
-        rows= self.wTable.numRows()
-        self.wTable.clearSelection()
-        line= 0
-        for r in range(0, rows):
-            num= str(self.wTable.text(r, C.NumCol)) #Account number
-            if len(num)==0: continue
-            #If we edit the split may be an old or a new
-            p= self.wTable.getRowSplit(r) # get the split object
-            if not p:  p= Model.Split.Split() # must make a new one
-            p.source= so.id 
-            p.account= self._accountL.getByNum(num).id
-            ad= str(self.wTable.text(r, C.DebitCol)) # debit amount
-            ac= str(self.wTable.text(r, C.CreditCol)) # credit amount
-            if len(ad)>0:
-                p.side= 'D'
-                p.amount= Model.Global.moneyToInt(ad)
-            else:                    
-                p.side= 'C'
-                p.amount= Model.Global.moneyToInt(ac)
-            p.line= line
-            line= line + 1
-            #p.vat= self.wTable.getVat(r) if we want to use this field some day
-            p.vat= ' '
-            self._splitL.saveEntry(p)
-            print p
+        splitList= self.wTable.getSplits(so)
+        for split in splitList:
+            self._splitL.saveEntry(split)
+            print split
         print 'splits saved'
 
-        # Save lot/lot entry    
-        if self._cuven:
-            print "self._cuven: ", self._cuven
-            cuvRow= self.getRescLine() # find the cust/Vend line in table
-            self._rescAmount= Model.Global.moneyToInt(
-                self.wTable.getTableAmount(cuvRow)[0])
+        # perhaps also lot and lot entry    
+        if self._cuven: # We have a cuven, save lot/lot entry
             if not self._lot:
                 QMessageBox.critical(self, Model.Global.getAppName(),
-                 str(self.tr("You must either select an item from the\n")) +
-                 str(self.tr("lot table (for invoice payment or\n")) +
+                 str(self.tr("You must either select an item from the"))+'\n' +
+                 str(self.tr("lot table (for invoice payment or")) + '\n'+
                  str(self.tr("click the resc button for a new invoice")))
-            print "source save lot: ", self._lot
+                return
+            self._rescAmount= self.wTable.getCuvenAmount(self._cuven.type)
             if not self._lot.id: # a new lot
                 self._lot.cuven= self._cuven.id
                 self._lot.sourceTxt= so.text
                 self._lot.sourceDate= so.date
                 self._lot.sourceRef= so.ref
                 self._lot.sourceAmount= self._rescAmount
-                print "source save created lot: ", self._lot
             self._lotL.saveEntry(self._lot)
             
-            print 'lotentry A: ', self._lotEntry
             if not self._lotEntry.lot: self._lotEntry.lot= self._lot.id 
             self._lotEntry.source= so.id
-            print 'lotentry B: ', self._lotEntry
             if len(self._rescSide)<1 or self._rescSide[0] not in 'CD': #CHIDEP
                 print "rescSide undefined %s"%self._rescSide
             self._lotEntry.amount= self._rescAmount
             self._lotEntry.side= self._rescSide
             self._lotEntry.year= Model.Global.getClientYear()
             self._lotEntryL.saveEntry(self._lotEntry)
-            print 'lot: ', self._lot
-            print 'lotentry: ', self._lotEntry
         #TODO: end transaction here
 
     def slotSave(self):
@@ -345,12 +301,10 @@ class Source(Control.uSource.uSource):
         """Clear the content of the selected split.
         """
         print "Source.slotClear()"
-        for row in range(0, self.wTable.numRows()):
-            if self.wTable.isRowSelected(row):
-                if self.isRescLine(row):
+        if self.wTable.isSelected_Cuven():
+            #slotClear: clear lot and lotentry"
                     self._lot= None
                     self._lotEntry= None
-                break
         self.wTable.wipeSelectedRow()
 
     def slotExit(self):
@@ -363,28 +317,11 @@ class Source(Control.uSource.uSource):
         of the last split row is not blank, only the amount field is
         changed.
         """
-        last= self.wTable.numRows()-1
-        diff= self.wTable.calcBalance()
-        if diff != 0:
-            if diff > 0: col= C.DebitCol
-            else: col= C.CreditCol
-            accNum= Model.Global.getAccRound()
-            acc= self._accountL.getByNum(accNum)
-            if self.wTable.text(last, C.NumCol).isEmpty():
-                if not acc:
-                    QMessageBox.information(self, Model.Global.getAppName(),
-                      self.tr('Please create the rounding account first'))
-                    return
-                self.wTable.setText(last, C.NumCol, acc.num)
-                self.wTable.setText(last, C.NameCol, acc.name)
-            print "diff, last, col: ", diff, last, col
-            w= self.wTable.cellWidget(last, col)
-            if w: # we must write to the widget, a QLineEdit
-                w.setText(Model.Global.intToMoney(abs(diff)))
-            else: # we can write directly to the cell
-                self.wTable.setText(last, col,
-                                    Model.Global.intToMoney(abs(diff)))
+        r= self.wTable.makeRoundingSplit()
         self.setBalance()
+        if r != 0:
+            QMessageBox.information(self, Model.Global.getAppName(),
+                   self.tr('Please create the rounding account first'))
 
 
     def slotPrev(self):
@@ -488,13 +425,11 @@ class Source(Control.uSource.uSource):
         'splits': List of generated splits if 'retCode'!='E'
         """
         if retCode == 'E':
-            QMessageBox.information(self, Model.Global.getAppName(),
-                      self.tr('An error occurred while executing rule code'))
             return
         self.wTable.wipeAll() # Clear the split table
         for i in splits: # and fill with the generated splits
             i.account= int(i.account)
-            self.wTable.insertSplit(i)
+            self.wTable.appendSplitRow(i)
 
 ##### Lots
 
@@ -503,36 +438,37 @@ class Source(Control.uSource.uSource):
         create split text and insert the remaining balance into the split.
         """
         lot=(a2, a3, a4) #served for pychecker
-        if self._cuven is None: # False alarm
-            #self._lot= None
-            #self._lotEntry= None
-            return
-        if not self.wTable.text(0, 0).isEmpty(): return #another false try
+        if not self._cuven: return
+        if self.wTable.getSplitRowByRow(0): return #another false try
+
+        lot= self._cuvenLots[row]
 
         if self._cuven.type == 'C': # We have a customer
             accNum= Model.Global.getAccCustomer()
             self._rescSide= 'C' #used when saving lotentries
-            col= C.CreditCol
         else: # no, we have a vendor
             accNum= Model.Global.getAccVendor()
-            col= C.DebitCol
             self._rescSide= 'D' #used when saving lotentries
-        lot= self._cuvenLots[row]
         print "Clicked on lot: ", lot
+
         acc= self._accountL.getByNum(accNum)
         if not acc:
             QMessageBox.information(self, Model.Global.getAppName(),
-                self.tr('Please create the sales/bought account first'))
+                self.tr('Please create the sales/bought account first ')+ \
+                '(%s)'%accNum)
             return
         self.wVatCombo.setCurrentItem(0) # we don't want any VAT here
-        self.wTable.setText(0, C.NumCol, accNum)
-        self.wTable.setText(0, C.NameCol, acc.name)
-        self.wTable.setText(0, col, Model.Global.intToMoney(abs(lot.sum)))
+        # make a split instance
+        spl= Mode.Split.Split()
+        spl.account= acc.id
+        spl.side= self._rescSide
+        spl.vat= ' '
+        spl.amount= abs(lot.sum)
+        self.wTable.appendSplitRow(spl)
+        
         self._lot= self._lotL.getById(lot.id) # Get the relevant lot
         if not self._lotEntry:
             self._lotEntry= Model.LotEntry.LotEntry() # prep a new entry
-        self.wTable.setNumRows(2) # Make a row for the next split
-        self.wTable.insertItems(1)
         # disable resc button?
         self.setBalance()
         
@@ -542,62 +478,36 @@ class Source(Control.uSource.uSource):
         """Slot called when the Resc button clicked. Make a new Lot
         and lotentry.
         """
-        if self._cuven is None: # False alarm
-            #self._lot= None
-            #self._lotEntry= None
-            return
+        if not self._cuven: return # False alarm
         self.setBalance()
         if self.wBalance.text().isEmpty(): return
+
         if self._cuven.type == 'C': # We have a customer
             accNum= Model.Global.getAccCustomer()
-            col= C.DebitCol
             self._rescSide= 'D' #used when saving lotentries
         else: # We have a vendor here
             accNum= Model.Global.getAccVendor()
-            col= C.CreditCol
             self._rescSide= 'C' #used when saving lotentries
         acc= self._accountL.getByNum(accNum)
         if not acc:
             QMessageBox.information(self, Model.Global.getAppName(),
-                self.tr('Please create the sales/bought account first'))
+                self.tr('Please create the sales/bought account first') +
+            ' (%s)'%accNum)
             return
-        last= self.wTable.numRows()-1 # last row in split table
-        self.wTable.setText(last, C.NumCol, acc.num)
-        self.wTable.setText(last, C.NameCol, acc.name)
-        print "SlotResc self._lot: ", self._lot
-        print "SlotResc self._lotentry: ", self._lot
+        diff= self.wBalance.text()
+        amount= abs(Model.Global.moneyToInt(diff))
+        spl= Model.Split.Split()
+        spl.account= acc.id
+        spl.side= self._rescSide
+        spl.vat= ' '
+        spl.amount= amount
+        self.wTable.appendSplitRow(spl)
+
         if not self._lot: self._lot= Model.Lot.Lot()
         if not self._lotEntry: self._lotEntry= Model.LotEntry.LotEntry()
-        print "SlotResc self._lot 2: ", self._lot
-        print "SlotResc self._lotentry 2: ", self._lot
-        diff= self.wBalance.text()
-        self.wTable.setText(last, col, diff)
         self.setBalance()
         
 
-    def getRescLine(self):
-        """Finds the split table line where the account number
-        corresponds to a customer or vendor transaction account.<br>
-        'return': row number, int. None if not found
-        """
-        if self._cuven.type == 'V': rAcc= Model.Global.getAccVendor()
-        else: rAcc= Model.Global.getAccCustomer()
-        for row in range(0, self.wTable.numRows()):
-            if str(self.wTable.text(row, C.NumCol)) == rAcc:
-                return row
-        return None
-
-    def isRescLine(self, row):
-        """Check if a split table row's account number
-        corresponds to a customer or vendor transaction account.<br>
-        'return': yes: 1, no: 0, -1 row not found
-        """
-        if row >= self.wTable.numRows(): return -1
-        vAcc= Model.Global.getAccVendor()
-        cAcc= Model.Global.getAccCustomer()
-        if str(self.wTable.text(row, C.NumCol)) == vAcc: return 1
-        if str(self.wTable.text(row, C.NumCol)) == cAcc: return 1
-        return 0
 
     def lotTableFill(self, cuven):
         self._cuvenLots= self._lotL.getOpenByCuven(cuven.id)
@@ -649,7 +559,21 @@ class SourceNew(Source):
         dialogue. Useful for using an existing source as a template.<br>
         's': The source object to inject, follows the signal.
         """
-        print "sourceInject"
+        
+        print "Not implemented: sourceInject"
+        return
+        """
+        TODO:
+        unselect cuven combo
+        make copy of the injected source
+        set source reference number to the next available
+        load all splits, set their id and source to None
+        remove any cuven split
+        enter into form
+        set source id to None
+
+
+        rudimentary :
         if not self.isVisible(): return
         print "Injecting"
         ca= Model.Global.getAccCustomer()
@@ -658,20 +582,15 @@ class SourceNew(Source):
         cS= s.copyOfSource()
         self.fromSourceToWidget(cS)
         self._source.id= None # because this is a new source object
-        # clear all table's split objects
-        self.wTable.removeRowSplits()
-        # Then remove all table entries
-        #TODO: Use a smarter procedure
-        rows= self.wTable.numRows()
-        delRows= []
-        for row in range(0, rows):
-            acc= str(self.wTable.text(row, C.NumCol))
+        # clear the split table
+        
+        self.wTable.wipeAll()
             if  acc == ca or acc == va: delRows.append(row)
         delRows.reverse()
         for row in delRows:
             self.wTable.removeRow(row)
         self.wNum.setText(self._sourceL.getNewRef())# Fill in the ref for this
-
+        """
 #######################
 #
 # SourceEdit class

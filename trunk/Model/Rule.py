@@ -31,6 +31,9 @@ import Database.DbAccess
 import string
 import Model.Gobject
 import Model.Split
+import Model.Books
+
+def _(x): return x
 
 def createTable(dataBase):
     db= Database.DbAccess.DbAccess(dataBase)
@@ -146,25 +149,32 @@ class Rule(Model.Gobject.Gobject):
             exec(prg) # run the first two parts of the rule
         except: # may happen if user wrote a wrong program
             print 'Rule execution error during definition part'
-            return ('E', None)
+            return ('E', _('Rule execution error during definition part'))
 
         # Now the postings
         posts= string.split(self.postings, ":")
         line= 0
+        accL= Model.Books.getList('account')
         for post in posts:
-            accId, side, function= string.split(post, ';')
+            accNum, side, function= string.split(post, ';')
+            acct= accL.getByNum(accNum)
+            if not acct:
+                print 'Unknown account <%s>'%accNum
+                return ('E', _('Unknown account ')+ '<%s>'%accNum)
+            accId= acct.id
             # now we know the function to apply, the account to which the
             # result shall be posted and if on the debit or credit side.
             # Any parametres used by the function must have been defined 
             # by the execution of prg above. 
             try:
+                print "Function to evaluate: <%s>"%function
                 val= str(eval(function))
                 if string.find(val, '.') >= 0:
                     val= string.replace(val, '.', Model.Global.getDecSep())
                 print 'calc val: ', val
             except: # should not happen in a debugged program
                 print 'Rule execution error during split part'
-                return ('E', None)
+                return ('E', _('Rule execution error during split part'))
             # make a new split
             ival= Model.Global.moneyToInt(val)
             split= Model.Split.Split((
@@ -206,3 +216,140 @@ class RuleList(Model.Gobject.GList):
     def __repr__(self):
         return 'RuleList'
 
+
+def RuleExport(fName):
+    """Writes the rule list to a text file.<br>
+    'fName: ' The name of the file to write to<br>
+    Exceptions: 'Model.Exceptions.FileError'
+    """
+    ruleL= Model.Books.getList("rule")
+    accL= Model.Books.getList("account")
+    #we'll get an exception if no write access
+    try:
+        fo= open(fName, "w")
+    except: raise(Model.Exceptions.FileError(('open', fName)))
+        
+    for r in ruleL:
+        fo.write(".Rule: " + r.name + '\n')
+        fo.write(".Text: " + r.text + '\n')
+        params= string.split(r.parametres+':', ":")#add extra colon to avoid
+        #an exeption if only one element (string without colon)
+        fo.write(".Parametres\n{\n")
+        for param in params:
+            par=string.strip(param)
+            if len(par)==0: continue
+            fo.write("%s\n"%par)
+        fo.write('}\n')
+        pres= string.split(r.prelude+';', ";")
+        fo.write(".Prelude\n{\n")
+        for pre in pres:
+            pr = string.rstrip(pre) # rstrip to preserve indentation
+            if len(pr)==0: continue
+            fo.write("%s\n"%pr)
+        fo.write('}\n')
+        posts= string.split(r.postings+':', ":")
+        fo.write(".Postings\n{\n")
+        for post in posts:
+            pst= string.strip(post)
+            if len(pst)==0: continue
+            p= string.split(pst, ";")
+            acc= accL.getByNum(p[0])
+            fo.write("%s(%s);%s;%s\n"%(acc.num, acc.name, p[1], p[2]))
+        fo.write('}\n')
+        fo.write(".End\n\n")
+    fo.close()
+
+def RuleImport(fName):
+    """Imports rules from a text file<br>
+    'fName: ' The name of the file to read from<br>
+    Returns: A 'RuleList' of read 'Rules'<br>
+    Exceptions: 'Model.Exceptions.FileError'
+    
+    """
+    #ruleL= Model.Books.getList("rule")
+    ruleL= RuleList()
+    # we should have no problem here, GUI ensures file exists
+    # but do handle exception anyway
+    try:
+        fi= open(fName, 'r')
+    except: raise(Model.Exceptions.FileError(('open', fName)))
+    try:
+        lines= fi.readlines()
+        fi.close()
+    except: raise(Model.Exceptions.FileError(('read', fName)))
+    print "Read lines: "
+    section= None
+    kwrds={'.Rul':'Rule', '.Tex':'Text', '.End':'End', '.Pre':'Prelude',
+           '.Par':'Param', '.Pos':'Post'}
+    aStr= ''
+    linenumber= 0
+    for line in lines:
+        linenumber= linenumber+1
+        l= line[:-1] # remove \n
+        if len(string.strip(l)) == 0: continue
+        try:
+            if l[0]== '.': #got a new segment
+                sect= string.strip(l)[:4]
+                section= kwrds[sect] # raise KeyError if unknown keyword
+                if section=='Rule':
+                    ro= Rule()
+                    ro.name= string.strip(l[6:])
+                    print "Rulename: <%s>"%ro.name
+                elif section=='Text':
+                    ro.text= string.strip(l[6:])
+                elif section=='End':
+                    ruleL.append(ro)
+                elif section=='Prelude':
+                    aStr= ''
+                elif section=='Param':
+                    aStr= ''
+                elif section=='Post':
+                    aStr= ''
+                else:
+                    pass
+                    
+            else:
+                if section=='Prelude' :
+                    if l[0]=='{': continue
+                    if l[0]=='}':
+                        ro.prelude= aStr[:-1] # remove terminating ;
+                        section= None
+                        print "Prelude: ", ro.prelude
+                    else:
+                        aStr=aStr  + l + ';'
+                if section=='Param' :
+                    if l[0]=='{': continue
+                    if l[0]=='}':
+                        ro.parametres= aStr[:-1]
+                        print "Parametres: ", ro.parametres
+                        section= None
+                    else:
+                        aStr= aStr  + l + ':'
+                if section=='Post' :
+                    if l[0]=='{': continue
+                    if l[0]=='}':
+                        ro.postings= aStr[:-1]
+                        print "Postings: ", ro.postings
+                        section= None
+                    else:
+                        lpos= string.find(l, '(')  #remove account name
+                        rpos= string.find(l, ')')
+                        ss= l[:lpos] + l[rpos+1:]
+                        aStr= aStr  + ss + ':'
+        except:
+            sLinen= str(linenumber)
+            raise(Model.Exceptions.FileError(('syntax',
+                   string.join([fName, sLinen, l], ':'))))
+    return ruleL
+                
+
+if __name__ == '__main__':
+
+    try:
+        rL= RuleImport('/home/oao/gryn/trunk/var/gryn/rules/b.grul')
+        for r in rL:
+            print "Rule: ", r
+    except Model.Exceptions.FileError, s:
+        print "Exception: ", s
+    
+    

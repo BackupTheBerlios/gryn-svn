@@ -20,15 +20,17 @@ Dialogue to make and maintain book keeping rules.
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #    The top level file LICENSE holds the verbatim copy of this license.
 
-
 import string
+import os
 from qt import *
 from qttable import QTable, QCheckTableItem
 import Control.uRule
 import Model.Books
 import Model.Rule
 import Model.Global
+import Model.Exceptions
 import Control.Global
+
 
 class Rule(Control.uRule.uRule):
     """The Rule parent class
@@ -50,7 +52,7 @@ class Rule(Control.uRule.uRule):
         t.setNumCols(3)
         h= t.horizontalHeader()
         h.setLabel(0, self.tr('Account'))
-        h.setLabel(1, self.tr('%s/%s'%(self.debit, self.credit)))
+        h.setLabel(1, '%s/%s'%(self.debit, self.credit))
         h.setLabel(2, self.tr('Function'))
         v= t.verticalHeader()
         v.hide()
@@ -74,7 +76,7 @@ class Rule(Control.uRule.uRule):
         h= t.horizontalHeader()
         h.setLabel(0, self.tr('Parameter'))
         h.setLabel(1, self.tr('M'))
-        h.setLabel(2, self.tr('Dialog tekst'))
+        h.setLabel(2, self.tr('Dialog text'))
         v2= t.verticalHeader()
         v2.hide()
         t.setColumnStretchable(0, 1)
@@ -185,7 +187,7 @@ class Rule(Control.uRule.uRule):
             acc= self.accountL.getByNum(account)
             if not acc:
                 QMessageBox.information(self, Model.Global.getAppName(),
-                      self.tr('%s\nThis account does not exist\n'%account))
+                      self.tr('This account does not exist:' + account))
                 return
             s1= self.wTabPost.text(row, 1)
             if not s1 or s1.length() < 1: s1= 'X '
@@ -194,8 +196,8 @@ class Rule(Control.uRule.uRule):
             print 's1, side: ', s1, side
             if side != self.credit and side != self.debit:
                 QMessageBox.information(self, Model.Global.getAppName(),
-                      self.tr('The Side-cell must be either %s or %s\n'%(
-                    self.debit, self.credit)))
+                     self.tr('The Side-cell must be either of ')+ '%s/%s'%(
+                     self.debit, self.credit))
                 return
             s2= self.wTabPost.text(row, 2)
             if not s2 or s2.length() < 1:
@@ -204,7 +206,7 @@ class Rule(Control.uRule.uRule):
                 return
             func= string.strip(str(s2))
             
-            sP= sP + '%s;%s;%s:'%(acc.id, side, func)
+            sP= sP + '%s;%s;%s:'%(acc.num, side, func)
         if len(sP) > 0:
             rule.postings= sP[:-1]
         # Then ,at last:
@@ -233,8 +235,7 @@ class Rule(Control.uRule.uRule):
         row= 0
         for post in posts:
             acc, side, func= string.split(post, ';')
-            accObj= self.accountL.getById(int(acc))
-            self.wTabPost.setText(row, 0, accObj.num)
+            self.wTabPost.setText(row, 0, acc)
             self.wTabPost.setText(row, 1, side)
             self.wTabPost.setText(row, 2, func)
             row= row + 1
@@ -300,6 +301,7 @@ class RuleEdit(Rule):
         ruleObj= viewList[0]
         self.ruleCopy= ruleObj.copyOfRule() # Edit on a copy in case the user
         # cancels
+        print "Rulecopy: ", self.ruleCopy
         self.initFields(self.ruleCopy)
 
     def slotSave(self):
@@ -332,4 +334,83 @@ class RuleDelete(Rule):
         """
         Rule.__init__(self,parent,name,modal,fl)
         self.setCaption('Delete rule')
+
+
+##################################
+
+# Some static functions
+
+
+
+
+def RuleExport(self):
+    fd= QFileDialog(self, "select file", 1)
+    fd.setCaption(self.tr("Select rule file"))
+    fd.setMode(QFileDialog.AnyFile)
+    fd.setFilter(str(self.tr("Rule files")) + "(*.grul)")
+    fd.setViewMode(QFileDialog.List)
+    fd.setDir(Model.Global.getVarPath() + "/rules/")
+    if fd.exec_loop() == QDialog.Accepted:
+        fileN= string.strip(str(fd.selectedFile()))
+        if string.find(fileN, ".grul") < 0:
+            fileN= fileN + ".grul"
+        if fileN[-5:] != ".grul":
+            QMessageBox.information(self, self.tr("Rule export"),
+              str(self.tr("Bad file name:")) + " %s"%fileN, self.tr("OK"))
+        try:
+            Model.Rule.RuleExport(str(fileN))
+        except Model.Exceptions.FileError, s:
+            if s[0]=='open':
+                msg= str(self.tr("Could not open file <")) + \
+                     os.path.basename(s[1]) + '>'
+            else:
+                msg= str(self.tr("Unknown exception:")) + '\n' + s
+                
+            QMessageBox.information(self, Model.Global.getAppName(),
+                                        msg, self.tr("OK"))
+            return
+                
+
+def RuleImport(self):
+    """Imports all rules from a rule text file.
+    """
+    fd= QFileDialog(self, "select file", 1)
+    fd.setCaption(self.tr("Select rule file"))
+    fd.setMode(QFileDialog.ExistingFile)
+    fd.setFilter(str(self.tr("Rule files")) + "(*.grul)")
+    fd.setViewMode(QFileDialog.List)
+    fd.setDir(Model.Global.getVarPath() + "/rules/")
+    if fd.exec_loop() == QDialog.Accepted:
+        fileN= string.strip(str(fd.selectedFile()))
+        if string.find(fileN, ".grul") < 0:
+            fileN= fileN + ".grul"
+        if fileN[-5:] != ".grul":
+            QMessageBox.information(self, Model.Global.getAppName(),
+               str(self.tr("Bad file name:")) + " %s"%fileN, self.tr("OK")) 
+        else:
+            try:
+                rL= Model.Rule.RuleImport(str(fileN))
+                ruleL= Model.Books.getList('rule')
+                for r in rL:
+                    
+                    print "QtRule: ", r
+                    ruleL.saveEntry(r)
+            except Model.Exceptions.FileError, s:
+                if s[0]=='syntax':
+                    subs= string.split(s[1], ':')
+                    msg=str(self.tr('Syntax error in file <')) + \
+                         os.path.basename(subs[0]) + \
+                         str(self.tr("> line ")) + subs[1] + ':\n' +  subs[2]
+                    QMessageBox.information(self, Model.Global.getAppName(),
+                                            msg, self.tr("OK"))
+                    return
+                if s[0]=='open':
+                    msg= str(self.tr("Could not open file <")) 
+                if s[0]=='read':
+                    msg= str(self.tr("Could not read file <"))
+                msg= msg +  os.path.basename(s[1]) + '>'
+                
+                QMessageBox.information(self, Model.Global.getAppName(),
+                                            msg, self.tr("OK"))
+                return
 

@@ -43,9 +43,6 @@ you can not grep for e.g. 'getGrynPath' in this source file.
 #    The top level file LICENSE holds the verbatim copy of this license.
 
 
-#TODO: Translate tool tip texts for the dictionaries
-#      Move money related functions to a Money file
-
 import string
 
 import os
@@ -76,7 +73,6 @@ if _transl:
 else:
     def N_(message): return message
 
-# FIXME: make a Money class one day ...
 
 def moneyToInt(mm):
     """Convert a money string into an int. Moeny strings are only used for GUI
@@ -387,6 +383,19 @@ def getAllDicts():
     for k in _system.keys(): all[k]= _system[k]
     for k in _user.keys():   all[k]= _user[k]
     return all
+
+
+transCache= {}
+
+def getTranslation(name):
+    if transCache.has_key(name): return transCache[name]
+    try:
+        v= gettext.translation(name, getLocalePath(), [getLocale()])
+        transCache[name]= v
+    except IOError:
+        v= None
+    return v
+
 
 
 if __name__=='__main__':

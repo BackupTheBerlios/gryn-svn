@@ -20,7 +20,9 @@ class SourceVat(Control.uSourceVat.uSourceVat):
         self.connect(self.wOK,SIGNAL("clicked()"),self.slotOK)
 
     def slotOK(self):
-        source= Model.Util.vatTransfer(int(str(self.wPeriod.currentText())), 0)
+        per= int(str(self.wPeriod.currentText()))
+        a, date= Model.Util.calcVat(per)
+        source= Model.Util.vatTransfer(per, 0, a, date)
         print 'Generated source number ', source
         self.done(1)
 

@@ -26,7 +26,7 @@ import Model.Books
 import Control.Global
 
 import gettext
-t = Model.Global.getTrans()
+t = Model.Global.getTranslation('report')
 if t != None:
     N_= t.gettext
 else:

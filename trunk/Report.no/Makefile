@@ -18,7 +18,7 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #    The top level file LICENSE holds the verbatim copy of this license.
 
-
+LOCALEPATH=../var/gryn/locale/no/LC_MESSAGES
 
 all:
 
@@ -26,5 +26,18 @@ clean:
 	rm -f *~  \#* *pyc
 
 
-install:
+install: mo
 
+
+po:   # Merge old translations or make a new file if not exists
+	xpot -o locale/report.pot -n -k N_ *.py\
+	&& \
+	msgmerge -U locale/report_no.po locale/report.pot || \
+	cp locale/report.pot locale/report_no.po
+
+
+mo:	locale/report_no.mo
+
+locale/report_no.mo: locale/report_no.po
+	msgfmt  locale/report_no.po -o locale/report_no.mo && \
+	cp locale/report_no.mo $(LOCALEPATH)/report.mo

@@ -255,6 +255,7 @@ class SplitRow(object):
         into the table row
         """
         if split.account:
+            print "split.account: ", split.account
             accO= SplitRow.accL.getById(split.account)
             self.accObj= accO
 

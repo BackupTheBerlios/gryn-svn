@@ -28,9 +28,6 @@ and run the program
 
 >pathto/gryn/Control/Qd.py
 
-Before running the program for the first time you should manually 
-create an empty MySQL database named 'gryn', else the program will terminate.
-
 Latex-files are installed by links in ~/texmf/tex/latex. 
 You may have to refresh the TeX directory cache to make them visible to LaTeX.
 
@@ -42,7 +39,9 @@ similar to English:
 
 However, some translations will still be in Norwegian, edit the
 Model/Global.py file (specify a nonexistent locale, like 'xx' instead of 'no')
-
+This is a problem that will persist until the program is rewritten to use the
+system locale.
+ 
 Default encoding is set to latin-1 in the sitecustomize.py file. 
 
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gryn-Model-0 \n"
-"PO-Revision-Date: 2005-02-28 18:37+0100\n"
+"PO-Revision-Date: 2005-03-17 11:10+0100\n"
 "Last-Translator: O A Olsen\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"

@@ -63,3 +63,9 @@ TeX, LaTeX to print reports
 
 Some of these may be found on your Linux distribution CD.
 
+Redundant svn files:
+
+The u*.py files in the Qt-directory are files produced from the *.ui files in
+Qt/Ui. The binary translation files in Qt/locale and Model/locale are
+generated from the correspondding text files. These files are kept under svn
+version control for now and also do appear in tar-archives.

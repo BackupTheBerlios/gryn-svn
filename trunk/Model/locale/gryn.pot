@@ -1,69 +1,69 @@
 
-#: Global.py:183
+#: Global.py:189
 msgid "The path to the gryn root"
 msgstr ""
 
-#: Global.py:203
+#: Global.py:209
 msgid "Decimal separator in money"
 msgstr ""
 
-#: Global.py:204
+#: Global.py:210
 msgid "Separator in dates"
 msgstr ""
 
-#: Global.py:205
+#: Global.py:211
 msgid "Name of this application"
 msgstr ""
 
-#: Global.py:206
+#: Global.py:212
 msgid "Database name prefix"
 msgstr ""
 
-#: Global.py:207
+#: Global.py:213
 msgid "Name of host running the database"
 msgstr ""
 
-#: Global.py:208
+#: Global.py:214
 msgid "Present role of present user"
 msgstr ""
 
-#: Global.py:213
+#: Global.py:219
 msgid "Language, no, se etc"
 msgstr ""
 
-#: Global.py:216
+#: Global.py:222
 msgid "Vendor account"
 msgstr ""
 
-#: Global.py:217
+#: Global.py:223
 msgid "Customer account"
 msgstr ""
 
-#: Global.py:218
+#: Global.py:224
 msgid "Account for period's net VAT"
 msgstr ""
 
-#: Global.py:219
+#: Global.py:225
 msgid "Account for rounding"
 msgstr ""
 
-#: Global.py:220
+#: Global.py:226
 msgid "Number assigned to first cuven"
 msgstr ""
 
-#: Global.py:356
+#: Global.py:362
 msgid "System wide data path"
 msgstr ""
 
-#: Global.py:358
+#: Global.py:364
 msgid "Locale path"
 msgstr ""
 
-#: Global.py:360
+#: Global.py:366
 msgid "System wide etc path"
 msgstr ""
 
-#: Global.py:362
+#: Global.py:368
 msgid "System wide tmp path"
 msgstr ""
 
@@ -105,4 +105,78 @@ msgstr ""
 
 #: Vat.py:171
 msgid "HighOut"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:91
+msgid "Ledger balance"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:244 :253
+msgid "Opening"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:245 :253
+msgid "Per mov"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:246 :253
+msgid "Year mov"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:247 :253
+msgid "Closing"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:266
+msgid "Sum"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:345 ../Report.no/SourceList.py:348
+#: ../Report.no/SubsidiaryLedger.py:336
+msgid "Time of printout"
+msgstr ""
+
+#: ../Report.no/LedgerBalance.py:361 ../Report.no/SourceList.py:395
+#: ../Report.no/SubsidiaryLedger.py:352
+msgid "Last page "
+msgstr ""
+
+#: ../Report.no/SourceList.py:94
+msgid "Source list"
+msgstr ""
+
+#: ../Report.no/SourceList.py:157
+msgid "Deleted"
+msgstr ""
+
+#: ../Report.no/SourceList.py:235
+msgid "Setteled by "
+msgstr ""
+
+#: ../Report.no/SourceList.py:237
+msgid "Partly settled by "
+msgstr ""
+
+#: ../Report.no/SourceList.py:242
+msgid "balance"
+msgstr ""
+
+#: ../Report.no/SourceList.py:246
+msgid "Repayment of"
+msgstr ""
+
+#: ../Report.no/SourceList.py:248
+msgid "Setteling of"
+msgstr ""
+
+#: ../Report.no/SubsidiaryLedger.py:96
+msgid "Customers"
+msgstr ""
+
+#: ../Report.no/SubsidiaryLedger.py:98
+msgid "Vendors"
+msgstr ""
+
+#: ../Report.no/SubsidiaryLedger.py:155
+msgid "No transactions"
 msgstr ""

@@ -33,6 +33,7 @@ install:
 
 po:   # Merge old translations or make a new file if not exists
 	xpot -o locale/gryn.pot -n -k N_ Global.py Source.py Invque.py Vat.py\
+	../Report.no/*.py \
 	&& \
 	msgmerge -U locale/gryn_no.po locale/gryn.pot || \
 	cp locale/gryn.pot locale/gryn_no.po

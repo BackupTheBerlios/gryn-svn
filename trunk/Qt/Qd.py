@@ -1001,7 +1001,6 @@ if __name__ == "__main__":
     """
 
     import Database.DbAccess
-#    import Model.Global
     import Model.Client
     import Model.Exceptions
     import string
@@ -1016,11 +1015,8 @@ if __name__ == "__main__":
     # Pick the tanslator 
     translator= QTranslator(None)
     loc= Model.Global.getLocale()
-    print "loc: ", loc
     if not loc: # use system locale
         loc= str(QTextCodec.locale())
-        print "loc: ", loc
-    #translator.load('qt_'+loc+'.qm', Model.Global.getLocalePath())
     lpath= Model.Global.getLocalePath() + '/'+ loc + '/LC_MESSAGES/'+'gryn.qm'
     translator.load(lpath)
     a.installTranslator(translator)
@@ -1034,32 +1030,47 @@ if __name__ == "__main__":
 
     a.setMainWidget(w)
     Model.Global.setRole('root') #FIXME: get user role from some conf file
+                                 # or dialog
     appName= Model.Global.getAppName()
-    dbPrefix= Model.Global.getDbPrefix()
     w.setIcon(QPixmap(appIcon()))
+    dbPrefix= Model.Global.getDbPrefix()
     
-    # Trial-open database, terminate if not exists
+    # Trial-open database, create if not exists
     try:
         db= None
         cause= ''
         db=Database.DbAccess.DbAccess(dbPrefix)
         db.close()
     except Model.Exceptions.DbError, e:
-        cause= e.args
+        pass # does not exist or no data base connection
     except Model.Exceptions.Unknown, s:
         cause= str(a.tr("Unknown error: \n")) +s
-    if db==None:
         QMessageBox.critical(w, appName,
           str(a.tr("A problem with the database access occurred:\n%s"%cause))+\
                     str(a.tr("\nThe program will terminate.")))
-        #Here we should create the 'gryn' database. However I don't know
-        #how to do that. Perhaps get a handle on the mySql distribution
-        #database 'mysql' and create 'gryn' from there?
-        #Let the user do a manual creation of the database for now
+        sys.exit(1)
+    if not db: # We must create the data base for gryn
+        r= QMessageBox.information(w, appName,
+            str(a.tr("The '%s' data base does"%dbPrefix))+ '\n'+ \
+                str(a.tr("not exsist. Shall I create it?")),
+                                   a.tr("Yes"), a.tr("No"))
+        if r==0:
+            try:
+                db= Database.DbAccess.DbAccess(None)
+                db.createDataBase(dbPrefix)
+                db.close()
+            except Model.Exceptions.DbError, e:
+                cause= e.args
+            except Model.Exceptions.Unknown, s:
+                cause= str(a.tr("Unknown error: \n")) +s.args
+        else: sys.exit(1) # do not want to create
+    if not db:
+        QMessageBox.critical(w, appName,
+          str(a.tr("A problem with the database access occurred:\n%s"%cause))+\
+                    str(a.tr("\nThe program will terminate.")))
         sys.exit(1)
 
-
-    # Now the database is present
+    # Now we know the database is present
     #open Client data base, create new or terminate if not there
     #this must be done before the client-menue becomes active
     try:

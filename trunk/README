@@ -1,8 +1,7 @@
 
 $Id$
 
-Gryn and Qdough, a program for keeping your accounting books under Gnu/Linux
-dough
+Gryn and/or Qdough, a program for keeping your accounting books under Gnu/Linux
 
 This file is the basic 'how to get the program running' help for the 
 book keeping application Gryn/Qdough. 
@@ -13,12 +12,13 @@ distribution of all or part of this application: see the LICENSE file.
 
 Contact:
 
-The project home page: http://www.oao.no/gryn.html
-email: oao'at'oao'dot'no. Please include '[gryn]' in the subject.
+The project home page: http://gryn.berlios.de
+email: oao#users:berlios:de (':' -> '.', '#' -> '@')
 
 Install: 
 
-Unpack the tar archive in your home directory and run the top Makefile:
+Unpack the tar archive somewhere in your home directory and run the top 
+Makefile:
 
 > make install
 
@@ -31,22 +31,24 @@ and run the program
 Before running the program for the first time you should manually 
 create an empty MySQL database named 'gryn', else the program will terminate.
 
-
 Latex-files are installed by links in ~/texmf/tex/latex. 
 You may have to refresh the TeX directory cache to make them visible to LaTeX.
 
 The program uses Norwegian translation as default. Make yourself a  ~/.gryn
 resource file if you wish something
-similar to English instead: 
+similar to English: 
 
 >echo 'locale=None' > ~/.gryn
+
+However, some translations will still be in Norwegian, edit the
+Model/Global.py file (specify a nonexistent locale, like 'xx' instead of 'no')
 
 Default encoding is set to latin-1 in the sitecustomize.py file. 
 
 
 Prerequisites: 
 In addition to a modern Linux installation you will  
-need rather up to date versions of the following tools:
+need rather up to date versions of the following:
 
 Python (http://www.python.org)
 

@@ -989,7 +989,7 @@ class Qd(QMainWindow):
                           Model.Global.getAppName()+ '\n\n' +\
         'Copyright 2003-2005 Odd Arild Olsen\n' +\
         str(self.tr('License: GNU GPL, see the LICENSE file')) + '\n\n'+ \
-        str(self.tr('Project home: www.oao.no/linux/gryn')) )
+        str(self.tr('Project home:')) + ' http://gryn.berlios.de') 
 
 
 #

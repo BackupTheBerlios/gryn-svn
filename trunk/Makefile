@@ -21,22 +21,21 @@
 
 
 
-VERS=20050309
-BRANCH=trunk
+PTH := $(shell pwd)
+BRANCH= $(notdir $(PTH))
+VERS= $(shell date +%Y%m%d)
 
 all: # do nothing not explicitely ordered
 
 
-#Get all the files given in MANIFEST into a tar-archive 
-trunktar: gryn-$(VERS).tar.gz
-
-gryn-$(VERS).tar.gz:
+#Get the relevant files into MANIFEST and create a tar-archive of those files 
+mktar: 
 	./collect.py > MANIFEST
 	cat MANIFEST | sed s:^:gryn-$(VERS)/: >releasefiles 
 	(cd ..; ln -s $(BRANCH) gryn-$(VERS))
 	(cd ..; tar czvf gryn-$(VERS)/gryn-$(VERS).tar.gz -T \
-		$(BRANCH)/releasefiles)
-	(cd ..; rm gryn-$(VERS))
+		gryn-$(VERS)/releasefiles)
+	(cd ..; rm -f gryn-$(VERS))
 	rm releasefiles
 
 #Remove all scratch and backup files

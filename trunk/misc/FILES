@@ -23,5 +23,5 @@ $Id$
 These files are moved or linked to by the install process
 
 gryn  is the system wide definitions and goes to etc
-mini.gapl is a small accont plan and goes to var/gryn
-nif.gapl is a lager plan taken from Norges idrettsforbund, goes to var/gryn
+*.gapl are account plan text files imported when creating new clients
+

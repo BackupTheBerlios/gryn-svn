@@ -59,12 +59,14 @@ MySql (http://www.mysql.com/)
 
 MySQLdb (http://dustman.net/andy/python/MySQLdb) 
 
+xpot, a part of po-utils () 
+
 TeX, LaTeX to print reports
 
 Some of these may be found on your Linux distribution CD.
 
-Redundant svn files:
 
+Redundant svn files:
 The u*.py files in the Qt-directory are files produced from the *.ui files in
 Qt/Ui. The binary translation files in Qt/locale and Model/locale are
 generated from the correspondding text files. These files are kept under svn

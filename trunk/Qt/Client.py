@@ -57,11 +57,17 @@ def initCombos(obj):
     obj.dimension.insertItem('2')
     obj.dimension.insertItem('3')
     path= Model.Global.getVarPath()
-    files= os.listdir(path)       # All account plan files
-    for file in files:
+    files= os.listdir(path)
+    # All account plan files
+    for file in files:                     
         if string.find(file, '.gapl') > 0:
             fn= string.split(file, '.')
             obj.accPlan.insertItem(fn[0])
+    # All VAT files
+    for file in files:
+        if string.find(file, '.vat') > 0:
+            fn= string.split(file, '.')
+            obj.vatFile.insertItem(fn[0])
 
 def initFields(obj, o):
     """Set up the fields of the dialogue<br>
@@ -75,12 +81,10 @@ def initFields(obj, o):
     obj.firstEntry.setText(o.firstEntry)
     obj.periodes.setCurrentText(o.periodes)
     obj.dimension.setCurrentText(o.dimension)
-    if o.vat=='Y': obj.vat.setChecked(1)
-    else: obj.vat.setChecked(0)
     if o.budget=='Y': obj.budget.setChecked(1)
     else: obj.budget.setChecked(0)
-    if o.open=='Y': obj.open.setChecked(1)
-    else: obj.open.setChecked(0)
+    if o.vat=='Y': obj.vat.setChecked(1)
+    else: obj.vat.setChecked(0)
 
 
 
@@ -92,13 +96,12 @@ class ClientEdit(Control.uClientEditNew.uClientEditNew):
         """Create a new dialogue instance. Assume the client object
         is placed in Control.Global.ListSelected[0]
         """
-        print "ClientEdit self: ", self
         Control.uClientEditNew.uClientEditNew.__init__(self,parent,name,
                                                        modal,fl)
         
         clientL= Model.Global.getClientList() 
         c= Control.Global.getListSelected()[0]
-        initCombos(self)
+        #initCombos(self)
         self._o= c.copyOfClient()# Edit a copy in case the user Cancels
         initFields(self, self._o)
         # Enable the fields we can change for an existing ledger
@@ -109,7 +112,6 @@ class ClientEdit(Control.uClientEditNew.uClientEditNew):
         self.periodes.setEnabled(0)
         self.budget.setEnabled(1)
         self.dimension.setEnabled(1)
-        self.open.setEnabled(0)
         self.year.setEnabled(0)
 
     def slotSave(self):
@@ -127,7 +129,7 @@ class ClientEdit(Control.uClientEditNew.uClientEditNew):
             if self.budget.isChecked(): self._o.budget= 'Y'
             else: self._o.budget= 'N'
             self._o.dimension= string.strip(str(self.dimension.currentText()))
-            #self._o.open= 'Y'
+            #self._o.vat= 'Y'
         except Model.Exceptions.VarLimit, s: # parameter out of range
             try: # if error message exists
                 m= str(self.tr(e[s[1]]))
@@ -166,19 +168,18 @@ class ClientDelete(Control.uClientEditNew.uClientEditNew):
         self._clientL= Model.Global.getClientList()
 
         self._db= Model.Global.makeDbName(self._o.id)
-        initCombos(self)
+        #initCombos(self)
         initFields(self, self._o)
         self.clients.setEditable(0)
         self.setCaption(self.tr("Delete client"))
         self.accPlan.clear()
         # Disable field edits
         self.regNum.setEnabled(0)
-        self.vat.setEnabled(0)
         self.firstEntry.setEnabled(0)
         self.periodes.setEnabled(0)
         self.budget.setEnabled(0)
         self.dimension.setEnabled(0)
-        self.open.setEnabled(0)
+        self.vat.setEnabled(0)
         self.year.setEnabled(0)
         self.pbSave.setText(self.tr('Delete'))
 
@@ -210,8 +211,8 @@ class ClientNew(Control.uClientEditNew.uClientEditNew):
                                                        modal,fl)
         self.setCaption(self.tr("New client"))
         self.clients.setEditable(1)
-        self.open.setChecked(0)
-        self.open.setEnabled(0)
+        self.vat.setChecked(1)
+        self.vat.setEnabled(1)
         self._o= Model.Client.Client()
         self.firstEntry.setText('2') # Entry 0 and 1 are reserved
         initCombos(self)
@@ -231,7 +232,6 @@ class ClientNew(Control.uClientEditNew.uClientEditNew):
             if self.budget.isChecked(): self._o.budget= 'Y'
             else: self._o.budget= 'N'
             self._o.dimension= string.strip(str(self.dimension.currentText()))
-            self._o.open= 'Y'
         except Model.Exceptions.VarLimit, s: #A parameter is out of range
             try:
                 m= str(self.tr(e[s[1]]))
@@ -243,15 +243,37 @@ class ClientNew(Control.uClientEditNew.uClientEditNew):
             return # to fix the error
         clientL= Model.Global.getClientList()
         clientL.saveEntry(self._o)
-        # The new client is saved in the cient database table.
+        # The new client is saved in the client database table.
         # Now make the client's database and all tables therein
         dbName= Model.Global.makeDbName(self._o.id) #New database name
         Model.Books.createDatabase(dbName)
         Model.Books.readBooks(self._o.id) #implies: create them too
+
+
         # Import the account plan chosen by the combo
         path= Model.Global.getVarPath() + '/' + \
               str(self.accPlan.currentText()) + '.gapl'
-        Model.AccountImport.importGapl(path)# and import
+        try:
+            Model.AccountImport.importGapl(path)# and import
+        except Model.Exceptions.FileError, s:
+            QMessageBox.information(self, Model.Global.getAppName(),
+                   str(self.tr('Could not read the chart of accounts')) +
+                                     '\n' + str(s))
+            return
+
+        # Import the VAT file chosen by the combo
+        path= Model.Global.getVarPath() + '/' + \
+              str(self.vatFile.currentText()) + '.vat'
+        try:
+            Model.Vat.readFile(path)# and import
+        except Model.Exceptions.FileError, s:
+            QMessageBox.information(self, Model.Global.getAppName(),
+                  str(self.tr('Could not read the file of VAT-defaults')) +
+                                    '\n' + str(s))
+            return
+
+        clientL.saveEntry(self._o)
+
         self.emit(PYSIGNAL("client"),(self._o, 'N'))# Tell about the new client
         self.done(1)
         

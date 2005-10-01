@@ -22,10 +22,12 @@ subclass.
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #    The top level file LICENSE holds the verbatim copy of this license.
 
-
+import os
+import string
 import Database.DbAccess
 import Model.Gobject
 import Model.Global
+import Model.Exceptions
 
 import gettext
 t = Model.Global.getTrans()
@@ -142,36 +144,6 @@ class VatList(Model.Gobject.GList):
         Model.Gobject.GList.__init__(self, self._connection)
 
     def fixup(self, lists):
-        #We lack a VAT spec dialog, so do the db-init here for now
-        # VAT codes are sequentially numbered from '0' up to max '9'
-        # These properties should not be changed during a year, else
-        # the reporting system will go babanas
-        if len(self) == 0:
-            self.append(Vat((None, '0', 'None', None, None, '3200')))
-            self.append(Vat((None, '1', 'LowIn', '6', '2710', None)))
-            self.append(Vat((None, '2', 'MediumIn', '11', '2710', None)))
-            self.append(Vat((None, '3', 'HighIn', '25', '2710', None)))
-            self.append(Vat((None, '4', 'LowOut', '6', '2700', '3000')))
-            self.append(Vat((None, '5', 'MediumOut', '11', '2700', '3000')))
-            self.append(Vat((None, '6', 'HighOut', '25', '2700', '3000')))
-            for e in self: self.saveEntry(e)
-        for v in self:
-            if v.vatCode == '0':
-                v.vatName= _('None')
-                v.vatRate= None
-                v.vatAccount= None
-            if v.vatCode == '1':
-                v.vatName= _('LowIn')
-                v.salesAccount= None
-            if v.vatCode == '2':
-                v.vatName= _('MediumIn')
-                v.salesAccount= None
-            if v.vatCode == '3':
-                v.vatName= _('HighIn')
-                v.salesAccount= None
-            if v.vatCode == '4': v.vatName= _('LowOut')
-            if v.vatCode == '5': v.vatName= _('MediumOut')
-            if v.vatCode == '6': v.vatName= _('HighOut')
         self.sort()
 
     def getByCode(self, code):
@@ -191,3 +163,44 @@ class VatList(Model.Gobject.GList):
     def __repr__(self):
         return 'VatList'
 
+
+def _readFile(f):
+    vatL= []
+    all= f.readlines()
+    for a in all:
+        li= string.strip(a)
+        if len(li) < 3 or li[0] == '#' : continue
+        fields= string.split(a, ':') # raises ValueError
+        if len(a) < 10: continue
+        vr= Vat()
+        try:
+            #raises IndexError if not 5 fields
+            vr.vatCode= string.strip(fields[0])
+            vr.vatName= string.strip(fields[1])
+            vr.vatRate= string.strip(fields[2])
+            vr.vatAccount= string.strip(fields[3])
+            vr.salesAccount= string.strip(fields[4])
+        except IndexError:
+            raise(Model.Exceptions.FileError(_(
+                "Missing field in file of default VAT")))
+        vatL.append(vr)
+    return vatL
+        
+def readFile(fn):
+    try:
+        f= open(fn, 'r')
+        vL= _readFile(f)
+        f.close()
+        vatL= Model.Books.getList('vat')
+        for v in vL:
+            vatL.saveEntry(v)
+
+
+    except IOError:
+        raise(Model.Exceptions.FileError(_("Could not read file ") + fn))
+
+    except ValueError:
+        raise(Model.Exceptions.FileError(_("Syntax error in file ") + fn))
+
+
+        

@@ -67,6 +67,7 @@ import Control.MDIWindow
 import Control.Rule
 import Control.Queue
 import Control.Configtable
+import Control.Vat
 
 #Some application states to help enable/disable menues and their entries
 stateEvents={
@@ -257,10 +258,12 @@ class Qd(QMainWindow):
         #==================
 
         self.configMenu = QPopupMenu(self)
+        self.connect(self.configMenu, SIGNAL(
+            "aboutToShow()"), self.configAboutToShow)
 
         menuSetup(self,'config','Edit', self.tr('Edit'))
         menuSetup(self,'config','View', self.tr('View all'))
-
+        menuSetup(self, 'config','VatAcc', self.tr('VAT accounts'))
 
         self.menubar.insertItem(self.tr("Config"),self.configMenu, 7, 7)
 
@@ -854,6 +857,16 @@ class Qd(QMainWindow):
 
     # Config menu actions
     #====================
+
+    def configAboutToShow(self):
+        """Enables and disables some menuitems according to if any client is
+        open.  Called with click on client menu.
+        """
+        if stateEvents['clientIsOpen']!=0: #client is open
+            self.configVatAccAction.setEnabled(1)
+        else:
+            self.configVatAccAction.setEnabled(0)
+    
     def configEdit(self):
         """Opens Configuration dialogue where user can edit preferences
         Get parameter dictionary from Model.Global
@@ -874,6 +887,15 @@ class Qd(QMainWindow):
         """
         d= Model.Global.getAllDicts()
         c= Control.Configtable.Configtable(d, 0)
+        c.show()
+        c.exec_loop()
+        
+            
+    def configVatAcc(self):
+        """Opens dialogue to show and edit a list of VAT
+        codes and related accounts
+        """
+        c= Control.Vat.Vat()
         c.show()
         c.exec_loop()
         

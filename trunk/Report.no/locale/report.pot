@@ -1,0 +1,72 @@
+
+#: LedgerBalance.py:91
+msgid "Ledger balance"
+msgstr ""
+
+#: LedgerBalance.py:244 :253
+msgid "Opening"
+msgstr ""
+
+#: LedgerBalance.py:245 :253
+msgid "Per mov"
+msgstr ""
+
+#: LedgerBalance.py:246 :253
+msgid "Year mov"
+msgstr ""
+
+#: LedgerBalance.py:247 :253
+msgid "Closing"
+msgstr ""
+
+#: LedgerBalance.py:266
+msgid "Sum"
+msgstr ""
+
+#: LedgerBalance.py:345 SourceList.py:348 SubsidiaryLedger.py:336
+msgid "Time of printout"
+msgstr ""
+
+#: LedgerBalance.py:361 SourceList.py:395 SubsidiaryLedger.py:352
+msgid "Last page "
+msgstr ""
+
+#: SourceList.py:94
+msgid "Source list"
+msgstr ""
+
+#: SourceList.py:157
+msgid "Deleted"
+msgstr ""
+
+#: SourceList.py:235
+msgid "Setteled by "
+msgstr ""
+
+#: SourceList.py:237
+msgid "Partly settled by "
+msgstr ""
+
+#: SourceList.py:242
+msgid "balance"
+msgstr ""
+
+#: SourceList.py:246
+msgid "Repayment of"
+msgstr ""
+
+#: SourceList.py:248
+msgid "Setteling of"
+msgstr ""
+
+#: SubsidiaryLedger.py:96
+msgid "Customers"
+msgstr ""
+
+#: SubsidiaryLedger.py:98
+msgid "Vendors"
+msgstr ""
+
+#: SubsidiaryLedger.py:155
+msgid "No transactions"
+msgstr ""

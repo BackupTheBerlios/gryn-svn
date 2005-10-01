@@ -24,4 +24,5 @@ These files are moved or linked to by the install process
 
 gryn  is the system wide definitions and goes to etc
 *.gapl are chart of accounts text files imported when creating new clients
+*.vat specifies the VAT rates and accounts, install in var/gryn
 

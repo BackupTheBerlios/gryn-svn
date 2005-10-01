@@ -34,4 +34,4 @@ clean:
 install:
 	cp *.gapl $(VARPATH)/gryn
 	cp gryn $(ETCPATH)
-
+	cp *.vat $(VARPATH)/gryn

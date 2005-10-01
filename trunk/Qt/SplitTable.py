@@ -445,6 +445,7 @@ class SplitTable(QTable):
         """Returns a list of splits made from the current table content.<br>
         'so': The source object the list will belong to
         """
+        self.checkVat()
         self.clearSelection()
         line= 0
         srList= [] 
@@ -476,6 +477,8 @@ class SplitTable(QTable):
             self.splitRows.append(sr)
         if split:
             sr.updateFields(split)
+            sr.split= split
+            sr.accObj= self.accountL.getById(split.account)
 
     def makeRoundingSplit(self):
         """
@@ -672,6 +675,40 @@ class SplitTable(QTable):
             print 'SourceTable. Missing field row ', sr.row
             pass
 
+
+    def checkVat(self):
+        aArr= {}
+        for v in self.vatL: 
+            if v.vatAccount: aArr[v.vatAccount]= 0
+            
+        for s in self.splitRows:
+            print "row %d "%s.row
+            if not s.split: continue
+            print "Vatkode split, %d <%s> %d"%(s.row,s.split.vat, s.split.amount)
+            if len(s.split.vat) > 0 and s.split.vat != ' ':
+                v= self.vatL.getByCode(s.split.vat)
+                rate= float(v.vatRate)
+                am= int((s.split.amount * rate + 0.5)/100.0)
+                if s.split.side=='D': am= -am
+                aArr[v.vatAccount]= aArr[v.vatAccount] + am
+            num= s.accObj.num
+            if aArr.has_key(num):
+                am= s.split.amount
+                if s.split.side=='C': am= -am
+                aArr[num]= aArr[num] + am
+            for k in aArr.keys():
+                print ("%s %d"%(k, aArr[k]))
+        print "Checking VAT "
+        for k in aArr.keys():
+            if aArr[k] != 0:
+                print "split error %s %s"%(k,
+                                           Model.Global.intToMoney(aArr[k]))
+        
+        print "Fin checking"
+
+
+
+        
 ##################        
 #   Slots for Split table signals
         

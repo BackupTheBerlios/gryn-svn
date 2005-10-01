@@ -275,7 +275,7 @@ def readConfigFiles():
         f.close()
     except IOError:
         pass
-    fn= os.path.expanduser('~/.gryn')
+    fn= os.path.expanduser('~/.gryn/gryn')
     try:
         f= open(fn, 'r')
         readFile(f, _user)
@@ -308,7 +308,7 @@ def readFile(f, dict):
             pass # raise an exception here to signal error in line lc
 
 def writeUserFile():
-    fn= os.path.expanduser('~/.gryn')
+    fn= os.path.expanduser('~/.gryn/gryn')
     f= open(fn, 'w')
     #  pass exception upwards, if can't open file
     for key in _user.keys():

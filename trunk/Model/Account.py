@@ -121,7 +121,7 @@ class Account(Model.Gobject.Gobject):
             a= int(num)
         except ValueError:
             raise(Model.Exceptions.VarLimit(('varlimit', 'Num')))
-        if len(num) != 4:
+        if len(num) != 4 and len(num) != 1:
             raise(Model.Exceptions.VarLimit(('varlimit', 'Num')))
         self._num= num
     def getNum(self):
@@ -131,8 +131,7 @@ class Account(Model.Gobject.Gobject):
     def setDefVat(self, vat):
         """'vat:' 1 digit char"""
         s= '0123456789'
-        ss= s[:AccountList.vatItems]
-        if vat not in ss: 
+        if vat not in s: 
             raise(Model.Exceptions.VarLimit(('varlimit', 'Vat')))
         self._defVat= vat
     def getDefVat(self):

@@ -64,10 +64,14 @@ def raiser(info):
     
     exc= str(info[0])
     c= str(info[1])
+    #print "exc:<%s> c:<%s>"%(exc, c)
     causeNum= str(c[0])
     if len(c)>1: cause= str(c[1:])
     else: c= ''
     if string.find(exc, '_mysql_') >= 0:
+        if string.find(exc, 'Warning') >= 0:
+            print exc,c
+            return
         if   string.find(causeNum, '1146')>=0:
             x= DbError(cause)
         elif   string.find(causeNum, '1049')>=0: # unknown database
@@ -89,9 +93,10 @@ def raiser(info):
         elif string.find(exc, 'exists')>=0:
             x= DbError('Exists')
         else:
-            x= DbError("Unknown")
             print exc, c
+            x= DbError("Unknown")
     else:
+        print exc, c
         x= Unknown(exc+causeNum+cause)
 
     raise x

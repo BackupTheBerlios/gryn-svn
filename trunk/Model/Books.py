@@ -53,7 +53,7 @@ def readBooks(id):
     _bookLists= {}
     # name all tables to read
     lists= ('account', 'split', 'source', 'cuven', 'lot', 'lotentry', 'rule',\
-            'invque', 'vat', 'vat')
+            'invque', 'vat')
     # read the tables, possibly create too
     for t in lists:
         readOrCreate(dbName, t)
@@ -63,10 +63,6 @@ def readBooks(id):
         L= _bookLists[t]
         L.fixup(_bookLists)
 
-# a possibly useful function, not used yet
-#def rereadBook(bookName):
-#    readOrCreate(Model.Global.getBooksDbName(), bookName)
-    
 
 def readOrCreate(dbName, table):
     """Try to read a table. Creates the table if a database-exception
@@ -137,14 +133,4 @@ def createDatabase(name):
     Model.Global.setBooksConnection(None)
     raise Model.Exceptions.DbError("exists") # to tell about our problem
 
-# This is a possibly useful function to use in create database
-# but does not work as I wanted
-## def isDatabaseThere(name):
-##     #  retunrs number of databases, how to get their names?
-##     conn= Database.DbAccess.DbAccess('gryn')
-##     n= conn.execute('show databases')
-##     print 'databases: ', n
-##     #print curs.fetchone()
-##     #curs.close()
-##     conn.close()
     

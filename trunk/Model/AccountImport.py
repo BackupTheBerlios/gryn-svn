@@ -21,9 +21,10 @@ This module imports chart of accounts into the account-database table.
 #    The top level file LICENSE holds the verbatim copy of this license.
 
 
+import string
 import Model.Account
 import Model.Global
-import string
+import Model.Exceptions
 
 def importGapl(fileN):
     """Import Gryn-chart-of-accounts. This chart is a textfile ('fileN'),
@@ -48,24 +49,34 @@ def importGapl(fileN):
     # Get a new account list. This function should only be run when
     # creating a client. Further imports will add new components to the
     # list and may lead to double entries. Bad
-    accountL= Model.Account.AccountList(Model.Global.getBooksDbName())
+    accountL= Model.Books.getList('account')
 
     #Read in all lines from the gapl-file
     lines= fi.readlines()
+    lNum= 1
     #First we find the top level accounts, i.e. those with 1-digit number
     for line in lines:
         sline= string.strip(line)
         if len(sline) < 3 or sline[0]=='#': continue
-        elm= string.split(sline, ':')
+        try:
+            elm= string.split(sline, ':')
+        except ValueError:
+            raise(Model.Exceptions.FileError(_(
+                "Syntax error in VAT file line %d:"%lNum)+'\n'+line))
         if len(elm) != 3:
-            print '*** Line has not three fields:  ', line
+            raise(Model.Exceptions.FileError(_(
+                "VAT file line %d do not have three fields:"%lNum)+'\n'+line))
         else:
             num= string.strip(elm[0])
             if len(num)!= 1: continue
             nam= string.strip(elm[1])
             # Make a new account object instance
-            elms= (None, num, nam, '0', 0, 0)
-            a= Model.Account.Account(elms)
+            a= Model.Account.Account()
+            a.num= num
+            a.name= nam
+            a.defVat= '0'
+            a.flags= 0
+            a.budget= 0
             # and save in database
             accountL.saveEntry(a)
     #Now we can find the 4-digit accounts. These are the real accounts
@@ -78,10 +89,14 @@ def importGapl(fileN):
             if len(num)== 1: continue
             nam= string.strip(elm[1])
             vat= string.strip(elm[2])
-            elms= (None, num, nam, vat, 0, 0)
-            a= Model.Account.Account(elms)
+            a= Model.Account.Account()
+            a.num= num
+            a.name= nam
+            a.defVat= vat
+            a.flags= 0
+            a.budget= 0
             accountL.saveEntry(a)
     fi.close()
-    accountL.close()
+
     #We now have the heading accounts at the lowest db-indexes
 

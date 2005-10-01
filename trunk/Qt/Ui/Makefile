@@ -25,7 +25,7 @@ VPATH= ..
 all: uClientOpen.py uClientEditNew.py uAccountImport.py \
 uTreeList.py uSource.py uListSelect.py uAccount.py \
 uSourceFind.py uCuven.py uSourceSelect.py uSourceVat.py uTimeFrameSelect.py \
-uRule.py uRuleAssign.py uQueue.py uCuvenSelect.py 
+uRule.py uRuleAssign.py uQueue.py uCuvenSelect.py uVat.py
 
 uClientOpen.py:uClientOpen.ui
 uClientEditNew.py:uClientEditNew.ui
@@ -43,6 +43,7 @@ uRule.py:uRule.ui
 uRuleAssign.py:uRuleAssign.ui 
 uQueue.py:uQueue.ui
 uCuvenSelect.py:uCuvenSelect.ui
+uVat.py:uVat.ui
 
 %.py : %.ui
 	pyuic -x $< >../$@

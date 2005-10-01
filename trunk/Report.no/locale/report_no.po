@@ -1,0 +1,72 @@
+
+#: LedgerBalance.py:91
+msgid "Ledger balance"
+msgstr "Hovedbok salobalanse"
+
+#: LedgerBalance.py:244 :253
+msgid "Opening"
+msgstr "IB"
+
+#: LedgerBalance.py:245 :253
+msgid "Per mov"
+msgstr "Per. bev"
+
+#: LedgerBalance.py:246 :253
+msgid "Year mov"
+msgstr "Årets bev"
+
+#: LedgerBalance.py:247 :253
+msgid "Closing"
+msgstr "Avslutning"
+
+#: LedgerBalance.py:266
+msgid "Sum"
+msgstr "Sum"
+
+#: LedgerBalance.py:345 SourceList.py:348 SubsidiaryLedger.py:336
+msgid "Time of printout"
+msgstr "Utskriftstidspunkt"
+
+#: LedgerBalance.py:361 SourceList.py:395 SubsidiaryLedger.py:352
+msgid "Last page "
+msgstr "Side side"
+
+#: SourceList.py:94
+msgid "Source list"
+msgstr "Bilagsliste"
+
+#: SourceList.py:157
+msgid "Deleted"
+msgstr "Slettet"
+
+#: SourceList.py:235
+msgid "Setteled by "
+msgstr "Oppgjort av"
+
+#: SourceList.py:237
+msgid "Partly settled by "
+msgstr "Delvis oppgjort av"
+
+#: SourceList.py:242
+msgid "balance"
+msgstr "Balanse"
+
+#: SourceList.py:246
+msgid "Repayment of"
+msgstr "Delvis oppgjør av"
+
+#: SourceList.py:248
+msgid "Setteling of"
+msgstr "Oppgjør av"
+
+#: SubsidiaryLedger.py:96
+msgid "Customers"
+msgstr "Kunder"
+
+#: SubsidiaryLedger.py:98
+msgid "Vendors"
+msgstr "Leverandører"
+
+#: SubsidiaryLedger.py:155
+msgid "No transactions"
+msgstr "Ingen transaksjoner"

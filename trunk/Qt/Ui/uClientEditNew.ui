@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>541</width>
-            <height>325</height>
+            <height>279</height>
         </rect>
     </property>
     <property name="font">
@@ -30,18 +30,278 @@
         </property>
         <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>layout26</cstring>
+                <cstring>layout11</cstring>
             </property>
             <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QLineEdit" row="1" column="1">
+                <widget class="QComboBox" row="0" column="1">
                     <property name="name">
-                        <cstring>regNum</cstring>
+                        <cstring>clients</cstring>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
                     </property>
                 </widget>
-                <widget class="QLayoutWidget" row="8" column="1" rowspan="1" colspan="2">
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>TextLabel2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Year</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>year</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget" row="4" column="1">
+                    <property name="name">
+                        <cstring>layout10</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>accPlan</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="insertionPolicy">
+                                <enum>NoInsertion</enum>
+                            </property>
+                            <property name="duplicatesEnabled">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer9</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>VAT file</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>vatFile</cstring>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLabel" row="4" column="0">
+                    <property name="name">
+                        <cstring>TextLabel14</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Account plan</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>accPlan</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget" row="3" column="1">
+                    <property name="name">
+                        <cstring>layout12</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>periodes</cstring>
+                            </property>
+                            <property name="insertionPolicy">
+                                <enum>NoInsertion</enum>
+                            </property>
+                            <property name="duplicatesEnabled">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer12</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>290</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                    </hbox>
+                </widget>
+                <spacer row="6" column="1">
+                    <property name="name">
+                        <cstring>spacer38</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget" row="5" column="1">
+                    <property name="name">
+                        <cstring>layout7</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>vat</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="focusPolicy">
+                                <enum>TabFocus</enum>
+                            </property>
+                            <property name="text">
+                                <string>VAT</string>
+                            </property>
+                            <property name="tristate">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>budget</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Budget</string>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer14</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>57</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="text">
+                                <string>Dimensions</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignVCenter|AlignRight</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>dimensions</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>dimension</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="sizeLimit">
+                                <number>6</number>
+                            </property>
+                            <property name="maxCount">
+                                <number>12</number>
+                            </property>
+                            <property name="insertionPolicy">
+                                <enum>NoInsertion</enum>
+                            </property>
+                            <property name="duplicatesEnabled">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>TextLabel5</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Reg number</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>regNumber</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>TextLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Client name</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>clients</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget" row="7" column="1">
                     <property name="name">
                         <cstring>layout16</cstring>
                     </property>
@@ -90,79 +350,22 @@
                         </widget>
                     </hbox>
                 </widget>
-                <spacer row="7" column="1" rowspan="1" colspan="2">
+                <widget class="QLayoutWidget" row="1" column="1">
                     <property name="name">
-                        <cstring>spacer38</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>20</width>
-                            <height>20</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QLabel" row="2" column="0">
-                    <property name="name">
-                        <cstring>TextLabel2</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Year</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>year</cstring>
-                    </property>
-                </widget>
-                <widget class="QComboBox" row="4" column="1" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>accPlan</cstring>
-                    </property>
-                    <property name="enabled">
-                        <bool>true</bool>
-                    </property>
-                    <property name="insertionPolicy">
-                        <enum>NoInsertion</enum>
-                    </property>
-                    <property name="duplicatesEnabled">
-                        <bool>false</bool>
-                    </property>
-                </widget>
-                <widget class="QLayoutWidget" row="6" column="1" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>layout14</cstring>
+                        <cstring>layout9</cstring>
                     </property>
                     <hbox>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
-                        <widget class="QCheckBox">
+                        <widget class="QLineEdit">
                             <property name="name">
-                                <cstring>open</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>true</bool>
-                            </property>
-                            <property name="focusPolicy">
-                                <enum>TabFocus</enum>
-                            </property>
-                            <property name="text">
-                                <string>Open</string>
-                            </property>
-                            <property name="tristate">
-                                <bool>false</bool>
+                                <cstring>regNum</cstring>
                             </property>
                         </widget>
                         <spacer>
                             <property name="name">
-                                <cstring>spacer15</cstring>
+                                <cstring>spacer26</cstring>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -172,14 +375,36 @@
                             </property>
                             <property name="sizeHint">
                                 <size>
-                                    <width>271</width>
-                                    <height>20</height>
+                                    <width>211</width>
+                                    <height>21</height>
                                 </size>
                             </property>
                         </spacer>
                     </hbox>
                 </widget>
-                <widget class="QLayoutWidget" row="2" column="1" rowspan="1" colspan="2">
+                <widget class="QLabel" row="5" column="0">
+                    <property name="name">
+                        <cstring>textLabel3_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>TextLabel12</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Periods a year</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>periods</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget" row="2" column="1">
                     <property name="name">
                         <cstring>layout19</cstring>
                     </property>
@@ -239,253 +464,15 @@
                         </widget>
                     </hbox>
                 </widget>
-                <widget class="QLayoutWidget" row="5" column="1" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>layout13</cstring>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QCheckBox">
-                            <property name="name">
-                                <cstring>vat</cstring>
-                            </property>
-                            <property name="text">
-                                <string>VAT</string>
-                            </property>
-                            <property name="accel">
-                                <string></string>
-                            </property>
-                        </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer13</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>20</width>
-                                    <height>21</height>
-                                </size>
-                            </property>
-                        </spacer>
-                        <widget class="QCheckBox">
-                            <property name="name">
-                                <cstring>budget</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Budget</string>
-                            </property>
-                            <property name="accel">
-                                <string></string>
-                            </property>
-                        </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer14</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>21</width>
-                                    <height>20</height>
-                                </size>
-                            </property>
-                        </spacer>
-                        <widget class="QLabel">
-                            <property name="name">
-                                <cstring>textLabel1</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="text">
-                                <string>Dimensions</string>
-                            </property>
-                            <property name="alignment">
-                                <set>AlignVCenter|AlignRight</set>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>dimensions</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QComboBox">
-                            <property name="name">
-                                <cstring>dimension</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="sizeLimit">
-                                <number>6</number>
-                            </property>
-                            <property name="maxCount">
-                                <number>12</number>
-                            </property>
-                            <property name="insertionPolicy">
-                                <enum>NoInsertion</enum>
-                            </property>
-                            <property name="duplicatesEnabled">
-                                <bool>false</bool>
-                            </property>
-                        </widget>
-                    </hbox>
-                </widget>
-                <widget class="QLabel" row="6" column="0">
-                    <property name="name">
-                        <cstring>textLabel4</cstring>
-                    </property>
-                    <property name="text">
-                        <string></string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="3" column="0">
-                    <property name="name">
-                        <cstring>TextLabel12</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Periods a year</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>periods</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="0" column="0">
-                    <property name="name">
-                        <cstring>TextLabel1</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Client name</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>clients</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="1" column="0">
-                    <property name="name">
-                        <cstring>TextLabel5</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Reg number</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>regNumber</cstring>
-                    </property>
-                </widget>
-                <widget class="QLayoutWidget" row="3" column="1" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>layout12</cstring>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QComboBox">
-                            <property name="name">
-                                <cstring>periodes</cstring>
-                            </property>
-                            <property name="insertionPolicy">
-                                <enum>NoInsertion</enum>
-                            </property>
-                            <property name="duplicatesEnabled">
-                                <bool>false</bool>
-                            </property>
-                        </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer12</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>290</width>
-                                    <height>20</height>
-                                </size>
-                            </property>
-                        </spacer>
-                    </hbox>
-                </widget>
-                <widget class="QLabel" row="5" column="0">
-                    <property name="name">
-                        <cstring>textLabel2</cstring>
-                    </property>
-                    <property name="text">
-                        <string></string>
-                    </property>
-                </widget>
-                <spacer row="1" column="2">
-                    <property name="name">
-                        <cstring>spacer26</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>190</width>
-                            <height>21</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>clients</cstring>
-                    </property>
-                    <property name="editable">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="4" column="0">
-                    <property name="name">
-                        <cstring>TextLabel14</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Account plan</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>accPlan</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="8" column="0">
-                    <property name="name">
-                        <cstring>textLabel3</cstring>
-                    </property>
-                    <property name="text">
-                        <string></string>
-                    </property>
-                </widget>
             </grid>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel3</cstring>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
         </widget>
     </vbox>
 </widget>
@@ -515,10 +502,9 @@
     <tabstop>firstEntry</tabstop>
     <tabstop>periodes</tabstop>
     <tabstop>accPlan</tabstop>
-    <tabstop>vat</tabstop>
     <tabstop>budget</tabstop>
     <tabstop>dimension</tabstop>
-    <tabstop>open</tabstop>
+    <tabstop>vat</tabstop>
     <tabstop>pbSave</tabstop>
     <tabstop>pbCancel</tabstop>
 </tabstops>

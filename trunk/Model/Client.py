@@ -24,11 +24,10 @@ subclass.
 
 
 import string
-import Database.DbAccess
-import Model.Gobject
+#import Model.Gobject
 
-DbAccess= Database.DbAccess.DbAccess
-
+#DbAccess= Database.DbAccess.DbAccess
+from sqlobject import *
 
 def createTable(dataBase):
     """Create an empty database table for this object list.<br>
@@ -38,7 +37,7 @@ def createTable(dataBase):
     db.createTable(ClientList._tableName, Client._varsType)
     db.close()
 
-class Client(Model.Gobject.Gobject):
+class Client(SQLObject):
     """This class holds all data about the client:<br>
     <b>id</b>: The database unique index of this object, int<br>
     <b>name</b>: The name of the client, &le;30 chars<br>
@@ -57,37 +56,20 @@ class Client(Model.Gobject.Gobject):
     Not all of these variables are used, budget and dimension are for possible
     use in the future.
     """
-    _varsType= (('id','INDEX.0'),
-                ('name','BLOB.30'),
-                ('year','BLOB.4'),
-                ('vat','BLOB.1'),
-                ('regNum','BLOB.15'),
-                ('firstEntry', 'BLOB.5'),
-                ('periodes','BLOB.2'),
-                ('budget','BLOB.1'),
-                ('dimension','BLOB.1'),
-                ('open','BLOB.1'))
-    _vars= ()
-    for i in _varsType:
-        _vars= _vars+ (i[0],)
-
-    # Generate the format, a number of '%s:%s:%s:...'
-    _fmt= ("%s:"*len(_vars))[:-1]
-    # Generate the expression, '(self._var1, self._var2,...)'
-    _tuple=(('('+'self._%s,'*len(_vars))[:-1] + ')'
-                 )%_vars
-    # compiled expressions
-    _cToTuple= compile(_tuple, '<string>', 'eval')
-    _cToObject= compile(_tuple+'= t','<string>', 'exec')
-
-
-    def __init__(self, t= None):
-        Model.Gobject.Gobject.__init__(self, t)
+    name=UnicodeCol()
+    year= StringCol()
+    vat= StringCol()
+    regNum= StringCol()
+    firstEntry= StringCol()
+    periodes= StringCol()
+    budget= StringCol()
+    dimension= StringCol()
+    open= StringCol()
 
     def copyOfClient(self):
         """ return a deep copy of this object"""
-        t= self.objectToDbTuple()
-        return Client(t)
+        #t= self.objectToDbTuple()
+        #return Client(t)
 
     def __cmp__(self, o2):
         a= cmp(self._name, o2._name)
@@ -97,7 +79,7 @@ class Client(Model.Gobject.Gobject):
 
         
     # property actions
-    
+    """
     def setName(self, name):
         if len(name) < 1:
             raise(Model.Exceptions.VarLimit(('varlimit', 'Name')))
@@ -179,9 +161,9 @@ class Client(Model.Gobject.Gobject):
     def setId(self,id):
         if id==None: self._id= None
     id= property(getId, setId, None, None)
+"""
 
-
-class ClientList(Model.Gobject.GList):
+class ClientList(object):
     """ClientList is based on list and keeps all client-objects.
     """
     _tableName= 'client' ## class dependent
@@ -196,9 +178,9 @@ class ClientList(Model.Gobject.GList):
         self._init= Client
         self._database= database
         if database != None:
-            self._connection= DbAccess(database)
+            self.connection= ConnectionForURI('sqlite:/home/oao/grynclient.db')
         else:  # we want a temporary list to keep some objects
-            self._connection= None
+            self.connection= None
         Model.Gobject.GList.__init__(self, self._connection)
 
     def getByDbname(self, n):

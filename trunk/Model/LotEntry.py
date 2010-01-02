@@ -26,7 +26,6 @@ subclass.
 
 
 
-import Database.DbAccess
 import Model.Gobject
 
 def createTable(dataBase):

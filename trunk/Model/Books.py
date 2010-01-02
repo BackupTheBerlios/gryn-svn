@@ -24,7 +24,7 @@ the books of the client.
 
 import string
 import Model.Global
-import Database.DbAccess
+#import Database.DbAccess
 import Model.Exceptions
 import Model.Account
 import Model.Split

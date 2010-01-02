@@ -26,7 +26,7 @@ Emits signal 'client'
 import string
 import os
 import time
-from qt import *
+from PyQt4 import *
 import Control.uClientEditNew
 import Model.Client
 import Model.Books
@@ -36,11 +36,12 @@ import Model.AccountImport
 import Control.Global
 
 # Some error messages
-e= {'Name':QT_TRANSLATE_NOOP('err','Client name too short.'),
-    'RegNum':QT_TRANSLATE_NOOP('err','Registration number too short.'),
-    'FirstEntry':QT_TRANSLATE_NOOP('err',
-    'First journal entry must be a number and larger than 0.')
-}
+#e= {'Name':QT_TRANSLATE_NOOP('err','Client name too short.'),
+#    'RegNum':QT_TRANSLATE_NOOP('err','Registration number too short.'),
+#    'FirstEntry':QT_TRANSLATE_NOOP('err',
+#    'First journal entry must be a number and larger than 0.')
+#}
+e= {}
 
 def initCombos(obj):
     """Set up the como boxes of this dialogue<br>
@@ -89,7 +90,7 @@ def initFields(obj, o):
 
 
     
-class ClientEdit(Control.uClientEditNew.uClientEditNew):
+class ClientEdit(Control.uClientEditNew.Ui_uClientEditNew):
     """A class to edit some properies of an existing client
     """
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
@@ -153,7 +154,7 @@ class ClientEdit(Control.uClientEditNew.uClientEditNew):
         pass
 
 
-class ClientDelete(Control.uClientEditNew.uClientEditNew):
+class ClientDelete(Control.uClientEditNew.Ui_uClientEditNew):
     """A dialogue for removal of a client
     """
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
@@ -201,7 +202,7 @@ class ClientDelete(Control.uClientEditNew.uClientEditNew):
         """
         self.done(0)
 
-class ClientNew(Control.uClientEditNew.uClientEditNew):
+class ClientNew(Control.uClientEditNew.Ui_uClientEditNew):
     """Dialogue to specify a new client
     """
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):

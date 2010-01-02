@@ -2,104 +2,75 @@
 
 # Form implementation generated from reading ui file 'uListSelect.ui'
 #
-# Created: Fri Feb 11 21:19:59 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:54:57 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
-from qttable import QTable
+class Ui_uListSelect(object):
+    def setupUi(self, uListSelect):
+        uListSelect.setObjectName("uListSelect")
+        uListSelect.resize(261, 579)
+        font = QtGui.QFont()
+        font.setFamily("Adobe Helvetica")
+        font.setPointSize(12)
+        uListSelect.setFont(font)
+        self.vboxlayout = QtGui.QVBoxLayout(uListSelect)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.sTable = QtGui.QTableWidget(uListSelect)
+        self.sTable.setObjectName("sTable")
+        self.sTable.setColumnCount(0)
+        self.sTable.setRowCount(0)
+        self.vboxlayout.addWidget(self.sTable)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        self.wAll = QtGui.QPushButton(uListSelect)
+        self.wAll.setAutoDefault(False)
+        self.wAll.setDefault(False)
+        self.wAll.setObjectName("wAll")
+        self.hboxlayout.addWidget(self.wAll)
+        spacerItem = QtGui.QSpacerItem(51, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout.addItem(spacerItem)
+        self.wInvert = QtGui.QPushButton(uListSelect)
+        self.wInvert.setAutoDefault(False)
+        self.wInvert.setObjectName("wInvert")
+        self.hboxlayout.addWidget(self.wInvert)
+        self.vboxlayout.addLayout(self.hboxlayout)
+        self.hboxlayout1 = QtGui.QHBoxLayout()
+        self.hboxlayout1.setObjectName("hboxlayout1")
+        spacerItem1 = QtGui.QSpacerItem(50, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout1.addItem(spacerItem1)
+        self.wOK = QtGui.QPushButton(uListSelect)
+        self.wOK.setAutoDefault(False)
+        self.wOK.setObjectName("wOK")
+        self.hboxlayout1.addWidget(self.wOK)
+        self.wCancel = QtGui.QPushButton(uListSelect)
+        self.wCancel.setAutoDefault(False)
+        self.wCancel.setObjectName("wCancel")
+        self.hboxlayout1.addWidget(self.wCancel)
+        self.vboxlayout.addLayout(self.hboxlayout1)
 
+        self.retranslateUi(uListSelect)
+        QtCore.QObject.connect(self.wCancel, QtCore.SIGNAL("clicked()"), uListSelect.slotCancel)
+        QtCore.QObject.connect(self.wOK, QtCore.SIGNAL("clicked()"), uListSelect.slotOk)
+        QtCore.QMetaObject.connectSlotsByName(uListSelect)
 
-class uListSelect(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uListSelect):
+        uListSelect.setWindowTitle(QtGui.QApplication.translate("uListSelect", "Select one", None, QtGui.QApplication.UnicodeUTF8))
+        self.wAll.setText(QtGui.QApplication.translate("uListSelect", "All", None, QtGui.QApplication.UnicodeUTF8))
+        self.wInvert.setText(QtGui.QApplication.translate("uListSelect", "Invert", None, QtGui.QApplication.UnicodeUTF8))
+        self.wOK.setText(QtGui.QApplication.translate("uListSelect", "OK", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCancel.setText(QtGui.QApplication.translate("uListSelect", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uListSelect")
-
-        f = QFont(self.font())
-        f.setFamily("Adobe Helvetica")
-        f.setPointSize(12)
-        self.setFont(f)
-
-        uListSelectLayout = QVBoxLayout(self,11,6,"uListSelectLayout")
-
-        self.sTable = QTable(self,"sTable")
-        self.sTable.setNumRows(0)
-        self.sTable.setNumCols(0)
-        self.sTable.setReadOnly(1)
-        self.sTable.setSelectionMode(QTable.Single)
-        self.sTable.setFocusStyle(QTable.SpreadSheet)
-        uListSelectLayout.addWidget(self.sTable)
-
-        layout30 = QHBoxLayout(None,0,6,"layout30")
-
-        self.wAll = QPushButton(self,"wAll")
-        self.wAll.setAutoDefault(0)
-        self.wAll.setDefault(0)
-        layout30.addWidget(self.wAll)
-
-        self.wInvert = QPushButton(self,"wInvert")
-        self.wInvert.setAutoDefault(0)
-        layout30.addWidget(self.wInvert)
-        spacer27 = QSpacerItem(51,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout30.addItem(spacer27)
-        uListSelectLayout.addLayout(layout30)
-
-        layout31 = QHBoxLayout(None,0,6,"layout31")
-        spacer1 = QSpacerItem(50,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout31.addItem(spacer1)
-
-        self.wOK = QPushButton(self,"wOK")
-        self.wOK.setAutoDefault(0)
-        layout31.addWidget(self.wOK)
-
-        self.wCancel = QPushButton(self,"wCancel")
-        self.wCancel.setAutoDefault(0)
-        layout31.addWidget(self.wCancel)
-        uListSelectLayout.addLayout(layout31)
-
-        self.languageChange()
-
-        self.resize(QSize(261,579).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-        self.connect(self.wCancel,SIGNAL("clicked()"),self.slotCancel)
-        self.connect(self.sTable,SIGNAL("currentChanged(int,int)"),self.slotSelectionChanged)
-        self.connect(self.sTable,SIGNAL("clicked(int,int,int,const QPoint&)"),self.slotClicked)
-        self.connect(self.wOK,SIGNAL("clicked()"),self.slotOk)
-
-
-    def languageChange(self):
-        self.setCaption(self.__tr("Select one"))
-        self.wAll.setText(self.__tr("All"))
-        self.wInvert.setText(self.__tr("Invert"))
-        self.wOK.setText(self.__tr("OK"))
-        self.wCancel.setText(self.__tr("Cancel"))
-
-
-    def slotSelectionChanged(self,a0,a1):
-        print "uListSelect.slotSelectionChanged(int,int): Not implemented yet"
-
-    def slotCancel(self):
-        print "uListSelect.slotCancel(): Not implemented yet"
-
-    def slotClicked(self,a0,a1,a2,a3):
-        print "uListSelect.slotClicked(int,int,int,const QPoint&): Not implemented yet"
-
-    def slotOk(self):
-        print "uListSelect.slotOk(): Not implemented yet"
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uListSelect",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uListSelect()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uListSelect = QtGui.QDialog()
+    ui = Ui_uListSelect()
+    ui.setupUi(uListSelect)
+    uListSelect.show()
+    sys.exit(app.exec_())
+

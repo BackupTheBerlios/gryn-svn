@@ -22,7 +22,7 @@ Some global variables and functions for the user interface.
 
 
 import os
-from qt import *
+from PyQt4 import *
 import Model.Global
 import Model.Exceptions
 

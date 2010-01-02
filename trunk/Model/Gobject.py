@@ -24,9 +24,9 @@ rearrange objects. The gryn object classes inherit from these classes.
 
 
 
-import Database.DbAccess
 
-DbAccess= Database.DbAccess.DbAccess
+
+
 
 
 class Gobject(object):

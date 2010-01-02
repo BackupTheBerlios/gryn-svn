@@ -23,8 +23,8 @@ Dialogue to create and maintain sources.
 
 import sys
 import string
-from qt import *
-from qttable import QTable, QTableItem
+from PyQt4 import QtCore, QtGui
+#from qttable import QTable, QTableItem
 import Control.uSource
 import Model.Source
 import Model.Split

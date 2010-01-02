@@ -22,8 +22,7 @@ This table is used in the Source dialogue. Inherits QTable, fairly hairy.
 
 
 import string
-from qt import *
-from qttable import QTable, QTableItem
+from PyQt4 import QtCore, QtGui
 import Model.Global
 import Model.Grep
 import Model.Books

@@ -1,39 +1,80 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
-<class>SourceTable</class>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>SourceTable</cstring>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SourceTable</class>
+ <widget class="QWidget" name="SourceTable">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form2</string>
+  </property>
+  <widget class="Q3Table" name="table1">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>451</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="numRows">
+    <number>3</number>
+   </property>
+   <property name="numCols">
+    <number>3</number>
+   </property>
+   <row>
+    <property name="text">
+     <string>1</string>
     </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>601</width>
-            <height>480</height>
-        </rect>
+   </row>
+   <row>
+    <property name="text">
+     <string>2</string>
     </property>
-    <property name="caption">
-        <string>Form2</string>
+   </row>
+   <row>
+    <property name="text">
+     <string>3</string>
     </property>
-    <widget class="QTable">
-        <property name="name">
-            <cstring>table1</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>451</width>
-                <height>231</height>
-            </rect>
-        </property>
-        <property name="numRows">
-            <number>3</number>
-        </property>
-        <property name="numCols">
-            <number>3</number>
-        </property>
-    </widget>
-</widget>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+   </row>
+   <column>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3Frame</class>
+   <extends>QFrame</extends>
+   <header>Qt3Support/Q3Frame</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Q3Table</class>
+   <extends>Q3Frame</extends>
+   <header>q3table.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

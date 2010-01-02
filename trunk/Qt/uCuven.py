@@ -2,134 +2,112 @@
 
 # Form implementation generated from reading ui file 'uCuven.ui'
 #
-# Created: Fri Feb 11 21:19:59 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:55:03 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
+class Ui_uCuven(object):
+    def setupUi(self, uCuven):
+        uCuven.setObjectName("uCuven")
+        uCuven.resize(429, 213)
+        font = QtGui.QFont()
+        font.setFamily("Adobe Helvetica")
+        font.setPointSize(12)
+        uCuven.setFont(font)
+        self.vboxlayout = QtGui.QVBoxLayout(uCuven)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.gridlayout = QtGui.QGridLayout()
+        self.gridlayout.setObjectName("gridlayout")
+        self.wGroup = QtGui.QComboBox(uCuven)
+        self.wGroup.setEnabled(False)
+        self.wGroup.setMinimumSize(QtCore.QSize(300, 0))
+        self.wGroup.setObjectName("wGroup")
+        self.gridlayout.addWidget(self.wGroup, 3, 1, 1, 1)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        self.wNumber = QtGui.QLineEdit(uCuven)
+        self.wNumber.setEnabled(False)
+        self.wNumber.setMinimumSize(QtCore.QSize(100, 0))
+        self.wNumber.setObjectName("wNumber")
+        self.hboxlayout.addWidget(self.wNumber)
+        spacerItem = QtGui.QSpacerItem(151, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout.addItem(spacerItem)
+        self.gridlayout.addLayout(self.hboxlayout, 0, 1, 1, 1)
+        self.wRegno = QtGui.QLineEdit(uCuven)
+        self.wRegno.setMinimumSize(QtCore.QSize(100, 0))
+        self.wRegno.setObjectName("wRegno")
+        self.gridlayout.addWidget(self.wRegno, 2, 1, 1, 1)
+        self.textLabel3 = QtGui.QLabel(uCuven)
+        self.textLabel3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.textLabel3.setWordWrap(False)
+        self.textLabel3.setObjectName("textLabel3")
+        self.gridlayout.addWidget(self.textLabel3, 1, 0, 1, 1)
+        self.wName = QtGui.QLineEdit(uCuven)
+        self.wName.setMinimumSize(QtCore.QSize(300, 0))
+        self.wName.setObjectName("wName")
+        self.gridlayout.addWidget(self.wName, 1, 1, 1, 1)
+        self.textLabel4 = QtGui.QLabel(uCuven)
+        self.textLabel4.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.textLabel4.setWordWrap(False)
+        self.textLabel4.setObjectName("textLabel4")
+        self.gridlayout.addWidget(self.textLabel4, 0, 0, 1, 1)
+        self.textLabel5 = QtGui.QLabel(uCuven)
+        self.textLabel5.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.textLabel5.setWordWrap(False)
+        self.textLabel5.setObjectName("textLabel5")
+        self.gridlayout.addWidget(self.textLabel5, 2, 0, 1, 1)
+        self.textLabel3_2 = QtGui.QLabel(uCuven)
+        self.textLabel3_2.setEnabled(False)
+        self.textLabel3_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.textLabel3_2.setWordWrap(False)
+        self.textLabel3_2.setObjectName("textLabel3_2")
+        self.gridlayout.addWidget(self.textLabel3_2, 3, 0, 1, 1)
+        self.vboxlayout.addLayout(self.gridlayout)
+        spacerItem1 = QtGui.QSpacerItem(20, 30, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem1)
+        self.hboxlayout1 = QtGui.QHBoxLayout()
+        self.hboxlayout1.setObjectName("hboxlayout1")
+        spacerItem2 = QtGui.QSpacerItem(68, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout1.addItem(spacerItem2)
+        self.wSave = QtGui.QPushButton(uCuven)
+        self.wSave.setAutoDefault(False)
+        self.wSave.setObjectName("wSave")
+        self.hboxlayout1.addWidget(self.wSave)
+        self.wCancel = QtGui.QPushButton(uCuven)
+        self.wCancel.setAutoDefault(False)
+        self.wCancel.setObjectName("wCancel")
+        self.hboxlayout1.addWidget(self.wCancel)
+        self.vboxlayout.addLayout(self.hboxlayout1)
 
+        self.retranslateUi(uCuven)
+        QtCore.QObject.connect(self.wSave, QtCore.SIGNAL("clicked()"), uCuven.slotSave)
+        QtCore.QObject.connect(self.wCancel, QtCore.SIGNAL("clicked()"), uCuven.slotCancel)
+        QtCore.QMetaObject.connectSlotsByName(uCuven)
+        uCuven.setTabOrder(self.wName, self.wRegno)
+        uCuven.setTabOrder(self.wRegno, self.wSave)
+        uCuven.setTabOrder(self.wSave, self.wCancel)
+        uCuven.setTabOrder(self.wCancel, self.wGroup)
+        uCuven.setTabOrder(self.wGroup, self.wNumber)
 
-class uCuven(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uCuven):
+        uCuven.setWindowTitle(QtGui.QApplication.translate("uCuven", "Customers and vendors", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel3.setText(QtGui.QApplication.translate("uCuven", "Name", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel4.setText(QtGui.QApplication.translate("uCuven", "Number", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel5.setText(QtGui.QApplication.translate("uCuven", "Reg number", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel3_2.setText(QtGui.QApplication.translate("uCuven", "Group", None, QtGui.QApplication.UnicodeUTF8))
+        self.wSave.setText(QtGui.QApplication.translate("uCuven", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCancel.setText(QtGui.QApplication.translate("uCuven", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uCuven")
-
-        f = QFont(self.font())
-        f.setFamily("Adobe Helvetica")
-        f.setPointSize(12)
-        self.setFont(f)
-
-        uCuvenLayout = QVBoxLayout(self,11,6,"uCuvenLayout")
-
-        layout14 = QGridLayout(None,1,1,0,6,"layout14")
-
-        self.wGroup = QComboBox(0,self,"wGroup")
-        self.wGroup.setEnabled(0)
-        self.wGroup.setMinimumSize(QSize(300,0))
-
-        layout14.addWidget(self.wGroup,3,1)
-
-        layout13 = QHBoxLayout(None,0,6,"layout13")
-
-        self.wNumber = QLineEdit(self,"wNumber")
-        self.wNumber.setEnabled(0)
-        self.wNumber.setMinimumSize(QSize(100,0))
-        layout13.addWidget(self.wNumber)
-        spacer7 = QSpacerItem(151,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout13.addItem(spacer7)
-
-        layout14.addLayout(layout13,0,1)
-
-        self.wRegno = QLineEdit(self,"wRegno")
-        self.wRegno.setMinimumSize(QSize(100,0))
-
-        layout14.addWidget(self.wRegno,2,1)
-
-        self.textLabel3 = QLabel(self,"textLabel3")
-        self.textLabel3.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout14.addWidget(self.textLabel3,1,0)
-
-        self.wName = QLineEdit(self,"wName")
-        self.wName.setMinimumSize(QSize(300,0))
-
-        layout14.addWidget(self.wName,1,1)
-
-        self.textLabel4 = QLabel(self,"textLabel4")
-        self.textLabel4.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout14.addWidget(self.textLabel4,0,0)
-
-        self.textLabel5 = QLabel(self,"textLabel5")
-        self.textLabel5.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout14.addWidget(self.textLabel5,2,0)
-
-        self.textLabel3_2 = QLabel(self,"textLabel3_2")
-        self.textLabel3_2.setEnabled(0)
-        self.textLabel3_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout14.addWidget(self.textLabel3_2,3,0)
-        uCuvenLayout.addLayout(layout14)
-        spacer63 = QSpacerItem(20,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        uCuvenLayout.addItem(spacer63)
-
-        layout11 = QHBoxLayout(None,0,6,"layout11")
-        spacer59 = QSpacerItem(68,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout11.addItem(spacer59)
-
-        self.wSave = QPushButton(self,"wSave")
-        self.wSave.setAutoDefault(0)
-        layout11.addWidget(self.wSave)
-
-        self.wCancel = QPushButton(self,"wCancel")
-        self.wCancel.setAutoDefault(0)
-        layout11.addWidget(self.wCancel)
-        uCuvenLayout.addLayout(layout11)
-
-        self.languageChange()
-
-        self.resize(QSize(429,213).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-        self.connect(self.wSave,SIGNAL("clicked()"),self.slotSave)
-        self.connect(self.wCancel,SIGNAL("clicked()"),self.slotCancel)
-
-        self.setTabOrder(self.wName,self.wRegno)
-        self.setTabOrder(self.wRegno,self.wSave)
-        self.setTabOrder(self.wSave,self.wCancel)
-        self.setTabOrder(self.wCancel,self.wGroup)
-        self.setTabOrder(self.wGroup,self.wNumber)
-
-
-    def languageChange(self):
-        self.setCaption(self.__tr("Customers and vendors"))
-        self.textLabel3.setText(self.__tr("Name"))
-        self.textLabel4.setText(self.__tr("Number"))
-        self.textLabel5.setText(self.__tr("Reg number"))
-        self.textLabel3_2.setText(self.__tr("Group"))
-        self.wSave.setText(self.__tr("Save"))
-        self.wCancel.setText(self.__tr("Cancel"))
-
-
-    def slotSave(self):
-        print "uCuven.slotSave(): Not implemented yet"
-
-    def slotCancel(self):
-        print "uCuven.slotCancel(): Not implemented yet"
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uCuven",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uCuven()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uCuven = QtGui.QDialog()
+    ui = Ui_uCuven()
+    ui.setupUi(uCuven)
+    uCuven.show()
+    sys.exit(app.exec_())
+

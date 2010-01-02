@@ -2,141 +2,128 @@
 
 # Form implementation generated from reading ui file 'uAccount.ui'
 #
-# Created: Fri Feb 11 21:19:59 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:54:59 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
+class Ui_uAccount(object):
+    def setupUi(self, uAccount):
+        uAccount.setObjectName("uAccount")
+        uAccount.resize(512, 228)
+        font = QtGui.QFont()
+        font.setFamily("Adobe Helvetica")
+        font.setPointSize(12)
+        uAccount.setFont(font)
+        self.layout17 = QtGui.QWidget(uAccount)
+        self.layout17.setGeometry(QtCore.QRect(13, 15, 495, 188))
+        self.layout17.setObjectName("layout17")
+        self.vboxlayout = QtGui.QVBoxLayout(self.layout17)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.gridlayout = QtGui.QGridLayout()
+        self.gridlayout.setObjectName("gridlayout")
+        self.wBudgetLabel = QtGui.QLabel(self.layout17)
+        self.wBudgetLabel.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.wBudgetLabel.setWordWrap(False)
+        self.wBudgetLabel.setObjectName("wBudgetLabel")
+        self.gridlayout.addWidget(self.wBudgetLabel, 3, 0, 1, 1)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        self.wAccName = QtGui.QLineEdit(self.layout17)
+        self.wAccName.setObjectName("wAccName")
+        self.hboxlayout.addWidget(self.wAccName)
+        self.wLineMode = QtGui.QLabel(self.layout17)
+        self.wLineMode.setEnabled(True)
+        self.wLineMode.setMaximumSize(QtCore.QSize(16, 16))
+        self.wLineMode.setScaledContents(False)
+        self.wLineMode.setWordWrap(False)
+        self.wLineMode.setObjectName("wLineMode")
+        self.hboxlayout.addWidget(self.wLineMode)
+        self.gridlayout.addLayout(self.hboxlayout, 1, 1, 1, 1)
+        self.hboxlayout1 = QtGui.QHBoxLayout()
+        self.hboxlayout1.setObjectName("hboxlayout1")
+        self.wBudget = QtGui.QLineEdit(self.layout17)
+        self.wBudget.setMinimumSize(QtCore.QSize(50, 0))
+        self.wBudget.setObjectName("wBudget")
+        self.hboxlayout1.addWidget(self.wBudget)
+        spacerItem = QtGui.QSpacerItem(280, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout1.addItem(spacerItem)
+        self.gridlayout.addLayout(self.hboxlayout1, 3, 1, 1, 1)
+        self.textLabel1 = QtGui.QLabel(self.layout17)
+        self.textLabel1.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.textLabel1.setWordWrap(False)
+        self.textLabel1.setObjectName("textLabel1")
+        self.gridlayout.addWidget(self.textLabel1, 0, 0, 1, 1)
+        self.wVatLabel = QtGui.QLabel(self.layout17)
+        self.wVatLabel.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.wVatLabel.setWordWrap(False)
+        self.wVatLabel.setObjectName("wVatLabel")
+        self.gridlayout.addWidget(self.wVatLabel, 2, 0, 1, 1)
+        self.textLabel1_2 = QtGui.QLabel(self.layout17)
+        self.textLabel1_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.textLabel1_2.setWordWrap(False)
+        self.textLabel1_2.setObjectName("textLabel1_2")
+        self.gridlayout.addWidget(self.textLabel1_2, 1, 0, 1, 1)
+        self.hboxlayout2 = QtGui.QHBoxLayout()
+        self.hboxlayout2.setObjectName("hboxlayout2")
+        self.wVat = QtGui.QComboBox(self.layout17)
+        self.wVat.setObjectName("wVat")
+        self.hboxlayout2.addWidget(self.wVat)
+        spacerItem1 = QtGui.QSpacerItem(211, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout2.addItem(spacerItem1)
+        self.gridlayout.addLayout(self.hboxlayout2, 2, 1, 1, 1)
+        self.hboxlayout3 = QtGui.QHBoxLayout()
+        self.hboxlayout3.setObjectName("hboxlayout3")
+        self.wAccNum = QtGui.QLineEdit(self.layout17)
+        self.wAccNum.setMinimumSize(QtCore.QSize(50, 0))
+        self.wAccNum.setObjectName("wAccNum")
+        self.hboxlayout3.addWidget(self.wAccNum)
+        spacerItem2 = QtGui.QSpacerItem(280, 21, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout3.addItem(spacerItem2)
+        self.gridlayout.addLayout(self.hboxlayout3, 0, 1, 1, 1)
+        self.vboxlayout.addLayout(self.gridlayout)
+        spacerItem3 = QtGui.QSpacerItem(20, 30, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem3)
+        self.hboxlayout4 = QtGui.QHBoxLayout()
+        self.hboxlayout4.setObjectName("hboxlayout4")
+        spacerItem4 = QtGui.QSpacerItem(91, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout4.addItem(spacerItem4)
+        self.wSave = QtGui.QPushButton(self.layout17)
+        self.wSave.setAutoDefault(False)
+        self.wSave.setObjectName("wSave")
+        self.hboxlayout4.addWidget(self.wSave)
+        self.wNew = QtGui.QPushButton(self.layout17)
+        self.wNew.setAutoDefault(False)
+        self.wNew.setObjectName("wNew")
+        self.hboxlayout4.addWidget(self.wNew)
+        self.wCancel = QtGui.QPushButton(self.layout17)
+        self.wCancel.setAutoDefault(False)
+        self.wCancel.setObjectName("wCancel")
+        self.hboxlayout4.addWidget(self.wCancel)
+        self.vboxlayout.addLayout(self.hboxlayout4)
 
+        self.retranslateUi(uAccount)
+        QtCore.QMetaObject.connectSlotsByName(uAccount)
 
-class uAccount(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uAccount):
+        uAccount.setWindowTitle(QtGui.QApplication.translate("uAccount", "Account", None, QtGui.QApplication.UnicodeUTF8))
+        self.wBudgetLabel.setText(QtGui.QApplication.translate("uAccount", "Budget", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1.setText(QtGui.QApplication.translate("uAccount", "Account number", None, QtGui.QApplication.UnicodeUTF8))
+        self.wVatLabel.setText(QtGui.QApplication.translate("uAccount", "Default VAT", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1_2.setText(QtGui.QApplication.translate("uAccount", "Account name", None, QtGui.QApplication.UnicodeUTF8))
+        self.wSave.setText(QtGui.QApplication.translate("uAccount", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.wNew.setText(QtGui.QApplication.translate("uAccount", "New", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCancel.setText(QtGui.QApplication.translate("uAccount", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uAccount")
-
-        f = QFont(self.font())
-        f.setFamily("Adobe Helvetica")
-        f.setPointSize(12)
-        self.setFont(f)
-
-
-        LayoutWidget = QWidget(self,"layout17")
-        LayoutWidget.setGeometry(QRect(13,15,495,188))
-        layout17 = QVBoxLayout(LayoutWidget,11,6,"layout17")
-
-        layout15 = QGridLayout(None,1,1,0,6,"layout15")
-
-        self.wBudgetLabel = QLabel(LayoutWidget,"wBudgetLabel")
-        self.wBudgetLabel.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout15.addWidget(self.wBudgetLabel,3,0)
-
-        layout14 = QHBoxLayout(None,0,6,"layout14")
-
-        self.wAccName = QLineEdit(LayoutWidget,"wAccName")
-        layout14.addWidget(self.wAccName)
-
-        self.wLineMode = QLabel(LayoutWidget,"wLineMode")
-        self.wLineMode.setEnabled(1)
-        self.wLineMode.setMaximumSize(QSize(16,16))
-        self.wLineMode.setScaledContents(0)
-        layout14.addWidget(self.wLineMode)
-
-        layout15.addLayout(layout14,1,1)
-
-        layout37 = QHBoxLayout(None,0,6,"layout37")
-
-        self.wBudget = QLineEdit(LayoutWidget,"wBudget")
-        self.wBudget.setMinimumSize(QSize(50,0))
-        layout37.addWidget(self.wBudget)
-        spacer56 = QSpacerItem(280,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout37.addItem(spacer56)
-
-        layout15.addLayout(layout37,3,1)
-
-        self.textLabel1 = QLabel(LayoutWidget,"textLabel1")
-        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout15.addWidget(self.textLabel1,0,0)
-
-        self.wVatLabel = QLabel(LayoutWidget,"wVatLabel")
-        self.wVatLabel.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout15.addWidget(self.wVatLabel,2,0)
-
-        self.textLabel1_2 = QLabel(LayoutWidget,"textLabel1_2")
-        self.textLabel1_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout15.addWidget(self.textLabel1_2,1,0)
-
-        layout11 = QHBoxLayout(None,0,6,"layout11")
-
-        self.wVat = QComboBox(0,LayoutWidget,"wVat")
-        layout11.addWidget(self.wVat)
-        spacer18 = QSpacerItem(211,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout11.addItem(spacer18)
-
-        layout15.addLayout(layout11,2,1)
-
-        layout10 = QHBoxLayout(None,0,6,"layout10")
-
-        self.wAccNum = QLineEdit(LayoutWidget,"wAccNum")
-        self.wAccNum.setMinimumSize(QSize(50,0))
-        layout10.addWidget(self.wAccNum)
-        spacer17 = QSpacerItem(280,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout10.addItem(spacer17)
-
-        layout15.addLayout(layout10,0,1)
-        layout17.addLayout(layout15)
-        spacer20 = QSpacerItem(20,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout17.addItem(spacer20)
-
-        layout9 = QHBoxLayout(None,0,6,"layout9")
-        spacer19 = QSpacerItem(91,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout9.addItem(spacer19)
-
-        self.wSave = QPushButton(LayoutWidget,"wSave")
-        self.wSave.setAutoDefault(0)
-        layout9.addWidget(self.wSave)
-
-        self.wNew = QPushButton(LayoutWidget,"wNew")
-        self.wNew.setAutoDefault(0)
-        layout9.addWidget(self.wNew)
-
-        self.wCancel = QPushButton(LayoutWidget,"wCancel")
-        self.wCancel.setAutoDefault(0)
-        layout9.addWidget(self.wCancel)
-        layout17.addLayout(layout9)
-
-        self.languageChange()
-
-        self.resize(QSize(512,228).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-
-    def languageChange(self):
-        self.setCaption(self.__tr("Account"))
-        self.wBudgetLabel.setText(self.__tr("Budget"))
-        self.textLabel1.setText(self.__tr("Account number"))
-        self.wVatLabel.setText(self.__tr("Default VAT"))
-        self.textLabel1_2.setText(self.__tr("Account name"))
-        self.wSave.setText(self.__tr("Save"))
-        self.wNew.setText(self.__tr("New"))
-        self.wCancel.setText(self.__tr("Cancel"))
-
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uAccount",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uAccount()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uAccount = QtGui.QDialog()
+    ui = Ui_uAccount()
+    ui.setupUi(uAccount)
+    uAccount.show()
+    sys.exit(app.exec_())
+

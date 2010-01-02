@@ -24,7 +24,6 @@ subclass.
 
 import os
 import string
-import Database.DbAccess
 import Model.Gobject
 import Model.Global
 import Model.Exceptions

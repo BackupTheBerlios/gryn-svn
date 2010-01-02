@@ -24,7 +24,6 @@ subclass.
 #    The top level file LICENSE holds the verbatim copy of this license.
 
 
-import Database.DbAccess
 import string
 import Model.Global
 import Model.Gobject

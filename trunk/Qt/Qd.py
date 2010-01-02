@@ -32,7 +32,7 @@ This file is handwritten and not generated from a ui-file.
     
 import sys
 import os
-from qt import *
+from PyQt4 import QtCore, QtGui
 
 #print "path: ", sys.path
 p= os.path.split(os.path.abspath(os.path.dirname(sys.argv[0])))
@@ -50,24 +50,24 @@ Model.Global.pathFixup(MyExecPath)
 Model.Global.readConfigFiles()
 
 import Control.Client
-import Control.Source
-import Control.AccountTree
-import Control.ListSelect
+#import Control.Source
+#import Control.AccountTree
+#import Control.ListSelect
 #import Control.Global
-import Control.Account
-import Control.SourceFind
-import Control.Cuven
-import Control.CuvenTree
-import Control.CuvenSelect
-import Control.SourceSelect
-import Control.SourceVat
-import Control.ReportGen
-import Control.TimeFrameSelect
-import Control.MDIWindow
-import Control.Rule
-import Control.Queue
-import Control.Configtable
-import Control.Vat
+#import Control.Account
+#import Control.SourceFind
+#import Control.Cuven
+#import Control.CuvenTree
+#import Control.CuvenSelect
+#import Control.SourceSelect
+#import Control.SourceVat
+#import Control.ReportGen
+#import Control.TimeFrameSelect
+#import Control.MDIWindow
+#import Control.Rule
+#import Control.Queue
+#import Control.Configtable
+#import Control.Vat
 
 #Some application states to help enable/disable menues and their entries
 stateEvents={
@@ -92,13 +92,16 @@ def menuSetup(slf, name, action, text):
     """
     
     o= slf # to satify pychecker
-    s= 'slf.%s%sAction = QAction(slf,"%s%sAction")\n'%(
-        name, action, name, action) +\
+    s= 'slf.%s%sAction = QtGui.QAction(slf)\n'%(
+        name,action) +\
     'o= slf.%s%sAction\n'%(name, action) +\
     'o.addTo(slf.%sMenu)\n'%(name) +\
-    'slf.connect(o,SIGNAL("activated()"),slf.%s%s)\n'%(name, action) +\
+    'slf.connect(o,QtCore.SIGNAL("activated()"),slf.%s%s)\n'%(name, action) +\
     'o.setMenuText("%s")\n'%(text)
+    
+    print "<*",s,"*>"
     c= compile(s, 'menuSetup-%s%s'%(action,name), 'exec') 
+    
     exec c
     return o
 
@@ -116,7 +119,7 @@ def menuDecorate(slf, path= None, accel=None, tooltip=None):
 
     
     
-class Qd(QMainWindow):
+class Qd(QtGui.QMainWindow):
     """The main window of the application. Defines all menues, menue items
     and actions.
     """
@@ -125,42 +128,42 @@ class Qd(QMainWindow):
     def __init__(self,parent = None,name = None,fl = 0):
         """This sets up the menues etc.
         """
-        QMainWindow.__init__(self,parent,name,fl)
+        #QtGui.QMainWindow.__init__(self,parent,name,fl)
+        QtGui.QMainWindow.__init__(self,parent)
         self.statusBar() # we do have a status bar here, but it is not used yet
         self.parent= parent
         
-        if not name:
-            self.setName("Qd")
-
-        f = QFont(self.font())
+        #if not name:
+            #self.setName("Qd")
+        f = QtGui.QFont(self.font())
         # Maybe font and size should be configurable in a setup dialogue.
         f.setPointSize(12)
         self.setFont(f)
-        self.setCaption(Model.Global.getAppName())
-        self.menubar = QMenuBar(self,"menubar")
+        #self.setCaption(Model.Global.getAppName())
+        self.menubar = QtGui.QMenuBar(self)
 
         ### Menu definitions
 
         #CLIENT menu
         #===========
-        self.clientMenu = QPopupMenu(self)
-        self.connect(self.clientMenu, SIGNAL(
+        self.clientMenu = QtGui.QMenu(self)
+        self.connect(self.clientMenu, QtCore.SIGNAL(
             "aboutToShow()"), self.clientAboutToShow)
 
-        o= menuSetup(self,'client','New', self.tr('New','client'))
-        menuDecorate(o, "folder_new.png", None, 'Lager en ny klient')
-        menuSetup(self,'client','Open', self.tr('Open', 'client'))
-        menuSetup(self,'client','Edit', self.tr('Edit'))
-        menuSetup(self,'client','Delete', self.tr('Delete'))
-        menuSetup(self,'client','Close', self.tr('Close'))
-        self.clientMenu.insertSeparator()
-        menuSetup(self,'client','Exit', self.tr('Exit'))
+        #o= menuSetup(self,'client','New', self.tr('New','client'))
+        #menuDecorate(o, "folder_new.png", None, 'Lager en ny klient')
+        #menuSetup(self,'client','Open', self.tr('Open', 'client'))
+        #menuSetup(self,'client','Edit', self.tr('Edit'))
+        #menuSetup(self,'client','Delete', self.tr('Delete'))
+        #menuSetup(self,'client','Close', self.tr('Close'))
+        #self.clientMenu.insertSeparator()
+        #menuSetup(self,'client','Exit', self.tr('Exit'))
 
-        self.menubar.insertItem(self.tr("Client"),self.clientMenu,0,0)
+        #self.menubar.insertItem(self.tr("Client"),self.clientMenu,0,0)
 
         #Account Menu
         #============
-        
+        """       
         #Todo: add handler for aboutToShow
         self.accountMenu = QPopupMenu(self)
         menuSetup(self,'account','New', self.tr('New', 'account'))
@@ -316,7 +319,7 @@ class Qd(QMainWindow):
         self.connect(self,PYSIGNAL("stateEvent"), self.stateEventHandler)
 
         ### end of init
-
+"""
 
     ### Signal handlers
 
@@ -1022,9 +1025,8 @@ if __name__ == "__main__":
     """Here begins the execution of this application.
     """
 
-    import Database.DbAccess
     import Model.Client
-    import Model.Exceptions
+    #import Model.Exceptions
     import string
     
     global wrksp
@@ -1033,72 +1035,74 @@ if __name__ == "__main__":
     #Model.Global.pathFixup(MyExecPath)
     #Model.Global.readConfigFiles()
     gc= Control.Global.Global()
-    a = QApplication(sys.argv)
+    a = QtGui.QApplication(sys.argv)
     # Pick the tanslator 
-    translator= QTranslator(None)
-    loc= Model.Global.getLocale()
-    if not loc: # use system locale
-        loc= str(QTextCodec.locale())
-    lpath= Model.Global.getLocalePath() + '/'+ loc + '/LC_MESSAGES/'+'gryn.qm'
-    translator.load(lpath)
-    a.installTranslator(translator)
+    #translator= QTranslator(None)
+    #loc= Model.Global.getLocale()
+    #if not loc: # use system locale
+    #    loc= str(QTextCodec.locale())
+    #lpath= Model.Global.getLocalePath() + '/'+ loc + '/LC_MESSAGES/'+'gryn.qm'
+    #translator.load(lpath)
+    #a.installTranslator(translator)
 
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    QtCore.QObject.connect(a,QtCore.SIGNAL("lastWindowClosed()"),a,
+                           QtCore.SLOT("quit()"))
                               #FIXME connect to shutdown function instead?
 
     w = Qd()
-    QObject.connect(w.clientExitAction, SIGNAL("activated()"),
-                   a, SLOT("quit()"))
+    #QtCore.QObject.connect(w.clientExitAction, QtCore.SIGNAL("activated()"),
+    #               a, QtCore.SLOT("quit()"))
 
-    a.setMainWidget(w)
+    #a.setMainWidget(w)
     Model.Global.setRole('root') #FIXME: get user role from some conf file
                                  # or dialog
     appName= Model.Global.getAppName()
-    w.setIcon(QPixmap(appIcon()))
-    dbPrefix= Model.Global.getDbPrefix()
+    #w.setIcon(QPixmap(appIcon()))
+    #dbPrefix= Model.Global.getDbPrefix()
     
     # Trial-open database, create if not exists
-    try:
-        db= None
-        cause= ''
-        db=Database.DbAccess.DbAccess(dbPrefix)
-        db.close()
-    except Model.Exceptions.DbError, e:
-        pass # does not exist or no data base connection
-    except Model.Exceptions.Unknown, s:
-        cause= str(a.tr("Unknown error: \n")) +s
-        QMessageBox.critical(w, appName,
-          str(a.tr("A problem with the database access occurred:\n%s"%cause))+\
-                    str(a.tr("\nThe program will terminate.")))
-        sys.exit(1)
-    if not db: # We must create the data base for gryn
-        r= QMessageBox.information(w, appName,
-            str(a.tr("The '%s' data base does"%dbPrefix))+ '\n'+ \
-                str(a.tr("not exsist. Shall I create it?")),
-                                   a.tr("Yes"), a.tr("No"))
-        if r==0:
-            try:
-                db= Database.DbAccess.DbAccess(None)
-                db.createDataBase(dbPrefix)
-                db.close()
-            except Model.Exceptions.DbError, e:
-                cause= e.args
-            except Model.Exceptions.Unknown, s:
-                cause= str(a.tr("Unknown error: \n")) +s.args
-        else: sys.exit(1) # do not want to create
-    if not db:
-        QMessageBox.critical(w, appName,
-          str(a.tr("A problem with the database access occurred:\n%s"%cause))+\
-                    str(a.tr("\nThe program will terminate.")))
-        sys.exit(1)
+   # try:
+   #     db= None
+   #     cause= ''
+   #     db=Database.DbAccess.DbAccess(dbPrefix)
+   #     db.close()
+   # except Model.Exceptions.DbError, e:
+   #     pass # does not exist or no data base connection
+   # except Model.Exceptions.Unknown, s:
+   #     cause= str(a.tr("Unknown error: \n")) +s
+   #     QMessageBox.critical(w, appName,
+   #       str(a.tr("A problem with the database access occurred:\n%s"%cause))+\
+   #                 str(a.tr("\nThe program will terminate.")))
+   #     sys.exit(1)
+   # if not db: # We must create the data base for gryn
+   #     r= QMessageBox.information(w, appName,
+   #         str(a.tr("The '%s' data base does"%dbPrefix))+ '\n'+ \
+   #             str(a.tr("not exsist. Shall I create it?")),
+   #                                a.tr("Yes"), a.tr("No"))
+   #     if r==0:
+   #         try:
+   #             db= Database.DbAccess.DbAccess(None)
+   #             db.createDataBase(dbPrefix)
+   #             db.close()
+   #         except Model.Exceptions.DbError, e:
+   #             cause= e.args
+   #         except Model.Exceptions.Unknown, s:
+   #             cause= str(a.tr("Unknown error: \n")) +s.args
+   #     else: sys.exit(1) # do not want to create
+   # if not db:
+   #     QMessageBox.critical(w, appName,
+   #       str(a.tr("A problem with the database access occurred:\n%s"%cause))+\
+   #                 str(a.tr("\nThe program will terminate.")))
+   #     sys.exit(1)
 
     # Now we know the database is present
     #open Client data base, create new or terminate if not there
     #this must be done before the client-menue becomes active
+    '''
     try:
         clientList= Model.Client.ClientList(dbPrefix)
     except Model.Exceptions.DbError, e:
-        r= QMessageBox.information(w, appName,
+        r= QtGui.QMessageBox.information(w, appName,
             str(a.tr("The 'client' data table does\n"))+
                 str(a.tr("not exsist. Shall I create one?")),
                                    a.tr("Yes"), a.tr("No"))
@@ -1122,8 +1126,10 @@ if __name__ == "__main__":
     else:
         w.emit(PYSIGNAL('stateEvent'), ('available',))
     w.emit(PYSIGNAL('stateEvent'),('closed',))# to enable/disable menubar items
+    '''
     w.show()
-    a.exec_loop() # Here we spend most of the time clicking and typing
+    a.exec_()
+    #a.exec_loop() # Here we spend most of the time clicking and typing
     Model.Books.close()
     #Fin
 

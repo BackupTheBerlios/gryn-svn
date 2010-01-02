@@ -2,66 +2,51 @@
 
 # Form implementation generated from reading ui file 'uQueue.ui'
 #
-# Created: Fri Feb 11 21:20:00 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:55:15 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
-from qttable import QTable
+class Ui_uQueue(object):
+    def setupUi(self, uQueue):
+        uQueue.setObjectName("uQueue")
+        uQueue.resize(600, 223)
+        font = QtGui.QFont()
+        font.setFamily("Adobe Helvetica")
+        font.setPointSize(12)
+        uQueue.setFont(font)
+        self.vboxlayout = QtGui.QVBoxLayout(uQueue)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.wTableet = QtGui.QTableWidget(uQueue)
+        self.wTableet.setObjectName("wTableet")
+        self.wTableet.setColumnCount(0)
+        self.wTableet.setRowCount(0)
+        self.vboxlayout.addWidget(self.wTableet)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        spacerItem = QtGui.QSpacerItem(221, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout.addItem(spacerItem)
+        self.wOK = QtGui.QPushButton(uQueue)
+        self.wOK.setAutoDefault(False)
+        self.wOK.setObjectName("wOK")
+        self.hboxlayout.addWidget(self.wOK)
+        self.vboxlayout.addLayout(self.hboxlayout)
 
+        self.retranslateUi(uQueue)
+        QtCore.QMetaObject.connectSlotsByName(uQueue)
 
-class uQueue(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uQueue):
+        self.wOK.setText(QtGui.QApplication.translate("uQueue", "OK", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uQueue")
-
-        f = QFont(self.font())
-        f.setFamily("Adobe Helvetica")
-        f.setPointSize(12)
-        self.setFont(f)
-
-        uQueueLayout = QVBoxLayout(self,11,6,"uQueueLayout")
-
-        self.wTable = QTable(self,"wTable")
-        self.wTable.setSizePolicy(QSizePolicy(7,7,0,232,self.wTable.sizePolicy().hasHeightForWidth()))
-        self.wTable.setNumRows(3)
-        self.wTable.setNumCols(3)
-        self.wTable.setReadOnly(1)
-        self.wTable.setSelectionMode(QTable.NoSelection)
-        uQueueLayout.addWidget(self.wTable)
-
-        layout2 = QHBoxLayout(None,0,6,"layout2")
-        spacer2 = QSpacerItem(221,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout2.addItem(spacer2)
-
-        self.wOK = QPushButton(self,"wOK")
-        self.wOK.setAutoDefault(0)
-        layout2.addWidget(self.wOK)
-        uQueueLayout.addLayout(layout2)
-
-        self.languageChange()
-
-        self.resize(QSize(600,223).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-
-    def languageChange(self):
-        self.setCaption(QString.null)
-        self.wOK.setText(self.__tr("OK"))
-
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uQueue",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uQueue()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uQueue = QtGui.QDialog()
+    ui = Ui_uQueue()
+    ui.setupUi(uQueue)
+    uQueue.show()
+    sys.exit(app.exec_())
+

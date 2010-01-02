@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """ $Id$<br>
 Grep is a class for searching text strings by a regular expression.
 This is useful for the GUI.

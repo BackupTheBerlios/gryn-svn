@@ -2,69 +2,60 @@
 
 # Form implementation generated from reading ui file 'uSourceVat.ui'
 #
-# Created: Fri Feb 11 21:20:00 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:55:07 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
+class Ui_uSourceVat(object):
+    def setupUi(self, uSourceVat):
+        uSourceVat.setObjectName("uSourceVat")
+        uSourceVat.resize(287, 144)
+        self.vboxlayout = QtGui.QVBoxLayout(uSourceVat)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        self.textLabel1 = QtGui.QLabel(uSourceVat)
+        self.textLabel1.setWordWrap(False)
+        self.textLabel1.setObjectName("textLabel1")
+        self.hboxlayout.addWidget(self.textLabel1)
+        self.wPeriod = QtGui.QComboBox(uSourceVat)
+        self.wPeriod.setObjectName("wPeriod")
+        self.hboxlayout.addWidget(self.wPeriod)
+        self.vboxlayout.addLayout(self.hboxlayout)
+        spacerItem = QtGui.QSpacerItem(20, 31, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem)
+        self.hboxlayout1 = QtGui.QHBoxLayout()
+        self.hboxlayout1.setObjectName("hboxlayout1")
+        spacerItem1 = QtGui.QSpacerItem(41, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout1.addItem(spacerItem1)
+        self.wCancel = QtGui.QPushButton(uSourceVat)
+        self.wCancel.setAutoDefault(False)
+        self.wCancel.setObjectName("wCancel")
+        self.hboxlayout1.addWidget(self.wCancel)
+        self.wOK = QtGui.QPushButton(uSourceVat)
+        self.wOK.setObjectName("wOK")
+        self.hboxlayout1.addWidget(self.wOK)
+        self.vboxlayout.addLayout(self.hboxlayout1)
 
+        self.retranslateUi(uSourceVat)
+        QtCore.QMetaObject.connectSlotsByName(uSourceVat)
 
-class uSourceVat(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uSourceVat):
+        uSourceVat.setWindowTitle(QtGui.QApplication.translate("uSourceVat", "VAT transfer", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1.setText(QtGui.QApplication.translate("uSourceVat", "Period to transfer", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCancel.setText(QtGui.QApplication.translate("uSourceVat", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.wOK.setText(QtGui.QApplication.translate("uSourceVat", "OK", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uSourceVat")
-
-
-        uSourceVatLayout = QVBoxLayout(self,11,6,"uSourceVatLayout")
-
-        layout1 = QHBoxLayout(None,0,6,"layout1")
-
-        self.textLabel1 = QLabel(self,"textLabel1")
-        layout1.addWidget(self.textLabel1)
-
-        self.wPeriod = QComboBox(0,self,"wPeriod")
-        layout1.addWidget(self.wPeriod)
-        uSourceVatLayout.addLayout(layout1)
-        spacer3 = QSpacerItem(20,31,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        uSourceVatLayout.addItem(spacer3)
-
-        layout2 = QHBoxLayout(None,0,6,"layout2")
-        spacer1 = QSpacerItem(41,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout2.addItem(spacer1)
-
-        self.wCancel = QPushButton(self,"wCancel")
-        self.wCancel.setAutoDefault(0)
-        layout2.addWidget(self.wCancel)
-
-        self.wOK = QPushButton(self,"wOK")
-        layout2.addWidget(self.wOK)
-        uSourceVatLayout.addLayout(layout2)
-
-        self.languageChange()
-
-        self.resize(QSize(287,144).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-
-    def languageChange(self):
-        self.setCaption(self.__tr("VAT transfer"))
-        self.textLabel1.setText(self.__tr("Period to transfer"))
-        self.wCancel.setText(self.__tr("Cancel"))
-        self.wOK.setText(self.__tr("OK"))
-
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uSourceVat",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uSourceVat()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uSourceVat = QtGui.QDialog()
+    ui = Ui_uSourceVat()
+    ui.setupUi(uSourceVat)
+    uSourceVat.show()
+    sys.exit(app.exec_())
+

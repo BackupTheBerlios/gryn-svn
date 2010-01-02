@@ -25,7 +25,7 @@ See also the documentation of Model.Gobject.Gobject
 #    The top level file LICENSE holds the verbatim copy of this license.
 
 
-import Database.DbAccess
+
 import Model.Global
 import Model.Gobject
 import Model.Books

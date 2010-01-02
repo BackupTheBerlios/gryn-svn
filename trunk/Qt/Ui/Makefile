@@ -22,10 +22,12 @@
 
 VPATH= ..
 
-all: uClientOpen.py uClientEditNew.py uAccountImport.py \
+ALL=uClientOpen.py uClientEditNew.py uAccountImport.py \
 uTreeList.py uSource.py uListSelect.py uAccount.py \
 uSourceFind.py uCuven.py uSourceSelect.py uSourceVat.py uTimeFrameSelect.py \
 uRule.py uRuleAssign.py uQueue.py uCuvenSelect.py uVat.py
+
+all: $(ALL)
 
 uClientOpen.py:uClientOpen.ui
 uClientEditNew.py:uClientEditNew.ui
@@ -46,7 +48,8 @@ uCuvenSelect.py:uCuvenSelect.ui
 uVat.py:uVat.ui
 
 %.py : %.ui
-	pyuic -x $< >../$@
+	pyuic4 -x $< >../$@
 
 clean: 
-	rm -f *~  
+	rm -f *~ 
+	(cd .. ; rm $(ALL))  

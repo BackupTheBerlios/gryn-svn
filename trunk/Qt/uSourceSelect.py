@@ -2,155 +2,127 @@
 
 # Form implementation generated from reading ui file 'uSourceSelect.ui'
 #
-# Created: Fri Feb 11 21:20:00 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:55:05 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
+class Ui_uSourceSelect(object):
+    def setupUi(self, uSourceSelect):
+        uSourceSelect.setObjectName("uSourceSelect")
+        uSourceSelect.resize(350, 295)
+        font = QtGui.QFont()
+        font.setFamily("Adobe Helvetica")
+        font.setPointSize(12)
+        uSourceSelect.setFont(font)
+        self.vboxlayout = QtGui.QVBoxLayout(uSourceSelect)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.wGroup = QtGui.QGroupBox(uSourceSelect)
+        self.wGroup.setObjectName("wGroup")
+        self.gridlayout = QtGui.QGridLayout(self.wGroup)
+        self.gridlayout.setObjectName("gridlayout")
+        spacerItem = QtGui.QSpacerItem(101, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridlayout.addItem(spacerItem, 4, 2, 1, 1)
+        self.wSourceFrom = QtGui.QLineEdit(self.wGroup)
+        self.wSourceFrom.setObjectName("wSourceFrom")
+        self.gridlayout.addWidget(self.wSourceFrom, 1, 1, 1, 1)
+        self.wAccountTo = QtGui.QLineEdit(self.wGroup)
+        self.wAccountTo.setObjectName("wAccountTo")
+        self.gridlayout.addWidget(self.wAccountTo, 3, 2, 1, 1)
+        self.wSourceTo = QtGui.QLineEdit(self.wGroup)
+        self.wSourceTo.setObjectName("wSourceTo")
+        self.gridlayout.addWidget(self.wSourceTo, 1, 2, 1, 1)
+        self.wbSource = QtGui.QRadioButton(self.wGroup)
+        self.wbSource.setObjectName("wbSource")
+        self.gridlayout.addWidget(self.wbSource, 1, 0, 1, 1)
+        self.wAccountFrom = QtGui.QLineEdit(self.wGroup)
+        self.wAccountFrom.setObjectName("wAccountFrom")
+        self.gridlayout.addWidget(self.wAccountFrom, 3, 1, 1, 1)
+        self.wbDate = QtGui.QRadioButton(self.wGroup)
+        self.wbDate.setObjectName("wbDate")
+        self.gridlayout.addWidget(self.wbDate, 2, 0, 1, 1)
+        self.wbAccount = QtGui.QRadioButton(self.wGroup)
+        self.wbAccount.setObjectName("wbAccount")
+        self.gridlayout.addWidget(self.wbAccount, 3, 0, 1, 1)
+        self.wbPeriod = QtGui.QRadioButton(self.wGroup)
+        self.wbPeriod.setObjectName("wbPeriod")
+        self.gridlayout.addWidget(self.wbPeriod, 4, 0, 1, 1)
+        self.wPeriod = QtGui.QComboBox(self.wGroup)
+        self.wPeriod.setObjectName("wPeriod")
+        self.gridlayout.addWidget(self.wPeriod, 4, 1, 1, 1)
+        self.textLabel1 = QtGui.QLabel(self.wGroup)
+        self.textLabel1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textLabel1.setWordWrap(False)
+        self.textLabel1.setObjectName("textLabel1")
+        self.gridlayout.addWidget(self.textLabel1, 0, 1, 1, 1)
+        self.textLabel1_2 = QtGui.QLabel(self.wGroup)
+        self.textLabel1_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.textLabel1_2.setWordWrap(False)
+        self.textLabel1_2.setObjectName("textLabel1_2")
+        self.gridlayout.addWidget(self.textLabel1_2, 0, 2, 1, 1)
+        spacerItem1 = QtGui.QSpacerItem(41, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridlayout.addItem(spacerItem1, 0, 0, 1, 1)
+        self.wbAll = QtGui.QRadioButton(self.wGroup)
+        self.wbAll.setObjectName("wbAll")
+        self.gridlayout.addWidget(self.wbAll, 5, 0, 1, 1)
+        self.wDateFrom = QtGui.QDateEdit(self.wGroup)
+        self.wDateFrom.setObjectName("wDateFrom")
+        self.gridlayout.addWidget(self.wDateFrom, 2, 1, 1, 1)
+        self.wDateTo = QtGui.QDateEdit(self.wGroup)
+        self.wDateTo.setObjectName("wDateTo")
+        self.gridlayout.addWidget(self.wDateTo, 2, 2, 1, 1)
+        self.vboxlayout.addWidget(self.wGroup)
+        self.wShowSplits = QtGui.QCheckBox(uSourceSelect)
+        self.wShowSplits.setChecked(True)
+        self.wShowSplits.setObjectName("wShowSplits")
+        self.vboxlayout.addWidget(self.wShowSplits)
+        spacerItem2 = QtGui.QSpacerItem(20, 16, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem2)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        spacerItem3 = QtGui.QSpacerItem(141, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout.addItem(spacerItem3)
+        self.wOK = QtGui.QPushButton(uSourceSelect)
+        self.wOK.setAutoDefault(False)
+        self.wOK.setObjectName("wOK")
+        self.hboxlayout.addWidget(self.wOK)
+        self.wCancel = QtGui.QPushButton(uSourceSelect)
+        self.wCancel.setAutoDefault(False)
+        self.wCancel.setObjectName("wCancel")
+        self.hboxlayout.addWidget(self.wCancel)
+        self.vboxlayout.addLayout(self.hboxlayout)
 
+        self.retranslateUi(uSourceSelect)
+        QtCore.QMetaObject.connectSlotsByName(uSourceSelect)
+        uSourceSelect.setTabOrder(self.wSourceFrom, self.wSourceTo)
+        uSourceSelect.setTabOrder(self.wSourceTo, self.wAccountFrom)
+        uSourceSelect.setTabOrder(self.wAccountFrom, self.wAccountTo)
+        uSourceSelect.setTabOrder(self.wAccountTo, self.wOK)
+        uSourceSelect.setTabOrder(self.wOK, self.wCancel)
 
-class uSourceSelect(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uSourceSelect):
+        uSourceSelect.setWindowTitle(QtGui.QApplication.translate("uSourceSelect", "Select source", None, QtGui.QApplication.UnicodeUTF8))
+        self.wGroup.setTitle(QtGui.QApplication.translate("uSourceSelect", "Selection criterium", None, QtGui.QApplication.UnicodeUTF8))
+        self.wbSource.setText(QtGui.QApplication.translate("uSourceSelect", "Source", None, QtGui.QApplication.UnicodeUTF8))
+        self.wbDate.setText(QtGui.QApplication.translate("uSourceSelect", "Date", None, QtGui.QApplication.UnicodeUTF8))
+        self.wbAccount.setText(QtGui.QApplication.translate("uSourceSelect", "Account", None, QtGui.QApplication.UnicodeUTF8))
+        self.wbPeriod.setText(QtGui.QApplication.translate("uSourceSelect", "Period", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1.setText(QtGui.QApplication.translate("uSourceSelect", "From", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1_2.setText(QtGui.QApplication.translate("uSourceSelect", "To", None, QtGui.QApplication.UnicodeUTF8))
+        self.wbAll.setText(QtGui.QApplication.translate("uSourceSelect", "All", None, QtGui.QApplication.UnicodeUTF8))
+        self.wShowSplits.setText(QtGui.QApplication.translate("uSourceSelect", "Show splits", None, QtGui.QApplication.UnicodeUTF8))
+        self.wOK.setText(QtGui.QApplication.translate("uSourceSelect", "OK", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCancel.setText(QtGui.QApplication.translate("uSourceSelect", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uSourceSelect")
-
-        f = QFont(self.font())
-        f.setFamily("Adobe Helvetica")
-        f.setPointSize(12)
-        self.setFont(f)
-
-        uSourceSelectLayout = QVBoxLayout(self,11,6,"uSourceSelectLayout")
-
-        self.wGroup = QButtonGroup(self,"wGroup")
-        self.wGroup.setColumnLayout(0,Qt.Vertical)
-        self.wGroup.layout().setSpacing(6)
-        self.wGroup.layout().setMargin(11)
-        wGroupLayout = QGridLayout(self.wGroup.layout())
-        wGroupLayout.setAlignment(Qt.AlignTop)
-        spacer30 = QSpacerItem(101,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        wGroupLayout.addItem(spacer30,4,2)
-
-        self.wSourceFrom = QLineEdit(self.wGroup,"wSourceFrom")
-
-        wGroupLayout.addWidget(self.wSourceFrom,1,1)
-
-        self.wAccountTo = QLineEdit(self.wGroup,"wAccountTo")
-
-        wGroupLayout.addWidget(self.wAccountTo,3,2)
-
-        self.wSourceTo = QLineEdit(self.wGroup,"wSourceTo")
-
-        wGroupLayout.addWidget(self.wSourceTo,1,2)
-
-        self.wbSource = QRadioButton(self.wGroup,"wbSource")
-
-        wGroupLayout.addWidget(self.wbSource,1,0)
-
-        self.wDateFrom = QDateEdit(self.wGroup,"wDateFrom")
-
-        wGroupLayout.addWidget(self.wDateFrom,2,1)
-
-        self.wDateTo = QDateEdit(self.wGroup,"wDateTo")
-
-        wGroupLayout.addWidget(self.wDateTo,2,2)
-
-        self.wAccountFrom = QLineEdit(self.wGroup,"wAccountFrom")
-
-        wGroupLayout.addWidget(self.wAccountFrom,3,1)
-
-        self.wbDate = QRadioButton(self.wGroup,"wbDate")
-
-        wGroupLayout.addWidget(self.wbDate,2,0)
-
-        self.wbAccount = QRadioButton(self.wGroup,"wbAccount")
-
-        wGroupLayout.addWidget(self.wbAccount,3,0)
-
-        self.wbPeriod = QRadioButton(self.wGroup,"wbPeriod")
-
-        wGroupLayout.addWidget(self.wbPeriod,4,0)
-
-        self.wPeriod = QComboBox(0,self.wGroup,"wPeriod")
-
-        wGroupLayout.addWidget(self.wPeriod,4,1)
-
-        self.textLabel1 = QLabel(self.wGroup,"textLabel1")
-        self.textLabel1.setAlignment(QLabel.AlignCenter)
-
-        wGroupLayout.addWidget(self.textLabel1,0,1)
-
-        self.textLabel1_2 = QLabel(self.wGroup,"textLabel1_2")
-        self.textLabel1_2.setAlignment(QLabel.AlignCenter)
-
-        wGroupLayout.addWidget(self.textLabel1_2,0,2)
-        spacer31 = QSpacerItem(41,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        wGroupLayout.addItem(spacer31,0,0)
-
-        self.wbAll = QRadioButton(self.wGroup,"wbAll")
-
-        wGroupLayout.addWidget(self.wbAll,5,0)
-        uSourceSelectLayout.addWidget(self.wGroup)
-
-        self.wShowSplits = QCheckBox(self,"wShowSplits")
-        self.wShowSplits.setChecked(1)
-        uSourceSelectLayout.addWidget(self.wShowSplits)
-        spacer33 = QSpacerItem(20,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        uSourceSelectLayout.addItem(spacer33)
-
-        layout35 = QHBoxLayout(None,0,6,"layout35")
-        spacer32 = QSpacerItem(141,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout35.addItem(spacer32)
-
-        self.wOK = QPushButton(self,"wOK")
-        self.wOK.setAutoDefault(0)
-        layout35.addWidget(self.wOK)
-
-        self.wCancel = QPushButton(self,"wCancel")
-        self.wCancel.setAutoDefault(0)
-        layout35.addWidget(self.wCancel)
-        uSourceSelectLayout.addLayout(layout35)
-
-        self.languageChange()
-
-        self.resize(QSize(350,287).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-        self.setTabOrder(self.wSourceFrom,self.wSourceTo)
-        self.setTabOrder(self.wSourceTo,self.wDateFrom)
-        self.setTabOrder(self.wDateFrom,self.wDateTo)
-        self.setTabOrder(self.wDateTo,self.wAccountFrom)
-        self.setTabOrder(self.wAccountFrom,self.wAccountTo)
-        self.setTabOrder(self.wAccountTo,self.wOK)
-        self.setTabOrder(self.wOK,self.wCancel)
-
-
-    def languageChange(self):
-        self.setCaption(self.__tr("Select source"))
-        self.wGroup.setTitle(self.__tr("Selection criterium"))
-        self.wbSource.setText(self.__tr("Source"))
-        self.wbDate.setText(self.__tr("Date"))
-        self.wbAccount.setText(self.__tr("Account"))
-        self.wbPeriod.setText(self.__tr("Period"))
-        self.textLabel1.setText(self.__tr("From"))
-        self.textLabel1_2.setText(self.__tr("To"))
-        self.wbAll.setText(self.__tr("All"))
-        self.wShowSplits.setText(self.__tr("Show splits"))
-        self.wOK.setText(self.__tr("OK"))
-        self.wCancel.setText(self.__tr("Cancel"))
-
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uSourceSelect",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uSourceSelect()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uSourceSelect = QtGui.QDialog()
+    ui = Ui_uSourceSelect()
+    ui.setupUi(uSourceSelect)
+    uSourceSelect.show()
+    sys.exit(app.exec_())
+

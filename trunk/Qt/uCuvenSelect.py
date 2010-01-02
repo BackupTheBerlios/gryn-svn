@@ -2,130 +2,108 @@
 
 # Form implementation generated from reading ui file 'uCuvenSelect.ui'
 #
-# Created: Fri Feb 11 21:20:00 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:55:17 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
+class Ui_uCuvenSelect(object):
+    def setupUi(self, uCuvenSelect):
+        uCuvenSelect.setObjectName("uCuvenSelect")
+        uCuvenSelect.resize(363, 382)
+        font = QtGui.QFont()
+        font.setFamily("Nimbus Sans l")
+        font.setPointSize(12)
+        uCuvenSelect.setFont(font)
+        self.vboxlayout = QtGui.QVBoxLayout(uCuvenSelect)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.wGroupSelection = QtGui.QGroupBox(uCuvenSelect)
+        self.wGroupSelection.setObjectName("wGroupSelection")
+        self.hboxlayout = QtGui.QHBoxLayout(self.wGroupSelection)
+        self.hboxlayout.setObjectName("hboxlayout")
+        self.vboxlayout1 = QtGui.QVBoxLayout()
+        self.vboxlayout1.setObjectName("vboxlayout1")
+        self.wCust = QtGui.QRadioButton(self.wGroupSelection)
+        self.wCust.setChecked(True)
+        self.wCust.setObjectName("wCust")
+        self.vboxlayout1.addWidget(self.wCust)
+        self.wVend = QtGui.QRadioButton(self.wGroupSelection)
+        self.wVend.setObjectName("wVend")
+        self.vboxlayout1.addWidget(self.wVend)
+        self.wActive = QtGui.QCheckBox(self.wGroupSelection)
+        self.wActive.setChecked(True)
+        self.wActive.setObjectName("wActive")
+        self.vboxlayout1.addWidget(self.wActive)
+        self.wOpenOnly = QtGui.QCheckBox(self.wGroupSelection)
+        self.wOpenOnly.setObjectName("wOpenOnly")
+        self.vboxlayout1.addWidget(self.wOpenOnly)
+        self.hboxlayout.addLayout(self.vboxlayout1)
+        self.vboxlayout.addWidget(self.wGroupSelection)
+        self.wGroupDetails = QtGui.QGroupBox(uCuvenSelect)
+        self.wGroupDetails.setObjectName("wGroupDetails")
+        self.hboxlayout1 = QtGui.QHBoxLayout(self.wGroupDetails)
+        self.hboxlayout1.setObjectName("hboxlayout1")
+        self.vboxlayout2 = QtGui.QVBoxLayout()
+        self.vboxlayout2.setObjectName("vboxlayout2")
+        self.wDetSum = QtGui.QRadioButton(self.wGroupDetails)
+        self.wDetSum.setChecked(True)
+        self.wDetSum.setObjectName("wDetSum")
+        self.vboxlayout2.addWidget(self.wDetSum)
+        self.wDetOpen = QtGui.QRadioButton(self.wGroupDetails)
+        self.wDetOpen.setObjectName("wDetOpen")
+        self.vboxlayout2.addWidget(self.wDetOpen)
+        self.wDetAll = QtGui.QRadioButton(self.wGroupDetails)
+        self.wDetAll.setObjectName("wDetAll")
+        self.vboxlayout2.addWidget(self.wDetAll)
+        self.hboxlayout1.addLayout(self.vboxlayout2)
+        self.vboxlayout.addWidget(self.wGroupDetails)
+        spacerItem = QtGui.QSpacerItem(20, 16, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem)
+        self.hboxlayout2 = QtGui.QHBoxLayout()
+        self.hboxlayout2.setObjectName("hboxlayout2")
+        spacerItem1 = QtGui.QSpacerItem(50, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout2.addItem(spacerItem1)
+        self.wCancel = QtGui.QPushButton(uCuvenSelect)
+        self.wCancel.setAutoDefault(False)
+        self.wCancel.setObjectName("wCancel")
+        self.hboxlayout2.addWidget(self.wCancel)
+        self.wPick = QtGui.QPushButton(uCuvenSelect)
+        self.wPick.setAutoDefault(False)
+        self.wPick.setObjectName("wPick")
+        self.hboxlayout2.addWidget(self.wPick)
+        self.wOK = QtGui.QPushButton(uCuvenSelect)
+        self.wOK.setAutoDefault(False)
+        self.wOK.setObjectName("wOK")
+        self.hboxlayout2.addWidget(self.wOK)
+        self.vboxlayout.addLayout(self.hboxlayout2)
 
+        self.retranslateUi(uCuvenSelect)
+        QtCore.QMetaObject.connectSlotsByName(uCuvenSelect)
 
-class uCuvenSelect(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uCuvenSelect):
+        uCuvenSelect.setWindowTitle(QtGui.QApplication.translate("uCuvenSelect", "Select customers/vendors", None, QtGui.QApplication.UnicodeUTF8))
+        self.wGroupSelection.setTitle(QtGui.QApplication.translate("uCuvenSelect", "Selection", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCust.setText(QtGui.QApplication.translate("uCuvenSelect", "Customers", None, QtGui.QApplication.UnicodeUTF8))
+        self.wVend.setText(QtGui.QApplication.translate("uCuvenSelect", "Vendors", None, QtGui.QApplication.UnicodeUTF8))
+        self.wActive.setText(QtGui.QApplication.translate("uCuvenSelect", "Only active", None, QtGui.QApplication.UnicodeUTF8))
+        self.wOpenOnly.setText(QtGui.QApplication.translate("uCuvenSelect", "Only with open lots", None, QtGui.QApplication.UnicodeUTF8))
+        self.wGroupDetails.setTitle(QtGui.QApplication.translate("uCuvenSelect", "Details", None, QtGui.QApplication.UnicodeUTF8))
+        self.wDetSum.setText(QtGui.QApplication.translate("uCuvenSelect", "Summary", None, QtGui.QApplication.UnicodeUTF8))
+        self.wDetOpen.setText(QtGui.QApplication.translate("uCuvenSelect", "Transactions of open lots only", None, QtGui.QApplication.UnicodeUTF8))
+        self.wDetAll.setText(QtGui.QApplication.translate("uCuvenSelect", "All transactions", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCancel.setText(QtGui.QApplication.translate("uCuvenSelect", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.wPick.setText(QtGui.QApplication.translate("uCuvenSelect", "Pick from list", None, QtGui.QApplication.UnicodeUTF8))
+        self.wOK.setText(QtGui.QApplication.translate("uCuvenSelect", "OK", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uCuvenSelect")
-
-        f = QFont(self.font())
-        f.setFamily("Nimbus Sans l")
-        f.setPointSize(12)
-        self.setFont(f)
-
-        uCuvenSelectLayout = QVBoxLayout(self,11,6,"uCuvenSelectLayout")
-
-        self.wGroupSelection = QButtonGroup(self,"wGroupSelection")
-        self.wGroupSelection.setColumnLayout(0,Qt.Vertical)
-        self.wGroupSelection.layout().setSpacing(6)
-        self.wGroupSelection.layout().setMargin(11)
-        wGroupSelectionLayout = QHBoxLayout(self.wGroupSelection.layout())
-        wGroupSelectionLayout.setAlignment(Qt.AlignTop)
-
-        layout6 = QVBoxLayout(None,0,6,"layout6")
-
-        self.wCust = QRadioButton(self.wGroupSelection,"wCust")
-        self.wCust.setChecked(1)
-        layout6.addWidget(self.wCust)
-
-        self.wVend = QRadioButton(self.wGroupSelection,"wVend")
-        layout6.addWidget(self.wVend)
-
-        self.wActive = QCheckBox(self.wGroupSelection,"wActive")
-        self.wActive.setChecked(1)
-        layout6.addWidget(self.wActive)
-
-        self.wOpenOnly = QCheckBox(self.wGroupSelection,"wOpenOnly")
-        layout6.addWidget(self.wOpenOnly)
-        wGroupSelectionLayout.addLayout(layout6)
-        uCuvenSelectLayout.addWidget(self.wGroupSelection)
-
-        self.wGroupDetails = QButtonGroup(self,"wGroupDetails")
-        self.wGroupDetails.setColumnLayout(0,Qt.Vertical)
-        self.wGroupDetails.layout().setSpacing(6)
-        self.wGroupDetails.layout().setMargin(11)
-        wGroupDetailsLayout = QHBoxLayout(self.wGroupDetails.layout())
-        wGroupDetailsLayout.setAlignment(Qt.AlignTop)
-
-        layout2 = QVBoxLayout(None,0,6,"layout2")
-
-        self.wDetSum = QRadioButton(self.wGroupDetails,"wDetSum")
-        self.wDetSum.setChecked(1)
-        layout2.addWidget(self.wDetSum)
-
-        self.wDetOpen = QRadioButton(self.wGroupDetails,"wDetOpen")
-        layout2.addWidget(self.wDetOpen)
-
-        self.wDetAll = QRadioButton(self.wGroupDetails,"wDetAll")
-        layout2.addWidget(self.wDetAll)
-        wGroupDetailsLayout.addLayout(layout2)
-        uCuvenSelectLayout.addWidget(self.wGroupDetails)
-        spacer2 = QSpacerItem(20,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        uCuvenSelectLayout.addItem(spacer2)
-
-        layout4 = QHBoxLayout(None,0,6,"layout4")
-        spacer1 = QSpacerItem(50,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout4.addItem(spacer1)
-
-        self.wCancel = QPushButton(self,"wCancel")
-        self.wCancel.setAutoDefault(0)
-        layout4.addWidget(self.wCancel)
-
-        self.wPick = QPushButton(self,"wPick")
-        self.wPick.setAutoDefault(0)
-        layout4.addWidget(self.wPick)
-
-        self.wOK = QPushButton(self,"wOK")
-        self.wOK.setAutoDefault(0)
-        layout4.addWidget(self.wOK)
-        uCuvenSelectLayout.addLayout(layout4)
-
-        self.languageChange()
-
-        self.resize(QSize(363,382).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-
-    def languageChange(self):
-        self.setCaption(self.__tr("Select customers/vendors"))
-        self.wGroupSelection.setTitle(self.__tr("Selection"))
-        self.wCust.setText(self.__tr("Customers"))
-        self.wVend.setText(self.__tr("Vendors"))
-        self.wActive.setText(self.__tr("Only active"))
-        self.wOpenOnly.setText(self.__tr("Only with open lots"))
-        self.wGroupDetails.setTitle(self.__tr("Details"))
-        self.wDetSum.setText(self.__tr("Summary"))
-        self.wDetOpen.setText(self.__tr("Transactions of open lots only"))
-        self.wDetAll.setText(self.__tr("All transactions"))
-        self.wCancel.setText(self.__tr("Cancel"))
-        self.wPick.setText(self.__tr("Pick from list"))
-        self.wOK.setText(self.__tr("OK"))
-
-
-    def slotCancel(self):
-        print "uCuvenSelect.slotCancel(): Not implemented yet"
-
-    def slotOK(self):
-        print "uCuvenSelect.slotOK(): Not implemented yet"
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uCuvenSelect",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uCuvenSelect()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uCuvenSelect = QtGui.QDialog()
+    ui = Ui_uCuvenSelect()
+    ui.setupUi(uCuvenSelect)
+    uCuvenSelect.show()
+    sys.exit(app.exec_())
+

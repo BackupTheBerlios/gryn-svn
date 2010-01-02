@@ -2,150 +2,125 @@
 
 # Form implementation generated from reading ui file 'uSourceFind.ui'
 #
-# Created: Fri Feb 11 21:19:59 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Sat Jan  2 00:55:01 2010
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
+from PyQt4 import QtCore, QtGui
 
-import sys
-from qt import *
+class Ui_uSourceFind(object):
+    def setupUi(self, uSourceFind):
+        uSourceFind.setObjectName("uSourceFind")
+        uSourceFind.resize(356, 210)
+        font = QtGui.QFont()
+        font.setFamily("Adobe Helvetica")
+        font.setPointSize(12)
+        uSourceFind.setFont(font)
+        self.vboxlayout = QtGui.QVBoxLayout(uSourceFind)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.gridlayout = QtGui.QGridLayout()
+        self.gridlayout.setObjectName("gridlayout")
+        self.wAccountFrom = QtGui.QLineEdit(uSourceFind)
+        self.wAccountFrom.setObjectName("wAccountFrom")
+        self.gridlayout.addWidget(self.wAccountFrom, 4, 1, 1, 1)
+        self.textLabel1_2 = QtGui.QLabel(uSourceFind)
+        self.textLabel1_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.textLabel1_2.setWordWrap(False)
+        self.textLabel1_2.setObjectName("textLabel1_2")
+        self.gridlayout.addWidget(self.textLabel1_2, 0, 2, 1, 1)
+        self.textLabel2 = QtGui.QLabel(uSourceFind)
+        self.textLabel2.setWordWrap(False)
+        self.textLabel2.setObjectName("textLabel2")
+        self.gridlayout.addWidget(self.textLabel2, 0, 0, 1, 1)
+        self.wFindAmount = QtGui.QCheckBox(uSourceFind)
+        self.wFindAmount.setObjectName("wFindAmount")
+        self.gridlayout.addWidget(self.wFindAmount, 3, 0, 1, 1)
+        self.wNumTo = QtGui.QLineEdit(uSourceFind)
+        self.wNumTo.setObjectName("wNumTo")
+        self.gridlayout.addWidget(self.wNumTo, 1, 2, 1, 1)
+        self.textLabel1 = QtGui.QLabel(uSourceFind)
+        self.textLabel1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textLabel1.setWordWrap(False)
+        self.textLabel1.setObjectName("textLabel1")
+        self.gridlayout.addWidget(self.textLabel1, 0, 1, 1, 1)
+        self.wAccountTo = QtGui.QLineEdit(uSourceFind)
+        self.wAccountTo.setObjectName("wAccountTo")
+        self.gridlayout.addWidget(self.wAccountTo, 4, 2, 1, 1)
+        self.wAmountFrom = QtGui.QLineEdit(uSourceFind)
+        self.wAmountFrom.setObjectName("wAmountFrom")
+        self.gridlayout.addWidget(self.wAmountFrom, 3, 1, 1, 1)
+        self.wNumFrom = QtGui.QLineEdit(uSourceFind)
+        self.wNumFrom.setObjectName("wNumFrom")
+        self.gridlayout.addWidget(self.wNumFrom, 1, 1, 1, 1)
+        self.wFindDate = QtGui.QCheckBox(uSourceFind)
+        self.wFindDate.setObjectName("wFindDate")
+        self.gridlayout.addWidget(self.wFindDate, 2, 0, 1, 1)
+        self.wFindAccount = QtGui.QCheckBox(uSourceFind)
+        self.wFindAccount.setObjectName("wFindAccount")
+        self.gridlayout.addWidget(self.wFindAccount, 4, 0, 1, 1)
+        self.wAmountTo = QtGui.QLineEdit(uSourceFind)
+        self.wAmountTo.setObjectName("wAmountTo")
+        self.gridlayout.addWidget(self.wAmountTo, 3, 2, 1, 1)
+        self.wFindNumber = QtGui.QCheckBox(uSourceFind)
+        self.wFindNumber.setObjectName("wFindNumber")
+        self.gridlayout.addWidget(self.wFindNumber, 1, 0, 1, 1)
+        self.wDateFrom = QtGui.QDateEdit(uSourceFind)
+        self.wDateFrom.setObjectName("wDateFrom")
+        self.gridlayout.addWidget(self.wDateFrom, 2, 1, 1, 1)
+        self.wDateTo = QtGui.QDateEdit(uSourceFind)
+        self.wDateTo.setObjectName("wDateTo")
+        self.gridlayout.addWidget(self.wDateTo, 2, 2, 1, 1)
+        self.vboxlayout.addLayout(self.gridlayout)
+        spacerItem = QtGui.QSpacerItem(20, 31, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        spacerItem1 = QtGui.QSpacerItem(201, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout.addItem(spacerItem1)
+        self.wSearch = QtGui.QPushButton(uSourceFind)
+        self.wSearch.setAutoDefault(False)
+        self.wSearch.setObjectName("wSearch")
+        self.hboxlayout.addWidget(self.wSearch)
+        self.wCancel = QtGui.QPushButton(uSourceFind)
+        self.wCancel.setAutoDefault(False)
+        self.wCancel.setObjectName("wCancel")
+        self.hboxlayout.addWidget(self.wCancel)
+        self.vboxlayout.addLayout(self.hboxlayout)
 
+        self.retranslateUi(uSourceFind)
+        QtCore.QMetaObject.connectSlotsByName(uSourceFind)
+        uSourceFind.setTabOrder(self.wFindNumber, self.wNumFrom)
+        uSourceFind.setTabOrder(self.wNumFrom, self.wNumTo)
+        uSourceFind.setTabOrder(self.wNumTo, self.wFindDate)
+        uSourceFind.setTabOrder(self.wFindDate, self.wFindAmount)
+        uSourceFind.setTabOrder(self.wFindAmount, self.wAmountFrom)
+        uSourceFind.setTabOrder(self.wAmountFrom, self.wAmountTo)
+        uSourceFind.setTabOrder(self.wAmountTo, self.wFindAccount)
+        uSourceFind.setTabOrder(self.wFindAccount, self.wAccountFrom)
+        uSourceFind.setTabOrder(self.wAccountFrom, self.wAccountTo)
+        uSourceFind.setTabOrder(self.wAccountTo, self.wSearch)
+        uSourceFind.setTabOrder(self.wSearch, self.wCancel)
 
-class uSourceFind(QDialog):
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        QDialog.__init__(self,parent,name,modal,fl)
+    def retranslateUi(self, uSourceFind):
+        uSourceFind.setWindowTitle(QtGui.QApplication.translate("uSourceFind", "Find source", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1_2.setText(QtGui.QApplication.translate("uSourceFind", "To", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel2.setText(QtGui.QApplication.translate("uSourceFind", "Search criterium", None, QtGui.QApplication.UnicodeUTF8))
+        self.wFindAmount.setText(QtGui.QApplication.translate("uSourceFind", "Amount", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1.setText(QtGui.QApplication.translate("uSourceFind", "From", None, QtGui.QApplication.UnicodeUTF8))
+        self.wFindDate.setText(QtGui.QApplication.translate("uSourceFind", "Date", None, QtGui.QApplication.UnicodeUTF8))
+        self.wFindAccount.setText(QtGui.QApplication.translate("uSourceFind", "Account", None, QtGui.QApplication.UnicodeUTF8))
+        self.wFindNumber.setText(QtGui.QApplication.translate("uSourceFind", "Number", None, QtGui.QApplication.UnicodeUTF8))
+        self.wSearch.setText(QtGui.QApplication.translate("uSourceFind", "Search", None, QtGui.QApplication.UnicodeUTF8))
+        self.wCancel.setText(QtGui.QApplication.translate("uSourceFind", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
 
-        if not name:
-            self.setName("uSourceFind")
-
-        f = QFont(self.font())
-        f.setFamily("Adobe Helvetica")
-        f.setPointSize(12)
-        self.setFont(f)
-
-        uSourceFindLayout = QVBoxLayout(self,11,6,"uSourceFindLayout")
-
-        layout2 = QGridLayout(None,1,1,0,6,"layout2")
-
-        self.wAccountFrom = QLineEdit(self,"wAccountFrom")
-
-        layout2.addWidget(self.wAccountFrom,4,1)
-
-        self.textLabel1_2 = QLabel(self,"textLabel1_2")
-        self.textLabel1_2.setAlignment(QLabel.AlignCenter)
-
-        layout2.addWidget(self.textLabel1_2,0,2)
-
-        self.wDateTo = QDateEdit(self,"wDateTo")
-
-        layout2.addWidget(self.wDateTo,2,2)
-
-        self.textLabel2 = QLabel(self,"textLabel2")
-
-        layout2.addWidget(self.textLabel2,0,0)
-
-        self.wFindAmount = QCheckBox(self,"wFindAmount")
-
-        layout2.addWidget(self.wFindAmount,3,0)
-
-        self.wDateFrom = QDateEdit(self,"wDateFrom")
-
-        layout2.addWidget(self.wDateFrom,2,1)
-
-        self.wNumTo = QLineEdit(self,"wNumTo")
-
-        layout2.addWidget(self.wNumTo,1,2)
-
-        self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setAlignment(QLabel.AlignCenter)
-
-        layout2.addWidget(self.textLabel1,0,1)
-
-        self.wAccountTo = QLineEdit(self,"wAccountTo")
-
-        layout2.addWidget(self.wAccountTo,4,2)
-
-        self.wAmountFrom = QLineEdit(self,"wAmountFrom")
-
-        layout2.addWidget(self.wAmountFrom,3,1)
-
-        self.wNumFrom = QLineEdit(self,"wNumFrom")
-
-        layout2.addWidget(self.wNumFrom,1,1)
-
-        self.wFindDate = QCheckBox(self,"wFindDate")
-
-        layout2.addWidget(self.wFindDate,2,0)
-
-        self.wFindAccount = QCheckBox(self,"wFindAccount")
-
-        layout2.addWidget(self.wFindAccount,4,0)
-
-        self.wAmountTo = QLineEdit(self,"wAmountTo")
-
-        layout2.addWidget(self.wAmountTo,3,2)
-
-        self.wFindNumber = QCheckBox(self,"wFindNumber")
-
-        layout2.addWidget(self.wFindNumber,1,0)
-        uSourceFindLayout.addLayout(layout2)
-        spacer5 = QSpacerItem(20,31,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        uSourceFindLayout.addItem(spacer5)
-
-        layout3 = QHBoxLayout(None,0,6,"layout3")
-        spacer4 = QSpacerItem(201,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout3.addItem(spacer4)
-
-        self.wSearch = QPushButton(self,"wSearch")
-        self.wSearch.setAutoDefault(0)
-        layout3.addWidget(self.wSearch)
-
-        self.wCancel = QPushButton(self,"wCancel")
-        self.wCancel.setAutoDefault(0)
-        layout3.addWidget(self.wCancel)
-        uSourceFindLayout.addLayout(layout3)
-
-        self.languageChange()
-
-        self.resize(QSize(311,210).expandedTo(self.minimumSizeHint()))
-        self.clearWState(Qt.WState_Polished)
-
-        self.setTabOrder(self.wFindNumber,self.wNumFrom)
-        self.setTabOrder(self.wNumFrom,self.wNumTo)
-        self.setTabOrder(self.wNumTo,self.wFindDate)
-        self.setTabOrder(self.wFindDate,self.wDateFrom)
-        self.setTabOrder(self.wDateFrom,self.wDateTo)
-        self.setTabOrder(self.wDateTo,self.wFindAmount)
-        self.setTabOrder(self.wFindAmount,self.wAmountFrom)
-        self.setTabOrder(self.wAmountFrom,self.wAmountTo)
-        self.setTabOrder(self.wAmountTo,self.wFindAccount)
-        self.setTabOrder(self.wFindAccount,self.wAccountFrom)
-        self.setTabOrder(self.wAccountFrom,self.wAccountTo)
-        self.setTabOrder(self.wAccountTo,self.wSearch)
-        self.setTabOrder(self.wSearch,self.wCancel)
-
-
-    def languageChange(self):
-        self.setCaption(self.__tr("Find source"))
-        self.textLabel1_2.setText(self.__tr("To"))
-        self.textLabel2.setText(self.__tr("Search criterium"))
-        self.wFindAmount.setText(self.__tr("Amount"))
-        self.textLabel1.setText(self.__tr("From"))
-        self.wFindDate.setText(self.__tr("Date"))
-        self.wFindAccount.setText(self.__tr("Account"))
-        self.wFindNumber.setText(self.__tr("Number"))
-        self.wSearch.setText(self.__tr("Search"))
-        self.wCancel.setText(self.__tr("Cancel"))
-
-
-    def __tr(self,s,c = None):
-        return qApp.translate("uSourceFind",s,c)
 
 if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = uSourceFind()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    uSourceFind = QtGui.QDialog()
+    ui = Ui_uSourceFind()
+    ui.setupUi(uSourceFind)
+    uSourceFind.show()
+    sys.exit(app.exec_())
+
